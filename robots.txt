@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+<<<<<<< ours
 Sitemap: https://example.com/sitemap.xml
+=======
+Sitemap: https://easterlingms.com/sitemap.xml
+>>>>>>> theirs

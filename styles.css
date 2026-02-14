@@ -1,3 +1,4 @@
+<<<<<<< ours
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -31,3 +32,6 @@ button {
   color: white;
   cursor: pointer;
 }
+=======
+@import url('assets/styles.css');
+>>>>>>> theirs
