@@ -1,4 +1,6 @@
 (function () {
+  const BEEHIIV_NEWSLETTER_URL = 'https://easterling-ms-newsletter.beehiiv.com/p/building-quietly';
+  const BEEHIIV_SUBSCRIBE_URL = 'https://easterling-ms-newsletter.beehiiv.com/subscribe';
   const search = document.querySelector('#post-search');
   const tagFilter = document.querySelector('#tag-filter');
   const cards = Array.from(document.querySelectorAll('article.card[data-tags]'));
@@ -17,6 +19,77 @@
 
   search?.addEventListener('input', applyFilters);
   tagFilter?.addEventListener('change', applyFilters);
+
+  function wireBeehiivNewsletterSignups() {
+    const forms = Array.from(document.querySelectorAll('form'));
+    forms.forEach((form) => {
+      const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
+      if (!submitButton) return;
+
+      const buttonLabel = (submitButton.textContent || submitButton.value || '').toLowerCase();
+      if (!buttonLabel.includes('subscribe')) return;
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        window.open(BEEHIIV_SUBSCRIBE_URL, '_blank', 'noopener,noreferrer');
+      });
+
+      if (submitButton.tagName === 'BUTTON') {
+        submitButton.textContent = 'Subscribe on Beehiiv';
+      } else {
+        submitButton.value = 'Subscribe on Beehiiv';
+      }
+    });
+  }
+
+  async function updateBeehiivSubscriberCount() {
+    const targets = Array.from(document.querySelectorAll('[data-beehiiv-subscriber-count]'));
+    if (!targets.length) return;
+
+    const setText = (text) => targets.forEach((el) => { el.textContent = text; });
+    const normalizeCount = (value) => {
+      const parsed = Number(String(value).replace(/[^0-9.]/g, ''));
+      return Number.isFinite(parsed) ? parsed : null;
+    };
+    const extractCount = (html) => {
+      const patterns = [
+        /([0-9][0-9,\.]*)\s+(?:subscribers|readers)/i,
+        /Join\s+([0-9][0-9,\.]*)\+?/i,
+      ];
+      for (const pattern of patterns) {
+        const match = html.match(pattern);
+        if (match && match[1]) return match[1];
+      }
+      return null;
+    };
+
+    const sources = [
+      `https://api.allorigins.win/raw?url=${encodeURIComponent(BEEHIIV_NEWSLETTER_URL)}`,
+      `https://r.jina.ai/http://${BEEHIIV_NEWSLETTER_URL.replace(/^https?:\/\//, '')}`,
+    ];
+
+    for (const source of sources) {
+      try {
+        const response = await fetch(source, { method: 'GET' });
+        if (!response.ok) continue;
+        const html = await response.text();
+        const count = extractCount(html);
+        if (count) {
+          const numericCount = normalizeCount(count);
+          if (numericCount !== null && numericCount < 50) {
+            setText('Growing Daily');
+          } else {
+            setText(count);
+          }
+          return;
+        }
+      } catch (_err) {
+        // Try the next source.
+      }
+    }
+
+    setText('Growing Daily');
+  }
 
   function initIntersectionReveals() {
     const revealTargets = Array.from(
@@ -55,6 +128,8 @@
   }
 
   initIntersectionReveals();
+  wireBeehiivNewsletterSignups();
+  updateBeehiivSubscriberCount();
 
   // Lightweight analytics placeholder
   window.commandCenterAnalytics = {
