@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/</loc></url>
+  <url><loc>https://example.com/builds.html</loc></url>
+  <url><loc>https://example.com/blog.html</loc></url>
+  <url><loc>https://example.com/content.html</loc></url>
+  <url><loc>https://example.com/newsletter.html</loc></url>
+  <url><loc>https://example.com/about.html</loc></url>
+  <url><loc>https://example.com/contact.html</loc></url>
+  <url><loc>https://example.com/projects/command-metrics.html</loc></url>
+  <url><loc>https://example.com/projects/launch-ledger.html</loc></url>
+  <url><loc>https://example.com/projects/builder-os.html</loc></url>
+  <url><loc>https://example.com/posts/ship-systems-not-goals.html</loc></url>
+  <url><loc>https://example.com/posts/mvp-sequencing-for-solopreneurs.html</loc></url>
+</urlset>
