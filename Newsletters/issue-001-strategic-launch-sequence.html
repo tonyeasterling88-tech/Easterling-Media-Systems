@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Issue #001 – Building Quietly</title>
+  <meta name="description" content="Issue #001 of the newsletter: Building Quietly." />
+
+  <!-- Uses your site CSS if you have it -->
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    :root{
+      --bg: #0b0f19;
+      --card: rgba(255,255,255,0.06);
+      --card-solid: #0f1629;
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --line: rgba(255,255,255,0.12);
+      --accent: rgba(255,255,255,0.92);
+      --shadow: 0 18px 60px rgba(0,0,0,0.45);
+      --radius: 18px;
+    }
+
+    /* Light mode fallback if user prefers */
+    @media (prefers-color-scheme: light) {
+      :root{
+        --bg: #f6f7fb;
+        --card: rgba(0,0,0,0.03);
+        --card-solid: #ffffff;
+        --text: rgba(10,12,16,0.92);
+        --muted: rgba(10,12,16,0.62);
+        --line: rgba(10,12,16,0.12);
+        --accent: rgba(10,12,16,0.92);
+        --shadow: 0 18px 60px rgba(10,12,16,0.10);
+      }
+    }
+
+    body{
+      margin:0;
+      background: radial-gradient(900px 500px at 20% 0%, rgba(255,255,255,0.08), transparent 60%),
+                  radial-gradient(900px 500px at 80% 10%, rgba(255,255,255,0.06), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap{
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 18px 80px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .topbar a{
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+    }
+    .topbar a:hover{
+      color: var(--text);
+      border-bottom-color: var(--line);
+    }
+
+    .card{
+      background: linear-gradient(180deg, var(--card) 0%, transparent 120%), var(--card-solid);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px 34px 28px;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap: wrap;
+      gap:10px;
+      align-items:center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .pill{
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .deck{
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin: 26px 0;
+    }
+
+    h2{
+      margin: 24px 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    p{
+      margin: 12px 0;
+      line-height: 1.75;
+      font-size: 16px;
+      max-width: 75ch;
+    }
+
+    ul{
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    li{
+      margin: 8px 0;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .callout{
+      margin: 18px 0 6px;
+      padding: 16px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+    .callout strong{
+      display:block;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .callout p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .signature{
+      margin-top: 24px;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      color: var(--muted);
+    }
+
+    .avatar{
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .actions{
+      margin-top: 22px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      text-decoration:none;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,0.07);
+    }
+
+    .btn-primary{
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    footer{
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div>Newsletter</div>
+      <div>
+        <a href="../newsletter.html">← Back to archive</a>
+      </div>
+    </div>
+
+    <article class="card">
+      <div class="meta">
+        <span class="pill">Issue #001</span>
+        <span class="pill">Feb 2026</span>
+        <span class="pill">~3 min read</span>
+      </div>
+
+      <h1>Building Quietly</h1>
+      <p class="deck">
+        Shipping over thinking — a simple weekly log of what I’m building, what I’m learning, and what I’m refining.
+      </p>
+
+      <div class="divider"></div>
+
+      <p>This week I stopped overthinking and just shipped.</p>
+
+      <p>
+        The website is live.<br />
+        The apps are moving forward.<br />
+        The systems are forming.
+      </p>
+
+      <div class="callout">
+        <strong>Key idea</strong>
+        <p><b>Progress compounds faster than polish.</b> Working beats perfect, every time.</p>
+      </div>
+
+      <h2>What I’m building</h2>
+      <ul>
+        <li><b>MindMark</b> — private journaling with gentle reflection</li>
+        <li><b>BreathMark</b> — tactical calm for high-stress days</li>
+        <li><b>DroneDash</b> — simple physics, clean gameplay</li>
+      </ul>
+
+      <h2>This week’s insight</h2>
+      <p>If you automate the boring parts, you free energy for creativity.</p>
+      <p>AI isn’t replacing effort. It’s reducing friction — and friction is what kills momentum.</p>
+
+      <h2>Tool I’m testing</h2>
+      <p>
+        CapCut for long-loop LoFi automation while I refine my own internal tool.
+        Sometimes the right move isn’t building the tool yet — it’s shipping with what works now.
+      </p>
+
+      <div class="signature">
+        <div class="avatar">T</div>
+        <div>
+          <div style="color: var(--text); font-weight: 600;">Tony</div>
+          <div style="font-size: 13px;">Building systems that compound.</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="../newsletter.html">View all issues</a>
+        <a class="btn" href="../contact.html">Reply / Contact</a>
+      </div>
+    </article>
+
+    <footer>
+      © <span id="year"></span> • Archived newsletter issue
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
