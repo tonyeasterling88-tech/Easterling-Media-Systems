@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://easterlingms.com/</loc></url>
   <url><loc>https://easterlingms.com/builds.html</loc></url>
-  <url><loc>https://easterlingms.com/blog.html</loc></url>
+  <url><loc>https://easterlingms.com/blogs.html</loc></url>
   <url><loc>https://easterlingms.com/content.html</loc></url>
   <url><loc>https://easterlingms.com/newsletters.html</loc></url>
   <url><loc>https://easterlingms.com/about.html</loc></url>
@@ -10,8 +10,10 @@
   <url><loc>https://easterlingms.com/projects/command-metrics.html</loc></url>
   <url><loc>https://easterlingms.com/projects/launch-ledger.html</loc></url>
   <url><loc>https://easterlingms.com/projects/builder-os.html</loc></url>
-  <url><loc>https://easterlingms.com/posts/ship-systems-not-goals.html</loc></url>
-  <url><loc>https://easterlingms.com/posts/mvp-sequencing-for-solopreneurs.html</loc></url>
+  <url><loc>https://easterlingms.com/blogs/how-i-built-and-published-my-first-app.html</loc></url>
+  <url><loc>https://easterlingms.com/blogs/ship-systems-not-goals.html</loc></url>
+  <url><loc>https://easterlingms.com/blogs/mvp-sequencing-for-solopreneurs.html</loc></url>
   <url><loc>https://easterlingms.com/Newsletters/issue-001-strategic-launch-sequence.html</loc></url>
 </urlset>
+
 
