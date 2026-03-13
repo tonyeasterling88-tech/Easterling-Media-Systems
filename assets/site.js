@@ -12,7 +12,11 @@
     cards.forEach((card) => {
       const txt = card.textContent.toLowerCase();
       const matchesText = !q || txt.includes(q);
-      const matchesTag = tag === 'all' || card.dataset.tags === tag;
+      const tags = (card.dataset.tags || '')
+        .split(/\s+/)
+        .map((value) => value.trim().toLowerCase())
+        .filter(Boolean);
+      const matchesTag = tag === 'all' || tags.includes(tag);
       card.style.display = matchesText && matchesTag ? '' : 'none';
     });
   }
