@@ -10,8 +10,11 @@ $env:BEEHIIV_API_KEY="your-key"
 npm run sync:beehiiv
 ```
 
+If `BEEHIIV_API_KEY` is missing or the API request fails, the sync script falls back to the public Beehiiv publication website so the on-site archive can still stay current.
+
 For GitHub automation, add a repository secret named `BEEHIIV_API_KEY`.
 If your Beehiiv account has more than one publication, also add a repository variable named `BEEHIIV_PUBLICATION_ID` or `BEEHIIV_PUBLICATION_NAME`.
+If you want to force the public-site fallback to a specific publication URL, set `BEEHIIV_WEBSITE_URL`.
 
 ## Closed Testing Signups
 

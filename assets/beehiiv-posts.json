@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T00:00:00.000Z",
+  "updatedAt": "2026-03-13T07:07:38.227Z",
   "publication": {
     "id": "",
     "name": "Easterling Media & Systems Newsletter",
@@ -7,21 +7,34 @@
   },
   "issues": [
     {
-      "id": "issue-001-strategic-launch-sequence",
-      "slug": "issue-001-strategic-launch-sequence",
-      "title": "Issue 001: Strategic launch sequence",
+      "id": "new-post",
+      "slug": "new-post",
+      "title": "The Builder Log: Launching Your Own Domain | Issue #002",
       "subtitle": "",
-      "excerpt": "Launch sequencing, scope discipline, and proof-first execution.",
-      "publishedAt": "2026-02-14T00:00:00.000Z",
-      "webUrl": "https://easterling-ms-newsletter.beehiiv.com/subscribe",
-      "thumbnailUrl": "",
+      "excerpt": "Discover how to launch your own domain and build complete control over your digital ecosystem. The Builder Log explores owning your infrastructure.",
+      "publishedAt": "2026-03-13T05:45:37.438Z",
+      "webUrl": "https://easterling-ms-newsletter.beehiiv.com/p/new-post",
+      "thumbnailUrl": "https://beehiiv-images-production.s3.amazonaws.com/static_assets/defaults/landscape_thumbnail.png",
       "authors": [
-        "Tony Easterling"
+        "Anthony Easterling"
       ],
-      "tags": [
-        "newsletter"
+      "tags": [],
+      "html": "<p>Discover how to launch your own domain and build complete control over your digital ecosystem. The Builder Log explores owning your infrastructure.</p>"
+    },
+    {
+      "id": "building-quietly",
+      "slug": "building-quietly",
+      "title": "Building Quietly",
+      "subtitle": "",
+      "excerpt": "Shipping over thinking — a simple weekly log of what I’m building, what I’m learning, and what I’m refining.",
+      "publishedAt": "2026-02-14T17:32:12.344Z",
+      "webUrl": "https://easterling-ms-newsletter.beehiiv.com/p/building-quietly",
+      "thumbnailUrl": "https://beehiiv-images-production.s3.amazonaws.com/static_assets/defaults/landscape_thumbnail.png",
+      "authors": [
+        "Anthony Easterling"
       ],
-      "html": "<p>Launch sequencing, scope discipline, and proof-first execution.</p><p>This seeded issue keeps the page populated until the Beehiiv sync runs with a valid API key.</p>"
+      "tags": [],
+      "html": "<p>Shipping over thinking — a simple weekly log of what I’m building, what I’m learning, and what I’m refining.</p>"
     }
   ]
 }

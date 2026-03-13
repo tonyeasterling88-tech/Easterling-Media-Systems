@@ -64,7 +64,7 @@
         <div class="newsletter-reader-head">
           <p class="muted">Latest issue</p>
           <h2>${escapeHtml(issue.title)}</h2>
-          <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))} · ${escapeHtml(authorText)}</p>
+          <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))} &middot; ${escapeHtml(authorText)}</p>
           <div class="cta-row">
             ${issue.webUrl ? `<a class="btn" href="${escapeHtml(issue.webUrl)}" target="_blank" rel="noopener noreferrer">Open on Beehiiv</a>` : ''}
             <a class="btn" href="#newsletter-archive">Browse archive</a>
