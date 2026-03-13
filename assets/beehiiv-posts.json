@@ -1,0 +1,27 @@
+{
+  "updatedAt": "2026-03-13T00:00:00.000Z",
+  "publication": {
+    "id": "",
+    "name": "Easterling Media & Systems Newsletter",
+    "websiteUrl": "https://easterling-ms-newsletter.beehiiv.com"
+  },
+  "issues": [
+    {
+      "id": "issue-001-strategic-launch-sequence",
+      "slug": "issue-001-strategic-launch-sequence",
+      "title": "Issue 001: Strategic launch sequence",
+      "subtitle": "",
+      "excerpt": "Launch sequencing, scope discipline, and proof-first execution.",
+      "publishedAt": "2026-02-14T00:00:00.000Z",
+      "webUrl": "https://easterling-ms-newsletter.beehiiv.com/subscribe",
+      "thumbnailUrl": "",
+      "authors": [
+        "Tony Easterling"
+      ],
+      "tags": [
+        "newsletter"
+      ],
+      "html": "<p>Launch sequencing, scope discipline, and proof-first execution.</p><p>This seeded issue keeps the page populated until the Beehiiv sync runs with a valid API key.</p>"
+    }
+  ]
+}
