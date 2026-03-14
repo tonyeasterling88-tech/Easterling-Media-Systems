@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "npx http-server . -p 8080 -c-1 --cors",
     "sync:beehiiv": "node scripts/sync-beehiiv.mjs"
   }
 }
