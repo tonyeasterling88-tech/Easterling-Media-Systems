@@ -1,11 +1,26 @@
 {
-  "updatedAt": "2026-04-13T18:46:45.845Z",
+  "updatedAt": "2026-04-13T20:30:35.778Z",
   "publication": {
     "id": "",
     "name": "Easterling Media & Systems Newsletter",
     "websiteUrl": "https://easterling-ms-newsletter.beehiiv.com"
   },
   "issues": [
+    {
+      "id": "ship-small-build-durable-wins-sequencing-and-systems",
+      "slug": "ship-small-build-durable-wins-sequencing-and-systems",
+      "title": "Ship Small, Build Durable: wins, sequencing, and systems",
+      "subtitle": "",
+      "excerpt": "Small wins, smarter MVP sequencing, and shipping systems that stick",
+      "publishedAt": "2026-04-13T20:27:12.531Z",
+      "webUrl": "https://easterling-ms-newsletter.beehiiv.com/p/ship-small-build-durable-wins-sequencing-and-systems",
+      "thumbnailUrl": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/995a2e7c-61c3-4678-966f-71255d9b7c2c/newsletter_thumbnail.png?t=1776111985",
+      "authors": [
+        "Anthony Easterling"
+      ],
+      "tags": [],
+      "html": "<p>Small wins, smarter MVP sequencing, and shipping systems that stick</p>"
+    },
     {
       "id": "new-post",
       "slug": "new-post",
