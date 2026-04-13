@@ -59,3 +59,110 @@ npm run import:firebase -- .\closed_test_signups.json
 ```
 
 The importer writes documents into the `closed_test_signups` collection using the lowercased email address as the document ID.
+
+## Scheduled Newsletter Draft Generator
+
+There is now a Firebase scheduled function that generates newsletter drafts with OpenAI and stores them in Firestore for review before anything is sent to Beehiiv.
+
+### What it does
+
+- Runs on a schedule
+- Reads queued source items from `newsletter_sources`
+- Calls OpenAI to write a newsletter draft
+- Stores the result in `newsletterDrafts/{YYYY-MM-DD}`
+- Marks the consumed source items as `drafted`
+
+This worker does **not** publish to Beehiiv yet. It only creates reviewable drafts.
+
+### Firestore collections
+
+`newsletter_sources` documents should look roughly like this:
+
+```json
+{
+  "title": "OpenAI shipped X",
+  "url": "https://example.com/story",
+  "notes": "Focus on why this matters for small teams.",
+  "summary": "Optional short source recap",
+  "issueDate": "2026-04-20",
+  "status": "queued"
+}
+```
+
+Generated drafts are written into `newsletterDrafts` with fields like:
+
+- `title`
+- `subjectLine`
+- `summary`
+- `intro`
+- `sections`
+- `closing`
+- `contentMarkdown`
+- `status`
+- `approved`
+- `sources`
+
+### Setup
+
+1. Install the function dependencies:
+
+```powershell
+cd firebase/functions
+npm install
+```
+
+2. Set the OpenAI secret for Firebase Functions:
+
+```powershell
+firebase functions:secrets:set OPENAI_API_KEY
+```
+
+3. Optional runtime configuration values can be set in `firebase/functions/.env` when testing locally, or in your deployment environment:
+
+```dotenv
+OPENAI_MODEL=gpt-5-mini
+FUNCTION_REGION=us-central1
+NEWSLETTER_NAME=Easterling Media & Systems
+NEWSLETTER_AUDIENCE=founders, operators, and technically curious builders
+NEWSLETTER_TONE=clear, grounded, concise, and insightful without hype
+NEWSLETTER_SOURCE_COLLECTION=newsletter_sources
+NEWSLETTER_DRAFT_COLLECTION=newsletterDrafts
+NEWSLETTER_MAX_SOURCES=5
+NEWSLETTER_MAX_SECTIONS=4
+NEWSLETTER_REQUIRE_SOURCES=true
+```
+
+4. Optional parameter overrides for the scheduler:
+
+```powershell
+firebase functions:params:set NEWSLETTER_SCHEDULE="every monday 08:00"
+firebase functions:params:set NEWSLETTER_TIME_ZONE="America/New_York"
+```
+
+5. Deploy the function:
+
+```powershell
+firebase deploy --only functions:generateScheduledNewsletterDraft
+```
+
+### Default behavior
+
+- Schedule: every Monday at 8:00 AM
+- Time zone: America/New_York
+- Draft document ID: `YYYY-MM-DD`
+- Existing draft for the same issue date: skipped
+- No queued sources and `NEWSLETTER_REQUIRE_SOURCES=true`: skipped
+
+### Run one manually today
+
+If you want a draft immediately without waiting for the scheduler, you can run:
+
+```powershell
+$env:OPENAI_API_KEY="your-openai-key"
+$env:FIREBASE_PROJECT_ID="your-project-id"
+$env:FIREBASE_CLIENT_EMAIL="firebase-adminsdk-xxxx@your-project-id.iam.gserviceaccount.com"
+$env:FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+npm run generate:newsletter -- 2026-04-13
+```
+
+That uses the same draft shape and writes directly to Firestore as `newsletterDrafts/2026-04-13`.
