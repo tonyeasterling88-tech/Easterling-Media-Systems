@@ -1,8 +1,7 @@
 (function () {
   const BEEHIIV_NEWSLETTER_URL = 'https://easterling-ms-newsletter.beehiiv.com/p/building-quietly';
   const BEEHIIV_SUBSCRIBE_URL = 'https://easterling-ms-newsletter.beehiiv.com/subscribe';
-  const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@NagiKumoChillFi';
-  const YOUTUBE_CHANNEL_ID = 'UCNhXHBT6Efo1xEjIGKgPNKw';
+  const YOUTUBE_DATA_URL = 'assets/youtube-videos.json';
   const search = document.querySelector('#post-search');
   const tagFilter = document.querySelector('#tag-filter');
   const cards = Array.from(document.querySelectorAll('article.card[data-tags]'));
@@ -112,7 +111,7 @@
       const videos = await loadYouTubeVideos();
       if (videos.length) {
         container.innerHTML = videos.map(renderVideoCard).join('');
-        setStatus('Latest uploads pulled automatically from YouTube.');
+        setStatus('Latest uploads synced from YouTube.');
         return;
       }
 
@@ -123,63 +122,19 @@
   }
 
   async function loadYouTubeVideos() {
-    try {
-      const response = await fetch('/api/youtube-feed', {
-        headers: {
-          Accept: 'application/json',
-        },
-        cache: 'no-store',
-      });
-      if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
-      }
+    const response = await fetch(`${YOUTUBE_DATA_URL}?v=${Date.now()}`, {
+      headers: {
+        Accept: 'application/json',
+      },
+      cache: 'no-store',
+    });
 
-      const payload = await response.json();
-      return Array.isArray(payload?.videos) ? payload.videos.slice(0, 6) : [];
-    } catch (_error) {
-      const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
-      const fallbackUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
-      const response = await fetch(fallbackUrl, {
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`Fallback request failed: ${response.status}`);
-      }
-
-      const payload = await response.json();
-      const items = Array.isArray(payload?.items) ? payload.items : [];
-
-      return items
-        .map((item) => {
-          const title = item?.title?.trim() || 'Untitled video';
-          const link = item?.link || `${YOUTUBE_CHANNEL_URL}/videos`;
-          const published = item?.pubDate || '';
-          const author = item?.author || payload?.feed?.author || 'NagiKumoChillFi';
-          const videoId = extractYouTubeVideoId(link);
-
-          return {
-            title,
-            videoId,
-            published,
-            link,
-            author,
-          };
-        })
-        .filter((video) => video.videoId && video.link)
-        .slice(0, 6);
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
     }
-  }
 
-  function extractYouTubeVideoId(url) {
-    try {
-      const parsed = new URL(url);
-      return parsed.searchParams.get('v') || '';
-    } catch {
-      return '';
-    }
+    const payload = await response.json();
+    return Array.isArray(payload?.videos) ? payload.videos.slice(0, 6) : [];
   }
 
   function renderVideoCard(video) {

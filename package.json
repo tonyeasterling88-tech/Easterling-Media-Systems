@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "npx http-server . -p 8080 -c-1 --cors",
     "sync:beehiiv": "node scripts/sync-beehiiv.mjs",
+    "sync:youtube": "node scripts/sync-youtube.mjs",
     "import:firebase": "node scripts/import-supabase-to-firestore.mjs",
     "generate:newsletter": "node scripts/generate-newsletter-draft.mjs",
     "publish:newsletter": "node scripts/publish-newsletter-to-beehiiv.mjs"
