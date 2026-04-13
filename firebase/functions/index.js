@@ -1,8 +1,14 @@
+import { readFile, readdir } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { initializeApp } from 'firebase-admin/app';
 import { FieldValue, getFirestore } from 'firebase-admin/firestore';
 import { logger } from 'firebase-functions';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { defineSecret, defineString } from 'firebase-functions/params';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(__dirname, '..', '..');
 
 initializeApp();
 
@@ -39,6 +45,37 @@ function getHumanDate(date, timeZone) {
 
 function cleanText(value) {
   return String(value || '').replace(/\r\n/g, '\n').trim();
+}
+
+function stripHtml(html) {
+  return cleanText(
+    String(html || '')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&nbsp;/gi, ' ')
+      .replace(/&amp;/gi, '&')
+      .replace(/&middot;/gi, ' ')
+      .replace(/\s+/g, ' ')
+  );
+}
+
+function extractTag(html, tagName) {
+  const match = html.match(new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, 'i'));
+  return stripHtml(match?.[1] || '');
+}
+
+function extractMetaDescription(html) {
+  const match = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i);
+  return cleanText(match?.[1] || '');
+}
+
+function summarizeText(text, maxLength = 280) {
+  const clean = cleanText(text);
+  if (clean.length <= maxLength) {
+    return clean;
+  }
+  return `${clean.slice(0, maxLength - 3).trimEnd()}...`;
 }
 
 function extractJsonObject(value) {
@@ -149,6 +186,51 @@ async function loadQueuedSources(issueDate, maxSources) {
   }
 
   return [...exactMatches, ...genericMatches].slice(0, maxSources);
+}
+
+async function loadRepoSources(maxSources) {
+  const directories = [
+    { dir: path.join(repoRoot, 'posts'), kind: 'post' },
+    { dir: path.join(repoRoot, 'blogs'), kind: 'blog' },
+  ];
+  const sources = [];
+
+  for (const entry of directories) {
+    let names = [];
+    try {
+      names = await readdir(entry.dir);
+    } catch {
+      continue;
+    }
+
+    for (const name of names.filter((value) => value.endsWith('.html'))) {
+      const filePath = path.join(entry.dir, name);
+      let html;
+      try {
+        html = await readFile(filePath, 'utf8');
+      } catch {
+        continue;
+      }
+
+      const title = extractTag(html, 'h1') || extractTag(html, 'title') || name;
+      const description = extractMetaDescription(html);
+      const paragraphs = Array.from(html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi), (match) =>
+        stripHtml(match[1])
+      ).filter(Boolean);
+      const summary = description || summarizeText(paragraphs.slice(0, 3).join(' '));
+
+      sources.push({
+        id: `${entry.kind}:${name.replace(/\.html$/i, '')}`,
+        title,
+        url: '',
+        notes: `Use this published ${entry.kind} from the local repo as source material.`,
+        issueDate: '',
+        summary,
+      });
+    }
+  }
+
+  return sources.slice(0, maxSources);
 }
 
 async function createDraftFromOpenAi({ apiKey, issueDate, issueLabel, sources }) {
@@ -281,8 +363,16 @@ export const generateScheduledNewsletterDraft = onSchedule(
     const requireSources = readEnv('NEWSLETTER_REQUIRE_SOURCES', 'true') !== 'false';
     const sources = await loadQueuedSources(issueDate, maxSources);
 
-    if (requireSources && !sources.length) {
-      logger.warn('Skipping newsletter generation because no queued sources were found.', {
+    let resolvedSources = sources;
+    let sourceMode = 'firestore';
+
+    if (!resolvedSources.length) {
+      resolvedSources = await loadRepoSources(maxSources);
+      sourceMode = 'repo';
+    }
+
+    if (requireSources && !resolvedSources.length) {
+      logger.warn('Skipping newsletter generation because no queued or repo sources were found.', {
         issueDate,
       });
       return;
@@ -292,7 +382,7 @@ export const generateScheduledNewsletterDraft = onSchedule(
       apiKey: openAiApiKey.value(),
       issueDate,
       issueLabel,
-      sources,
+      sources: resolvedSources,
     });
 
     await draftRef.set({
@@ -305,13 +395,14 @@ export const generateScheduledNewsletterDraft = onSchedule(
       sections: draft.sections,
       closing: draft.closing,
       contentMarkdown: draft.contentMarkdown,
-      sources: sources.map((source) => ({
+      sources: resolvedSources.map((source) => ({
         id: source.id,
         title: source.title,
         url: source.url,
         notes: source.notes,
+        summary: source.summary || '',
       })),
-      sourceCount: sources.length,
+      sourceCount: resolvedSources.length,
       status: 'ready_for_review',
       approved: false,
       beehiivPostId: null,
@@ -321,17 +412,21 @@ export const generateScheduledNewsletterDraft = onSchedule(
         openAiResponseId: draft.openAiResponseId,
         schedule: newsletterSchedule.value(),
         timeZone,
+        sourceMode,
       },
       createdAt: FieldValue.serverTimestamp(),
       updatedAt: FieldValue.serverTimestamp(),
     });
 
-    await markSourcesDrafted(sources, draftRef.id);
+    if (sourceMode === 'firestore') {
+      await markSourcesDrafted(resolvedSources, draftRef.id);
+    }
 
     logger.info('Generated newsletter draft.', {
       issueDate,
       draftId: draftRef.id,
-      sourceCount: sources.length,
+      sourceCount: resolvedSources.length,
+      sourceMode,
     });
   }
 );

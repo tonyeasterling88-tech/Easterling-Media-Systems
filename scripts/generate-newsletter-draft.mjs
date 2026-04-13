@@ -1,5 +1,15 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 import { GoogleAuth } from 'google-auth-library';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(__dirname, '..');
+await loadEnvFiles([
+  path.join(repoRoot, '.env.local'),
+  path.join(repoRoot, 'firebase', 'functions', '.env.local'),
+]);
 
 const issueDate = process.argv[2] || getIssueDate(new Date(), 'America/New_York');
 const timeZone = process.env.NEWSLETTER_TIME_ZONE || 'America/New_York';
@@ -47,7 +57,7 @@ if (await draftExists(projectId, accessToken, draftCollection, issueDate)) {
   process.exit(1);
 }
 
-const sources = await loadQueuedSources({
+const firestoreSources = await loadQueuedSources({
   projectId,
   accessToken,
   collectionName: sourceCollection,
@@ -55,8 +65,16 @@ const sources = await loadQueuedSources({
   maxSources,
 });
 
+let sources = firestoreSources;
+let sourceMode = 'firestore';
+
+if (!sources.length) {
+  sources = await loadRepoSources(maxSources);
+  sourceMode = 'repo';
+}
+
 if (requireSources && !sources.length) {
-  console.error(`No queued sources found for ${issueDate}.`);
+  console.error(`No queued Firestore sources or repo sources found for ${issueDate}.`);
   process.exit(1);
 }
 
@@ -75,17 +93,58 @@ await writeDraft({
   issueLabel,
   draft,
   sources,
+  sourceMode,
 });
 
-await markSourcesDrafted({
-  projectId,
-  accessToken,
-  collectionName: sourceCollection,
-  draftId: issueDate,
-  sources,
-});
+if (sourceMode === 'firestore') {
+  await markSourcesDrafted({
+    projectId,
+    accessToken,
+    collectionName: sourceCollection,
+    draftId: issueDate,
+    sources,
+  });
+}
 
-console.log(`Generated draft ${draftCollection}/${issueDate} with ${sources.length} source(s).`);
+console.log(`Generated draft ${draftCollection}/${issueDate} with ${sources.length} source(s) from ${sourceMode}.`);
+
+async function loadEnvFiles(paths) {
+  for (const filePath of paths) {
+    let raw;
+    try {
+      raw = await fs.readFile(filePath, 'utf8');
+    } catch {
+      continue;
+    }
+
+    for (const line of raw.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) {
+        continue;
+      }
+
+      const equalsIndex = trimmed.indexOf('=');
+      if (equalsIndex === -1) {
+        continue;
+      }
+
+      const key = trimmed.slice(0, equalsIndex).trim();
+      if (!key || process.env[key]) {
+        continue;
+      }
+
+      let value = trimmed.slice(equalsIndex + 1).trim();
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+
+      process.env[key] = value.replace(/\\n/g, '\n');
+    }
+  }
+}
 
 function readEnv(name, fallback = '') {
   const value = process.env[name];
@@ -94,6 +153,37 @@ function readEnv(name, fallback = '') {
 
 function cleanText(value) {
   return String(value || '').replace(/\r\n/g, '\n').trim();
+}
+
+function stripHtml(html) {
+  return cleanText(
+    String(html || '')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&nbsp;/gi, ' ')
+      .replace(/&amp;/gi, '&')
+      .replace(/&middot;/gi, ' ')
+      .replace(/\s+/g, ' ')
+  );
+}
+
+function extractTag(html, tagName) {
+  const match = html.match(new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, 'i'));
+  return stripHtml(match?.[1] || '');
+}
+
+function extractMetaDescription(html) {
+  const match = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i);
+  return cleanText(match?.[1] || '');
+}
+
+function summarizeText(text, maxLength = 280) {
+  const clean = cleanText(text);
+  if (clean.length <= maxLength) {
+    return clean;
+  }
+  return `${clean.slice(0, maxLength - 3).trimEnd()}...`;
 }
 
 function getIssueDate(date, tz) {
@@ -266,6 +356,51 @@ async function loadQueuedSources({ projectId, accessToken, collectionName, issue
   return [...exactMatches, ...genericMatches].slice(0, maxSources);
 }
 
+async function loadRepoSources(maxSources) {
+  const directories = [
+    { dir: path.join(repoRoot, 'posts'), kind: 'post' },
+    { dir: path.join(repoRoot, 'blogs'), kind: 'blog' },
+  ];
+  const sources = [];
+
+  for (const entry of directories) {
+    let names = [];
+    try {
+      names = await fs.readdir(entry.dir);
+    } catch {
+      continue;
+    }
+
+    for (const name of names.filter((value) => value.endsWith('.html'))) {
+      const filePath = path.join(entry.dir, name);
+      let html;
+      try {
+        html = await fs.readFile(filePath, 'utf8');
+      } catch {
+        continue;
+      }
+
+      const title = extractTag(html, 'h1') || extractTag(html, 'title') || name;
+      const description = extractMetaDescription(html);
+      const paragraphs = Array.from(html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi), (match) =>
+        stripHtml(match[1])
+      ).filter(Boolean);
+      const summary = description || summarizeText(paragraphs.slice(0, 3).join(' '));
+
+      sources.push({
+        id: `${entry.kind}:${name.replace(/\.html$/i, '')}`,
+        title,
+        url: '',
+        notes: `Use this published ${entry.kind} from the local repo as source material.`,
+        summary,
+        issueDate: '',
+      });
+    }
+  }
+
+  return sources.slice(0, maxSources);
+}
+
 async function createDraftFromOpenAi({ apiKey, issueDate, issueLabel, sources }) {
   const newsletterName = readEnv('NEWSLETTER_NAME', 'Easterling Media & Systems');
   const audience = readEnv(
@@ -347,6 +482,7 @@ async function writeDraft({
   issueLabel,
   draft,
   sources,
+  sourceMode,
 }) {
   const path = `${collectionName}/${encodeURIComponent(issueDate)}`;
   const fields = {
@@ -372,6 +508,7 @@ async function writeDraft({
               title: { stringValue: source.title },
               url: source.url ? { stringValue: source.url } : { nullValue: null },
               notes: source.notes ? { stringValue: source.notes } : { nullValue: null },
+              summary: source.summary ? { stringValue: source.summary } : { nullValue: null },
             },
           },
         })),
@@ -403,6 +540,7 @@ async function writeDraft({
             : { nullValue: null },
           trigger: { stringValue: 'manual-script' },
           timeZone: { stringValue: timeZone },
+          sourceMode: { stringValue: sourceMode },
         },
       },
     },
