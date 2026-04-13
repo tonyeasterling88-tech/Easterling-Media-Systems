@@ -45,7 +45,27 @@ header {
   padding: 0.9rem 0;
 }
 
-.brand { font-weight: 700; color: var(--text); }
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.brand:hover { text-decoration: none; }
+
+.brand-mark {
+  width: 54px;
+  height: 54px;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(56, 189, 248, 0.18));
+}
+
+.brand-text {
+  line-height: 1.1;
+}
 
 nav ul {
   list-style: none;
@@ -303,4 +323,5 @@ button[disabled],
 @media (max-width: 900px) {
   .nav-wrap { flex-direction: column; align-items: flex-start; }
   .signup-form-grid { grid-template-columns: 1fr; }
+  .brand-mark { width: 48px; height: 48px; }
 }

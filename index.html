@@ -18,6 +18,38 @@
   <script type="module" src="assets/closed-testing.js"></script>
   <script defer src="assets/newsletters.js"></script>
   <style>
+    .hero-media {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      min-height: 150px;
+      border: 1px solid rgba(56, 189, 248, 0.12);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0.5));
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.48)),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.12) 35%, rgba(15, 23, 42, 0.4));
+      pointer-events: none;
+    }
+
+    .hero-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 150px;
+      max-height: 210px;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.48;
+      transform: scale(1.02);
+    }
+
     .hero-grid {
       display: grid;
       gap: 1rem;
@@ -97,7 +129,10 @@
 <body>
 <header>
   <div class="container nav-wrap">
-    <a class="brand" href="index.html">Easterling Media & Systems</a>
+    <a class="brand" href="index.html">
+      <img class="brand-mark" src="assets/Easterlingms_logo.png" alt="Easterling Media &amp; Systems logo" />
+      <span class="brand-text">Easterling Media &amp; Systems</span>
+    </a>
     <nav>
       <ul>
         <li><a href="builds.html">Builds</a></li>
@@ -113,6 +148,9 @@
 
 <main class="container">
   <section class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <img src="assets/easterlingms_header.png" alt="" />
+    </div>
     <div class="hero-grid">
       <div>
         <span class="pill">Modern Command Center</span>
