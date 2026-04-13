@@ -1,6 +1,8 @@
 (function () {
   const BEEHIIV_NEWSLETTER_URL = 'https://easterling-ms-newsletter.beehiiv.com/p/building-quietly';
   const BEEHIIV_SUBSCRIBE_URL = 'https://easterling-ms-newsletter.beehiiv.com/subscribe';
+  const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@NagiKumoChillFi';
+  const YOUTUBE_CHANNEL_ID = 'UCNhXHBT6Efo1xEjIGKgPNKw';
   const search = document.querySelector('#post-search');
   const tagFilter = document.querySelector('#tag-filter');
   const cards = Array.from(document.querySelectorAll('article.card[data-tags]'));
@@ -95,6 +97,115 @@
     setText('Growing Daily');
   }
 
+  async function updateYouTubeVideos() {
+    const container = document.querySelector('[data-youtube-feed]');
+    if (!container) return;
+
+    const status = document.querySelector('[data-youtube-feed-status]');
+    const setStatus = (text) => {
+      if (status) {
+        status.textContent = text;
+      }
+    };
+
+    const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
+    const source = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+
+    try {
+      const response = await fetch(source, {
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`Request failed: ${response.status}`);
+      }
+
+      const payload = await response.json();
+      const videos = parseYouTubeFeed(payload).slice(0, 6);
+      if (videos.length) {
+        container.innerHTML = videos.map(renderVideoCard).join('');
+        setStatus('Latest uploads pulled automatically from YouTube.');
+        return;
+      }
+
+      setStatus('No public YouTube uploads are available yet. New videos will appear here automatically.');
+    } catch (_error) {
+      setStatus('Latest uploads could not be loaded right now. Visit the YouTube channel directly.');
+    }
+  }
+
+  function parseYouTubeFeed(payload) {
+    const items = Array.isArray(payload?.items) ? payload.items : [];
+
+    return items.map((item) => {
+      const title = item?.title?.trim() || 'Untitled video';
+      const link = item?.link || `${YOUTUBE_CHANNEL_URL}/videos`;
+      const published = item?.pubDate || '';
+      const author = item?.author || payload?.feed?.author || 'NagiKumoChillFi';
+      const videoId = extractYouTubeVideoId(link);
+
+      return {
+        title,
+        videoId,
+        published,
+        link,
+        author,
+      };
+    }).filter((video) => video.videoId && video.link);
+  }
+
+  function extractYouTubeVideoId(url) {
+    try {
+      const parsed = new URL(url);
+      return parsed.searchParams.get('v') || '';
+    } catch {
+      return '';
+    }
+  }
+
+  function renderVideoCard(video) {
+    const publishedLabel = formatDate(video.published);
+    const thumbnail = `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`;
+
+    return `
+      <article class="card">
+        <a href="${escapeHtml(video.link)}" target="_blank" rel="noopener noreferrer">
+          <img src="${escapeHtml(thumbnail)}" alt="${escapeHtml(video.title)} thumbnail" loading="lazy" />
+        </a>
+        <h3><a href="${escapeHtml(video.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(video.title)}</a></h3>
+        <p class="muted">YouTube | ${escapeHtml(video.author)}</p>
+        <p class="muted">${escapeHtml(publishedLabel)}</p>
+      </article>
+    `;
+  }
+
+  function formatDate(value) {
+    if (!value) {
+      return 'Recently published';
+    }
+
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) {
+      return 'Recently published';
+    }
+
+    return `Published: ${parsed.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })}`;
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function initIntersectionReveals() {
     const revealTargets = Array.from(
       new Set([
@@ -134,6 +245,7 @@
   initIntersectionReveals();
   wireBeehiivNewsletterSignups();
   updateBeehiivSubscriberCount();
+  updateYouTubeVideos();
 
   // Lightweight analytics placeholder
   window.commandCenterAnalytics = {
