@@ -1,15 +1,16 @@
 {
-  "updatedAt": "2026-04-13T23:03:00.392Z",
+  "updatedAt": "2026-04-13T23:13:03.299Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
-    "feedUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCNhXHBT6Efo1xEjIGKgPNKw"
+    "feedUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCNhXHBT6Efo1xEjIGKgPNKw",
+    "source": "youtube-data-api"
   },
   "videos": [
     {
       "videoId": "_7IdL9J7WKI",
       "title": "NagiKumo ChillFi Rainy Cafe",
-      "published": "",
+      "published": "2026-04-13T22:52:13Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=_7IdL9J7WKI"
     }

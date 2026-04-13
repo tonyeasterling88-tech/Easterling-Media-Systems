@@ -32,6 +32,7 @@ jobs:
 
       - name: Sync YouTube content
         env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_CHANNEL_ID: UCNhXHBT6Efo1xEjIGKgPNKw
           YOUTUBE_CHANNEL_URL: https://www.youtube.com/@NagiKumoChillFi
         run: npm run sync:youtube
