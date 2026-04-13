@@ -108,21 +108,8 @@
       }
     };
 
-    const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
-    const source = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
-
     try {
-      const response = await fetch(source, {
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-      if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
-      }
-
-      const payload = await response.json();
-      const videos = parseYouTubeFeed(payload).slice(0, 6);
+      const videos = await loadYouTubeVideos();
       if (videos.length) {
         container.innerHTML = videos.map(renderVideoCard).join('');
         setStatus('Latest uploads pulled automatically from YouTube.');
@@ -135,24 +122,55 @@
     }
   }
 
-  function parseYouTubeFeed(payload) {
-    const items = Array.isArray(payload?.items) ? payload.items : [];
+  async function loadYouTubeVideos() {
+    try {
+      const response = await fetch('/api/youtube-feed', {
+        headers: {
+          Accept: 'application/json',
+        },
+        cache: 'no-store',
+      });
+      if (!response.ok) {
+        throw new Error(`Request failed: ${response.status}`);
+      }
 
-    return items.map((item) => {
-      const title = item?.title?.trim() || 'Untitled video';
-      const link = item?.link || `${YOUTUBE_CHANNEL_URL}/videos`;
-      const published = item?.pubDate || '';
-      const author = item?.author || payload?.feed?.author || 'NagiKumoChillFi';
-      const videoId = extractYouTubeVideoId(link);
+      const payload = await response.json();
+      return Array.isArray(payload?.videos) ? payload.videos.slice(0, 6) : [];
+    } catch (_error) {
+      const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
+      const fallbackUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+      const response = await fetch(fallbackUrl, {
+        headers: {
+          Accept: 'application/json',
+        },
+      });
 
-      return {
-        title,
-        videoId,
-        published,
-        link,
-        author,
-      };
-    }).filter((video) => video.videoId && video.link);
+      if (!response.ok) {
+        throw new Error(`Fallback request failed: ${response.status}`);
+      }
+
+      const payload = await response.json();
+      const items = Array.isArray(payload?.items) ? payload.items : [];
+
+      return items
+        .map((item) => {
+          const title = item?.title?.trim() || 'Untitled video';
+          const link = item?.link || `${YOUTUBE_CHANNEL_URL}/videos`;
+          const published = item?.pubDate || '';
+          const author = item?.author || payload?.feed?.author || 'NagiKumoChillFi';
+          const videoId = extractYouTubeVideoId(link);
+
+          return {
+            title,
+            videoId,
+            published,
+            link,
+            author,
+          };
+        })
+        .filter((video) => video.videoId && video.link)
+        .slice(0, 6);
+    }
   }
 
   function extractYouTubeVideoId(url) {
