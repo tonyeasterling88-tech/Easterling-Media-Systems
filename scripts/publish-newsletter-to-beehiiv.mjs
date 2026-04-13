@@ -30,11 +30,6 @@ if (!beehiivApiKey) {
   process.exit(1);
 }
 
-if (!beehiivPublicationId && !beehiivPublicationName) {
-  console.error('Missing BEEHIIV_PUBLICATION_ID or BEEHIIV_PUBLICATION_NAME.');
-  process.exit(1);
-}
-
 const draftCollection = process.env.NEWSLETTER_DRAFT_COLLECTION || 'newsletterDrafts';
 const defaultBeehiivBaseUrl = 'https://easterling-ms-newsletter.beehiiv.com';
 
@@ -241,15 +236,28 @@ async function resolvePublication(apiKey) {
     };
   }
 
-  const normalizedName = beehiivPublicationName.toLowerCase();
-  const match = publications.find((publication) => String(publication?.name || '').toLowerCase() === normalizedName);
-  if (!match) {
-    throw new Error('BEEHIIV_PUBLICATION_NAME did not match any publication returned by Beehiiv.');
+  if (beehiivPublicationName) {
+    const normalizedName = beehiivPublicationName.toLowerCase();
+    const match = publications.find((publication) => String(publication?.name || '').toLowerCase() === normalizedName);
+    if (!match) {
+      throw new Error('BEEHIIV_PUBLICATION_NAME did not match any publication returned by Beehiiv.');
+    }
+    return {
+      id: String(match.id),
+      websiteUrl: match.website_url || match.web_url || defaultBeehiivBaseUrl,
+    };
+  }
+
+  if (publications.length === 1) {
+    return {
+      id: String(publications[0].id),
+      websiteUrl: publications[0].website_url || publications[0].web_url || defaultBeehiivBaseUrl,
+    };
   }
 
   return {
-    id: String(match.id),
-    websiteUrl: match.website_url || match.web_url || defaultBeehiivBaseUrl,
+    id: String(publications[0].id),
+    websiteUrl: publications[0].website_url || publications[0].web_url || defaultBeehiivBaseUrl,
   };
 }
 
