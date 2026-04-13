@@ -18,9 +18,13 @@ If you want to force the public-site fallback to a specific publication URL, set
 
 ## Closed Testing Signups
 
-The closed-testing forms submit directly to Supabase from the browser with your publishable key. Before they will work, run the SQL in [supabase/closed_test_signups.sql](/c:/Dev/easterling-ms/supabase/closed_test_signups.sql) inside the Supabase SQL editor for your project.
+The closed-testing forms now submit directly to Firebase Cloud Firestore from the browser.
 
-That table stores:
+1. Create a Firebase project and enable Firestore.
+2. Replace the placeholder values in [assets/firebase-config.js](/c:/Dev/easterling-ms/assets/firebase-config.js) with your Firebase web app config.
+3. Publish the rules from [firebase/firestore.rules](/c:/Dev/easterling-ms/firebase/firestore.rules) in the Firebase console or with the Firebase CLI.
+
+The `closed_test_signups` collection stores:
 
 - `email`
 - `name`
@@ -32,4 +36,26 @@ That table stores:
 - `user_agent`
 - `created_at`
 
-The policy only allows inserts from the public site. It does not allow public reads of the signup list.
+The Firestore rules allow public creates from the site, block reads, and block updates/deletes so each email address behaves like a one-time signup.
+
+## Migrating Existing Supabase Data
+
+If you already have signup records in Supabase:
+
+1. Export `closed_test_signups` from Supabase as JSON.
+2. Install dependencies with `npm install`.
+3. Set these environment variables for a Firebase service account:
+
+```powershell
+$env:FIREBASE_PROJECT_ID="your-project-id"
+$env:FIREBASE_CLIENT_EMAIL="firebase-adminsdk-xxxx@your-project-id.iam.gserviceaccount.com"
+$env:FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+```
+
+4. Import the export file into Firestore:
+
+```powershell
+npm run import:firebase -- .\closed_test_signups.json
+```
+
+The importer writes documents into the `closed_test_signups` collection using the lowercased email address as the document ID.

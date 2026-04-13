@@ -1,0 +1,37 @@
+rules_version = '2';
+
+service cloud.firestore {
+  function isValidSignup(email, data) {
+    return email.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$')
+      && data.keys().hasOnly([
+        'email',
+        'name',
+        'device_type',
+        'phone_model',
+        'heard_about',
+        'source',
+        'consent_marketing',
+        'user_agent',
+        'created_at',
+      ])
+      && data.email == email
+      && data.email.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$')
+      && (data.name == null || data.name is string)
+      && (data.device_type == null || data.device_type is string)
+      && (data.phone_model == null || data.phone_model is string)
+      && (data.heard_about == null || data.heard_about is string)
+      && data.source in ['home', 'blog', 'newsletter']
+      && data.consent_marketing == true
+      && (data.user_agent == null || data.user_agent is string)
+      && data.created_at is timestamp;
+  }
+
+  match /databases/{database}/documents {
+    match /closed_test_signups/{email} {
+      allow read: if false;
+
+      allow create: if isValidSignup(email, request.resource.data);
+      allow update, delete: if false;
+    }
+  }
+}

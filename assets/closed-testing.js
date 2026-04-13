@@ -1,91 +1,116 @@
-(function () {
-  const SUPABASE_URL = 'https://pouoksgiaribvbnvstsm.supabase.co';
-  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_Xj8ynM_AysW2tgNR8IySsA_Y4YmxXWy';
-  const TABLE_NAME = 'closed_test_signups';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js';
+import {
+  doc,
+  getFirestore,
+  serverTimestamp,
+  setDoc,
+} from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js';
+import { firebaseConfig } from './firebase-config.js';
 
-  if (!window.supabase || typeof window.supabase.createClient !== 'function') {
-    return;
-  }
+const COLLECTION_NAME = 'closed_test_signups';
+const ALLOWED_SOURCES = new Set(['home', 'blog', 'newsletter']);
 
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-      detectSessionInUrl: false,
-    },
+const forms = Array.from(document.querySelectorAll('[data-closed-test-form]'));
+
+if (forms.length) {
+  const firebaseReady = isFirebaseConfigured(firebaseConfig);
+  const db = firebaseReady ? getFirestore(initializeApp(firebaseConfig)) : null;
+
+  forms.forEach((form) => {
+    if (!firebaseReady) {
+      setStatus(form, 'Add your Firebase config in assets/firebase-config.js before collecting signups.', 'error');
+    }
+
+    form.addEventListener('submit', (event) => {
+      void handleSubmit(event, db);
+    });
   });
+}
 
-  const forms = Array.from(document.querySelectorAll('[data-closed-test-form]'));
-  if (!forms.length) {
+function isFirebaseConfigured(config) {
+  if (!config || typeof config !== 'object') {
+    return false;
+  }
+
+  const requiredKeys = ['apiKey', 'authDomain', 'projectId', 'appId'];
+  return requiredKeys.every((key) => {
+    const value = String(config[key] || '').trim();
+    return value && !value.startsWith('replace-me');
+  });
+}
+
+function normalize(value) {
+  const trimmed = String(value || '').trim();
+  return trimmed ? trimmed : null;
+}
+
+function normalizeEmail(value) {
+  return String(value || '').trim().toLowerCase();
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function setStatus(form, message, tone) {
+  const status = form.querySelector('[data-closed-test-status]');
+  if (!status) return;
+  status.textContent = message;
+  status.dataset.state = tone || 'info';
+}
+
+function showSuccessState(form, message) {
+  const panel = form.closest('.signup-panel');
+  const success = panel?.querySelector('[data-closed-test-success]');
+  form.hidden = true;
+  if (success) {
+    const text = success.querySelector('[data-closed-test-success-message]');
+    if (text) {
+      text.textContent = message;
+    }
+    success.hidden = false;
+  }
+}
+
+async function handleSubmit(event, db) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
+  const source = ALLOWED_SOURCES.has(form.dataset.sourcePage) ? form.dataset.sourcePage : 'home';
+  const emailInput = form.querySelector('[name="email"]');
+  const consentInput = form.querySelector('[name="consent_marketing"]');
+  const email = normalizeEmail(emailInput?.value);
+  const name = normalize(form.querySelector('[name="name"]')?.value);
+  const deviceType = normalize(form.querySelector('[name="device_type"]')?.value);
+  const phoneModel = normalize(form.querySelector('[name="phone_model"]')?.value);
+  const heardAbout = normalize(form.querySelector('[name="heard_about"]')?.value);
+  const consentMarketing = Boolean(consentInput?.checked);
+
+  if (!db) {
+    setStatus(form, 'Firebase is not configured yet. Add your project settings and try again.', 'error');
     return;
   }
 
-  function normalize(value) {
-    const trimmed = String(value || '').trim();
-    return trimmed ? trimmed : null;
+  if (!email || !isValidEmail(email)) {
+    setStatus(form, 'Enter a valid Google account email for Android closed testing.', 'error');
+    emailInput?.focus();
+    return;
   }
 
-  function normalizeEmail(value) {
-    return String(value || '').trim().toLowerCase();
+  if (!consentMarketing) {
+    setStatus(form, 'Please agree to receive MindMark closed testing updates before submitting.', 'error');
+    consentInput?.focus();
+    return;
   }
 
-  function isValidEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  setStatus(form, 'Saving your request for early access...', 'info');
+
+  if (submitButton) {
+    submitButton.disabled = true;
   }
 
-  function setStatus(form, message, tone) {
-    const status = form.querySelector('[data-closed-test-status]');
-    if (!status) return;
-    status.textContent = message;
-    status.dataset.state = tone || 'info';
-  }
-
-  function showSuccessState(form, message) {
-    const panel = form.closest('.signup-panel');
-    const success = panel?.querySelector('[data-closed-test-success]');
-    form.hidden = true;
-    if (success) {
-      const text = success.querySelector('[data-closed-test-success-message]');
-      if (text) {
-        text.textContent = message;
-      }
-      success.hidden = false;
-    }
-  }
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
-    const source = form.dataset.sourcePage || 'unknown';
-    const emailInput = form.querySelector('[name="email"]');
-    const consentInput = form.querySelector('[name="consent_marketing"]');
-    const email = normalizeEmail(emailInput?.value);
-    const name = normalize(form.querySelector('[name="name"]')?.value);
-    const deviceType = normalize(form.querySelector('[name="device_type"]')?.value);
-    const phoneModel = normalize(form.querySelector('[name="phone_model"]')?.value);
-    const heardAbout = normalize(form.querySelector('[name="heard_about"]')?.value);
-    const consentMarketing = Boolean(consentInput?.checked);
-
-    if (!email || !isValidEmail(email)) {
-      setStatus(form, 'Enter a valid Google account email for Android closed testing.', 'error');
-      emailInput?.focus();
-      return;
-    }
-
-    if (!consentMarketing) {
-      setStatus(form, 'Please agree to receive MindMark closed testing updates before submitting.', 'error');
-      consentInput?.focus();
-      return;
-    }
-
-    setStatus(form, 'Saving your request for early access...', 'info');
-
-    if (submitButton) {
-      submitButton.disabled = true;
-    }
-
-    const { error } = await supabase.from(TABLE_NAME).insert({
+  try {
+    await setDoc(doc(db, COLLECTION_NAME, email), {
       email,
       name,
       device_type: deviceType,
@@ -94,31 +119,25 @@
       source,
       consent_marketing: consentMarketing,
       user_agent: window.navigator.userAgent,
+      created_at: serverTimestamp(),
     });
 
-    if (submitButton) {
-      submitButton.disabled = false;
-    }
-
-    if (error) {
-      const duplicate = /duplicate|unique/i.test(error.message || '');
-      if (duplicate) {
-        showSuccessState(form, 'Thanks for signing up. You are already on the list for MindMark closed testing updates.');
-        return;
-      }
-
-      setStatus(
-        form,
-        'There was a problem saving your request. Run the latest Supabase SQL setup and try again.',
-        'error'
-      );
+    showSuccessState(form, "Thanks for signing up. You're on the list for MindMark closed testing updates.");
+  } catch (error) {
+    const duplicate = error?.code === 'permission-denied';
+    if (duplicate) {
+      showSuccessState(form, 'Thanks for signing up. You are already on the list for MindMark closed testing updates.');
       return;
     }
 
-    showSuccessState(form, "Thanks for signing up. You're on the list for MindMark closed testing updates.");
+    setStatus(
+      form,
+      'There was a problem saving your request. Check your Firebase config and Firestore rules, then try again.',
+      'error'
+    );
+  } finally {
+    if (submitButton) {
+      submitButton.disabled = false;
+    }
   }
-
-  forms.forEach((form) => {
-    form.addEventListener('submit', handleSubmit);
-  });
-})();
+}
