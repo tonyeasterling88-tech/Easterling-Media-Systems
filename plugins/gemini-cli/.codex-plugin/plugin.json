@@ -1,0 +1,52 @@
+{
+  "name": "gemini-cli",
+  "version": "0.1.0",
+  "description": "Codex guidance for installing, configuring, scripting, and troubleshooting Google's Gemini CLI.",
+  "author": {
+    "name": "[TODO: Author Name]",
+    "email": "[TODO: author@example.com]",
+    "url": "[TODO: https://github.com/author]"
+  },
+  "homepage": "https://google-gemini.github.io/gemini-cli/",
+  "repository": "[TODO: https://github.com/author/plugin]",
+  "license": "[TODO: MIT]",
+  "keywords": [
+    "gemini",
+    "cli",
+    "google",
+    "developer-tools"
+  ],
+  "skills": "./skills/",
+  "hooks": "[TODO: ./hooks.json]",
+  "mcpServers": "./.mcp.json",
+  "apps": "[TODO: ./.app.json]",
+  "interface": {
+    "displayName": "Gemini CLI",
+    "shortDescription": "Use Google's Gemini CLI from Codex workflows.",
+    "longDescription": "Guidance for installing, authenticating, running, scripting, and troubleshooting Gemini CLI in local developer workflows.",
+    "developerName": "[TODO: Developer Name]",
+    "category": "Developer Tools",
+    "capabilities": [
+      "CLI",
+      "Scripting",
+      "Troubleshooting",
+      "MCP Tools"
+    ],
+    "websiteURL": "https://google-gemini.github.io/gemini-cli/",
+    "privacyPolicyURL": "[TODO: Privacy policy URL]",
+    "termsOfServiceURL": "[TODO: Terms of service URL]",
+    "defaultPrompt": [
+      "Check whether Gemini CLI is installed.",
+      "Run a Gemini CLI prompt safely.",
+      "Help configure Gemini CLI auth."
+    ],
+    "brandColor": "#4285F4",
+    "composerIcon": "[TODO: ./assets/icon.png]",
+    "logo": "[TODO: ./assets/logo.png]",
+    "screenshots": [
+      "[TODO: ./assets/screenshot1.png]",
+      "[TODO: ./assets/screenshot2.png]",
+      "[TODO: ./assets/screenshot3.png]"
+    ]
+  }
+}

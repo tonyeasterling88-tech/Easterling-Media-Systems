@@ -1,0 +1,20 @@
+{
+  "name": "easterling-ms-local",
+  "interface": {
+    "displayName": "Easterling MS Local Plugins"
+  },
+  "plugins": [
+    {
+      "name": "gemini-cli",
+      "source": {
+        "source": "local",
+        "path": "./plugins/gemini-cli"
+      },
+      "policy": {
+        "installation": "INSTALLED_BY_DEFAULT",
+        "authentication": "ON_USE"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

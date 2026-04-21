@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "gemini-cli": {
+      "command": "node",
+      "args": [
+        "${CODEX_PLUGIN_ROOT}/scripts/gemini-mcp-server.mjs"
+      ],
+      "note": "Local MCP tools that wrap the installed Gemini CLI command. Requires @google/gemini-cli to be installed and authenticated separately."
+    }
+  }
+}
