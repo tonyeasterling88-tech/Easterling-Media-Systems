@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>April Systems Update: Turning Content Into a Pipeline</title>
+  <meta name="description" content="This month’s focus: a real publishing pipeline (Beehiiv + YouTube sync), a reviewable newsletter draft generator, and a closed testing intake flow for MindMark." />
+  <meta name="author" content="Tony Easterling" />
+  <meta property="og:title" content="April Systems Update: Turning Content Into a Pipeline" />
+  <meta property="og:description" content="A grounded April update on the systems behind MindMark closed testing, newsletter drafting, and content syncing." />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/Easterlingms_logo.png" alt="Easterling Media &amp; Systems logo" />
+        <span class="brand-text">Easterling Media &amp; Systems</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="../builds.html">Builds</a></li>
+          <li><a href="../blogs.html">Blog</a></li>
+          <li><a href="../newsletters.html">Newsletter</a></li>
+          <li><a href="../content.html">Content</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <h1>April Systems Update: Turning Content Into a Pipeline</h1>
+      <p class="muted">Drafted: 2026-04-21 &middot; Author: Tony Easterling</p>
+
+      <p>This month has been less about new “features” and more about building the pipeline that makes shipping feel normal.</p>
+      <p>MindMark is moving toward real users. The newsletter is becoming a repeatable system. The site is becoming a home base that stays current without a bunch of manual steps.</p>
+
+      <h2>What I built (and why it matters)</h2>
+
+      <p><strong>1) Closed testing intake for MindMark</strong></p>
+      <p>I moved the closed testing signup flow to Firebase / Firestore so signups land in a real database with simple, locked-down rules.</p>
+      <ul class="meta-list">
+        <li>Public creates (so the form can submit from the site)</li>
+        <li>No reads (so emails are not exposed)</li>
+        <li>No edits/deletes (so it stays a one-time signup)</li>
+      </ul>
+      <p>That sounds small, but it changes the entire loop: capture interest → invite testers → learn faster.</p>
+
+      <p><strong>2) Newsletter drafts as a scheduled system (not a heroic effort)</strong></p>
+      <p>I added a scheduled generator that creates a newsletter draft with OpenAI, stores it in Firestore, and marks the source items as drafted.</p>
+      <p>The point is not to “auto-send” anything. The point is to make drafting consistent and reviewable.</p>
+
+      <p><strong>3) Content sync that keeps the site honest</strong></p>
+      <p>I want the site archive to reflect what is actually happening, without me copy/pasting links every time I publish.</p>
+      <p>So I added sync scripts that write local JSON feeds:</p>
+      <ul class="meta-list">
+        <li><strong>Beehiiv</strong> issues (with a fallback to the public site if the API key is missing)</li>
+        <li><strong>YouTube</strong> videos (using the YouTube Data API when available, with fallbacks when it is not)</li>
+      </ul>
+      <p>That “fallback-first” design is a theme I keep coming back to. Systems fail. The pipeline should degrade gracefully instead of breaking completely.</p>
+
+      <h2>The lesson I’m keeping</h2>
+      <p>I used to think shipping was mostly about motivation.</p>
+      <p>It is not.</p>
+      <p>Shipping is a design problem. If the system is heavy, you avoid it. If the system is light, you use it.</p>
+      <p>So the real win this month was reducing friction:</p>
+      <ul class="meta-list">
+        <li>Signups go to the right place automatically.</li>
+        <li>Drafts get created on a schedule.</li>
+        <li>Archives update from source-of-truth feeds.</li>
+      </ul>
+
+      <h2>What I’m focused on next</h2>
+      <ul class="meta-list">
+        <li><strong>MindMark:</strong> onboarding early testers and turning feedback into the next iteration.</li>
+        <li><strong>Newsletter:</strong> tightening the monthly format so it is fast to draft and easy to read.</li>
+        <li><strong>LoFi creator tools:</strong> continuing to reduce manual steps in repeatable content workflows.</li>
+        <li><strong>BreathMark:</strong> sharpening the positioning before building the wrong thing.</li>
+      </ul>
+
+      <p>If you want to help test MindMark, the early access list is open.</p>
+    </article>
+
+    <section class="card">
+      <h2>MindMark closed testing</h2>
+      <p>Get notified when the next wave of testers is invited.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="../blogs.html">Request early access</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="../builds.html">Builds</a>
+        <a href="../blogs.html">Blog</a>
+        <a href="../newsletters.html">Newsletter</a>
+        <a href="../content.html">Content</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
