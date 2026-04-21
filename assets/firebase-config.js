@@ -1,6 +1,7 @@
 export const firebaseConfig = {
   apiKey: 'AIzaSyB6LTNJHOxQcapbYE_ymKYnlhyvpRKjJms',
   authDomain: 'easterling-media-systems.firebaseapp.com',
+  databaseURL: 'https://easterling-media-systems-default-rtdb.firebaseio.com',
   projectId: 'easterling-media-systems',
   storageBucket: 'easterling-media-systems.firebasestorage.app',
   messagingSenderId: '822728546713',

@@ -18,15 +18,16 @@ If you want to force the public-site fallback to a specific publication URL, set
 
 ## Closed Testing Signups
 
-The closed-testing forms now submit directly to Firebase Cloud Firestore from the browser.
+The closed-testing forms now submit directly to Firebase Realtime Database from the browser.
 
-1. Create a Firebase project and enable Firestore.
+1. Create a Firebase project and enable Realtime Database.
 2. Replace the placeholder values in [assets/firebase-config.js](/c:/Dev/easterling-ms/assets/firebase-config.js) with your Firebase web app config.
-3. Publish the rules from [firebase/firestore.rules](/c:/Dev/easterling-ms/firebase/firestore.rules) in the Firebase console or with the Firebase CLI.
+3. Publish the rules from [firebase/database.rules.json](/c:/Dev/easterling-ms/firebase/database.rules.json) in the Firebase console or with the Firebase CLI.
 
-The `closed_test_signups` collection stores:
+The `closed_test_signups` path stores:
 
 - `email`
+- `email_key`
 - `name`
 - `device_type`
 - `phone_model`
@@ -36,7 +37,7 @@ The `closed_test_signups` collection stores:
 - `user_agent`
 - `created_at`
 
-The Firestore rules allow public creates from the site, block reads, and block updates/deletes so each email address behaves like a one-time signup.
+The Realtime Database rules allow public creates from the site, block reads, and block updates/deletes so each email address behaves like a one-time signup.
 
 ## Migrating Existing Supabase Data
 
@@ -52,13 +53,13 @@ $env:FIREBASE_CLIENT_EMAIL="firebase-adminsdk-xxxx@your-project-id.iam.gservicea
 $env:FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
 ```
 
-4. Import the export file into Firestore:
+4. Import the export file into Realtime Database:
 
 ```powershell
 npm run import:firebase -- .\closed_test_signups.json
 ```
 
-The importer writes documents into the `closed_test_signups` collection using the lowercased email address as the document ID.
+The importer writes records into the `closed_test_signups` path using an encoded lowercased email address as the child key.
 
 ## Scheduled Newsletter Draft Generator
 

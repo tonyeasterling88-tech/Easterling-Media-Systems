@@ -1,20 +1,20 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js';
 import {
-  doc,
-  getFirestore,
+  getDatabase,
+  ref,
   serverTimestamp,
-  setDoc,
-} from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js';
+  set,
+} from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js';
 import { firebaseConfig } from './firebase-config.js';
 
-const COLLECTION_NAME = 'closed_test_signups';
+const SIGNUPS_PATH = 'closed_test_signups';
 const ALLOWED_SOURCES = new Set(['home', 'blog', 'newsletter']);
 
 const forms = Array.from(document.querySelectorAll('[data-closed-test-form]'));
 
 if (forms.length) {
   const firebaseReady = isFirebaseConfigured(firebaseConfig);
-  const db = firebaseReady ? getFirestore(initializeApp(firebaseConfig)) : null;
+  const db = firebaseReady ? getDatabase(initializeApp(firebaseConfig)) : null;
 
   forms.forEach((form) => {
     if (!firebaseReady) {
@@ -32,7 +32,7 @@ function isFirebaseConfigured(config) {
     return false;
   }
 
-  const requiredKeys = ['apiKey', 'authDomain', 'projectId', 'appId'];
+  const requiredKeys = ['apiKey', 'authDomain', 'databaseURL', 'projectId', 'appId'];
   return requiredKeys.every((key) => {
     const value = String(config[key] || '').trim();
     return value && !value.startsWith('replace-me');
@@ -50,6 +50,14 @@ function normalizeEmail(value) {
 
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function emailKey(value) {
+  return window
+    .btoa(value)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
 }
 
 function setStatus(form, message, tone) {
@@ -110,8 +118,11 @@ async function handleSubmit(event, db) {
   }
 
   try {
-    await setDoc(doc(db, COLLECTION_NAME, email), {
+    const key = emailKey(email);
+
+    await set(ref(db, `${SIGNUPS_PATH}/${key}`), {
       email,
+      email_key: key,
       name,
       device_type: deviceType,
       phone_model: phoneModel,
@@ -132,7 +143,7 @@ async function handleSubmit(event, db) {
 
     setStatus(
       form,
-      'There was a problem saving your request. Check your Firebase config and Firestore rules, then try again.',
+      'There was a problem saving your request. Check your Firebase config and Realtime Database rules, then try again.',
       'error'
     );
   } finally {
