@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/styles.css" />
   <script defer src="assets/site.js"></script>
 </head>
-<body>
+<body class="builds-page">
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="/">
@@ -30,56 +30,84 @@
   </div>
 </header>
 
-<main class="container">
-  <section class="hero">
-    <h1>Builds</h1>
-    <p class="muted">What I am actively building right now, with the clearest possible view of the direction, stack, and current stage.</p>
-    <p class="muted">This page stays close to the real work. Polished case studies can come later.</p>
+<main class="page-shell">
+  <section class="command-hero">
+    <h1>The execution lab: From idea to systemized product.</h1>
+    <p class="muted">Exploring the archive of media and system projects.</p>
   </section>
 
   <section>
-    <div class="grid">
-      <article class="card">
-        <h3>MindMark</h3>
-        <p>Private journaling and reflection designed to make capturing thoughts feel lighter, faster, and easier to revisit.</p>
+    <div class="filter-row" data-build-filter>
+      <button class="filter-btn is-active" type="button" data-filter="All">All Builds</button>
+      <button class="filter-btn" type="button" data-filter="Active">Active</button>
+      <button class="filter-btn" type="button" data-filter="Experiment">Experiment</button>
+      <button class="filter-btn" type="button" data-filter="Legacy">Legacy</button>
+    </div>
+
+    <div class="archive-grid">
+      <article class="card archive-card" data-status="Active">
+        <span class="badge live">Active</span>
+        <h3><a href="mindmark.html">MindMark</a></h3>
+        <p class="muted">A private journaling and reflection app for capturing thoughts, reflections, and ideas with less friction.</p>
         <ul class="meta-list">
-          <li><strong>Current focus:</strong> Closed testing signup flow and early user feedback</li>
-          <li><strong>Platform:</strong> Mobile app</li>
-          <li><strong>Status:</strong> <span class="badge beta">Closed Testing</span></li>
-          <li><strong>Availability:</strong> Early-access list open on this site</li>
+          <li><strong>Stage:</strong> Closed testing</li>
+          <li><strong>Focus:</strong> Early testers and feedback</li>
+          <li><strong>Signup asks for:</strong> Google account email, device type, phone model</li>
         </ul>
       </article>
 
-      <article class="card">
-        <h3>BreathMark</h3>
-        <p>Tactical calm for high-stress moments, built around quick resets instead of long, complicated routines.</p>
-        <ul class="meta-list">
-          <li><strong>Current focus:</strong> Product shaping and positioning</li>
-          <li><strong>Platform:</strong> Mobile app concept</li>
-          <li><strong>Status:</strong> <span class="badge building">Building</span></li>
-          <li><strong>Availability:</strong> Public summary only</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <h3>LoFi Creator Tools</h3>
-        <p>Internal tools for generating long-form LoFi visuals and repeatable creator workflows with less manual friction.</p>
-        <ul class="meta-list">
-          <li><strong>Current focus:</strong> Automating repeatable video and content workflows</li>
-          <li><strong>Platform:</strong> Internal creator system</li>
-          <li><strong>Status:</strong> <span class="badge building">Experimenting</span></li>
-          <li><strong>Availability:</strong> Internal only for now</li>
-        </ul>
-      </article>
-
-      <article class="card">
+      <article class="card archive-card" data-status="Active">
+        <span class="badge live">Active</span>
         <h3>Easterling Media &amp; Systems</h3>
-        <p>Your public home base for builds, writing, newsletter growth, and conversion paths back into the products you are shipping.</p>
+        <p class="muted">A public command center for builds, writing, newsletter growth, and product conversion paths.</p>
         <ul class="meta-list">
-          <li><strong>Current focus:</strong> Publishing infrastructure, Firebase signup flow, and Vercel deployment</li>
-          <li><strong>Platform:</strong> Website and content system</li>
-          <li><strong>Status:</strong> <span class="badge live">Live</span></li>
-          <li><strong>Availability:</strong> Public at easterlingms.com</li>
+          <li><strong>Stack:</strong> HTML, CSS, Firebase, Vercel</li>
+          <li><strong>Duration:</strong> Ongoing</li>
+          <li><strong>Core Objective:</strong> Turn shipping into a visible system</li>
+        </ul>
+      </article>
+
+      <article class="card archive-card" data-status="Experiment">
+        <span class="badge building">Experiment</span>
+        <h3>LoFi Creator Tools</h3>
+        <p class="muted">Internal tools for long-form LoFi visuals and more repeatable creator workflows.</p>
+        <ul class="meta-list">
+          <li><strong>Stack:</strong> Automation scripts, media tooling</li>
+          <li><strong>Duration:</strong> Exploratory</li>
+          <li><strong>Core Objective:</strong> Reduce repeatable production drag</li>
+        </ul>
+      </article>
+
+      <article class="card archive-card" data-status="Experiment">
+        <span class="badge building">Experiment</span>
+        <h3>BreathMark</h3>
+        <p class="muted">Tactical calm for high-stress moments, shaped around quick resets and low-friction usage.</p>
+        <ul class="meta-list">
+          <li><strong>Stack:</strong> Mobile concept, product design</li>
+          <li><strong>Duration:</strong> Early exploration</li>
+          <li><strong>Core Objective:</strong> Validate positioning and use cases</li>
+        </ul>
+      </article>
+
+      <article class="card archive-card" data-status="Legacy">
+        <span class="badge beta">Legacy</span>
+        <h3>Pixel Chomp</h3>
+        <p class="muted">A small game project kept as a public proof point and playful build artifact.</p>
+        <ul class="meta-list">
+          <li><strong>Stack:</strong> HTML, CSS, JavaScript</li>
+          <li><strong>Duration:</strong> Shipped</li>
+          <li><strong>Core Objective:</strong> Lightweight public interaction</li>
+        </ul>
+      </article>
+
+      <article class="card archive-card" data-status="Legacy">
+        <span class="badge beta">Legacy</span>
+        <h3>Newsletter Infrastructure</h3>
+        <p class="muted">The early publishing and Beehiiv workflow behind the monthly builder issue.</p>
+        <ul class="meta-list">
+          <li><strong>Stack:</strong> Beehiiv, local content, scripts</li>
+          <li><strong>Duration:</strong> Iterating</li>
+          <li><strong>Core Objective:</strong> Keep writing and distribution connected</li>
         </ul>
       </article>
     </div>
@@ -96,6 +124,7 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </div>
+    <p class="muted">&copy; 2026 Easterling Media &amp; Systems</p>
   </div>
 </footer>
 </body>

@@ -8,7 +8,7 @@ import {
 import { firebaseConfig } from './firebase-config.js';
 
 const SIGNUPS_PATH = 'closed_test_signups';
-const ALLOWED_SOURCES = new Set(['home', 'blog', 'newsletter']);
+const ALLOWED_SOURCES = new Set(['home', 'blog', 'newsletter', 'mindmark']);
 
 const forms = Array.from(document.querySelectorAll('[data-closed-test-form]'));
 
@@ -133,11 +133,11 @@ async function handleSubmit(event, db) {
       created_at: serverTimestamp(),
     });
 
-    showSuccessState(form, "Thanks for signing up. You're on the list for MindMark closed testing updates.");
+    showSuccessState(form, "Thanks for signing up. After your Google account is added as a tester, use package com.tonyeasterling88.mindmark for download access.");
   } catch (error) {
     const duplicate = error?.code === 'permission-denied';
     if (duplicate) {
-      showSuccessState(form, 'Thanks for signing up. You are already on the list for MindMark closed testing updates.');
+      showSuccessState(form, 'Thanks for signing up. You are already on the list. After your Google account is added as a tester, use package com.tonyeasterling88.mindmark for download access.');
       return;
     }
 

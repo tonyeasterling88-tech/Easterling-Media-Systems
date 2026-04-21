@@ -25,6 +25,24 @@
   search?.addEventListener('input', applyFilters);
   tagFilter?.addEventListener('change', applyFilters);
 
+  function wireBuildFilters() {
+    const filterRoot = document.querySelector('[data-build-filter]');
+    const buildCards = Array.from(document.querySelectorAll('.archive-card[data-status]'));
+    if (!filterRoot || !buildCards.length) return;
+
+    const buttons = Array.from(filterRoot.querySelectorAll('[data-filter]'));
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter || 'All';
+        buttons.forEach((btn) => btn.classList.toggle('is-active', btn === button));
+        buildCards.forEach((card) => {
+          const matches = filter === 'All' || card.dataset.status === filter;
+          card.classList.toggle('is-hidden', !matches);
+        });
+      });
+    });
+  }
+
   function wireBeehiivNewsletterSignups() {
     const forms = Array.from(document.querySelectorAll('form'));
     forms.forEach((form) => {
@@ -216,6 +234,7 @@
   }
 
   initIntersectionReveals();
+  wireBuildFilters();
   wireBeehiivNewsletterSignups();
   updateBeehiivSubscriberCount();
   updateYouTubeVideos();

@@ -18,110 +18,467 @@
   <script type="module" src="assets/closed-testing.js"></script>
   <script defer src="assets/newsletters.js"></script>
   <style>
-    .hero-media {
+    body {
       position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      min-height: 150px;
-      border: 1px solid rgba(56, 189, 248, 0.12);
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0.5));
+      background:
+        radial-gradient(circle at 78% 9%, rgba(125, 92, 255, 0.2), transparent 26rem),
+        radial-gradient(circle at 72% 36%, rgba(45, 212, 191, 0.14), transparent 25rem),
+        #050b18;
     }
 
-    .hero-media::after {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(45, 212, 191, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 212, 191, 0.08) 1px, transparent 1px);
+      background-size: 76px 76px;
+      mask-image: radial-gradient(ellipse at top left, black, transparent 72%);
+      pointer-events: none;
+    }
+
+    .home-shell {
+      width: min(100% - 2rem, 1000px);
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: calc(100svh - 82px);
+      padding: 2rem 0 1.5rem;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-console,
+    .signup-panel,
+    .newsletter-panel {
+      border: 1px solid rgba(45, 212, 191, 0.42);
+      border-radius: 8px;
+      background: rgba(4, 21, 31, 0.72);
+      box-shadow: 0 0 32px rgba(45, 212, 191, 0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-console {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(5, 11, 24, 0.94), rgba(5, 23, 31, 0.82)),
+        url("assets/easterlingms_header.png");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.08), 0 28px 90px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-console::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.48)),
-        linear-gradient(90deg, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.12) 35%, rgba(15, 23, 42, 0.4));
+        linear-gradient(rgba(45, 212, 191, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 212, 191, 0.08) 1px, transparent 1px);
+      background-size: 74px 74px;
+      opacity: 0.75;
       pointer-events: none;
     }
 
-    .hero-media img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      min-height: 150px;
-      max-height: 210px;
-      object-fit: cover;
-      object-position: center;
-      opacity: 0.48;
-      transform: scale(1.02);
+    .hero-console::after {
+      content: "";
+      position: absolute;
+      inset: auto -6% -28% 36%;
+      height: 16rem;
+      background: radial-gradient(closest-side, rgba(45, 212, 191, 0.32), transparent 72%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .console-chrome {
+      position: relative;
+      z-index: 1;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0 1rem;
+      border-bottom: 1px solid rgba(45, 212, 191, 0.18);
+      background: rgba(11, 39, 45, 0.78);
+    }
+
+    .console-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #2dd4bf;
+      box-shadow: 0 0 14px rgba(45, 212, 191, 0.7);
+    }
+
+    .console-dot:nth-child(2) {
+      background: #facc15;
+      box-shadow: none;
+    }
+
+    .console-dot:nth-child(3) {
+      background: #f87171;
+      box-shadow: none;
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
+      gap: 1.25rem;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr);
+      align-items: stretch;
+      padding: clamp(1.25rem, 4vw, 2.25rem);
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .panel-bar {
+      color: #5eead4;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy h1 {
+      max-width: 11ch;
+      margin: 0.7rem 0 0.75rem;
+      font-size: clamp(2.25rem, 6vw, 4.7rem);
+      letter-spacing: 0;
+      line-height: 0.96;
+    }
+
+    .hero-copy p {
+      max-width: 42rem;
+      margin: 0;
+      color: #cbd5e1;
+      font-size: clamp(1rem, 2vw, 1.16rem);
+      line-height: 1.45;
+    }
+
+    .system-status {
+      position: relative;
+      align-self: center;
+      overflow: hidden;
+      padding: 1.2rem;
+      border: 1px solid rgba(94, 234, 212, 0.52);
+      border-radius: 8px;
+      background: rgba(3, 21, 29, 0.66);
+      box-shadow: inset 0 0 28px rgba(45, 212, 191, 0.08), 0 0 35px rgba(45, 212, 191, 0.14);
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+      will-change: transform;
+    }
+
+    .system-status:hover {
+      transform: translateY(-3px);
+      border-color: rgba(94, 234, 212, 0.85);
+      box-shadow: inset 0 0 28px rgba(45, 212, 191, 0.12), 0 0 46px rgba(45, 212, 191, 0.22);
+    }
+
+    .system-status::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(45, 212, 191, 0.14), transparent 56%);
+      opacity: 0;
+      transition: opacity 320ms ease;
+      pointer-events: none;
+    }
+
+    .system-status:hover::before {
+      opacity: 1;
+    }
+
+    .status-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
       gap: 1rem;
-      grid-template-columns: 1.5fr 1fr;
-      align-items: end;
+      align-items: center;
+      margin-bottom: 1.05rem;
     }
 
-    .kpi-grid {
+    .status-head h3 {
+      margin: 0;
+      color: #5eead4;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .status-dots {
+      display: inline-flex;
+      gap: 0.3rem;
+      align-items: center;
+    }
+
+    .status-dots span {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #5eead4;
+      box-shadow: 0 0 12px rgba(94, 234, 212, 0.9);
+      animation: dot-pulse 1.3s ease-in-out infinite;
+    }
+
+    .status-dots span:nth-child(2) {
+      animation-delay: 120ms;
+    }
+
+    .status-dots span:nth-child(3) {
+      animation-delay: 240ms;
+    }
+
+    .status-row {
+      position: relative;
+      z-index: 1;
       display: grid;
-      gap: 0.75rem;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 1.25rem;
+      grid-template-columns: minmax(90px, 1fr) 132px;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.78rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .kpi {
-      background: rgba(22, 34, 61, 0.65);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 0.8rem;
+    .status-row:first-of-type {
+      border-top: 0;
+      padding-top: 0;
     }
 
-    .kpi strong {
+    .status-value {
       display: block;
-      font-size: 1.2rem;
+      color: #f8fafc;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      text-shadow: 0 0 22px rgba(45, 212, 191, 0.32);
+    }
+
+    .status-label {
+      display: block;
+      margin-top: 0.35rem;
+      color: #94a3b8;
+      font-size: 0.68rem;
       line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .status-value[data-beehiiv-subscriber-count] {
+      font-size: 1.05rem;
+      color: #94a3b8;
+    }
+
+    .mini-line,
+    .mini-bars {
+      height: 46px;
+      border-radius: 8px;
+      background: rgba(8, 28, 38, 0.64);
+      overflow: hidden;
+    }
+
+    .mini-line {
+      position: relative;
+    }
+
+    .mini-line::before {
+      content: "";
+      position: absolute;
+      inset: 8px 4px;
+      background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.16));
+      clip-path: polygon(0 68%, 18% 66%, 32% 38%, 48% 70%, 65% 54%, 78% 24%, 100% 48%, 100% 100%, 0 100%);
+    }
+
+    .mini-line::after {
+      content: "";
+      position: absolute;
+      inset: 8px 4px;
+      background: #22d3ee;
+      clip-path: polygon(0 66%, 18% 64%, 32% 36%, 48% 68%, 65% 52%, 78% 22%, 100% 46%, 100% 54%, 78% 30%, 65% 60%, 48% 76%, 32% 44%, 18% 72%, 0 74%);
+      filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.85));
+    }
+
+    .mini-bars {
+      display: flex;
+      align-items: end;
+      gap: 5px;
+      padding: 8px 9px;
+    }
+
+    .mini-bars span {
+      flex: 1;
+      min-width: 4px;
+      border-radius: 2px 2px 0 0;
+      background: linear-gradient(180deg, #67e8f9, #0ea5e9);
+      box-shadow: 0 0 10px rgba(14, 165, 233, 0.35);
+    }
+
+    .mini-meter {
+      height: 46px;
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(45, 212, 191, 0.18), rgba(45, 212, 191, 0.36)),
+        rgba(8, 28, 38, 0.64);
+      mask-image: linear-gradient(90deg, black 70%, transparent);
     }
 
     .section-head {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
       gap: 1rem;
       margin-bottom: 1rem;
     }
 
-    .section-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+    .section-head h2 {
+      margin: 0;
+    }
+
+    .signup-panel {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .panel-bar {
+      padding: 0.42rem 0.8rem;
+      color: #f8fafc;
+      background: rgba(45, 212, 191, 0.16);
+    }
+
+    .signup-panel .signup-form {
+      margin: 0;
+      padding: 0.9rem;
+    }
+
+    .signup-panel .signup-form-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .signup-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(190px, auto);
+      gap: 0.85rem;
+      align-items: end;
+    }
+
+    .signup-panel .form-status {
+      margin: 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .build-card {
+      position: relative;
+      min-height: 172px;
+      border-color: rgba(45, 212, 191, 0.34);
+      background: linear-gradient(180deg, rgba(5, 32, 40, 0.82), rgba(7, 15, 30, 0.88));
+      box-shadow: 0 0 22px rgba(45, 212, 191, 0.1);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      will-change: transform;
+    }
+
+    .build-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 32px;
+      height: 32px;
+      border-top: 1px solid rgba(45, 212, 191, 0);
+      border-right: 1px solid rgba(45, 212, 191, 0);
+      transition: border-color 180ms ease;
+    }
+
+    .build-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(94, 234, 212, 0.7);
+      box-shadow: 0 0 30px rgba(45, 212, 191, 0.18);
+    }
+
+    .build-card:hover::after {
+      border-color: rgba(45, 212, 191, 0.65);
+    }
+
+    .build-icon {
+      width: 28px;
+      height: 28px;
+      margin-bottom: 0.8rem;
+      color: #2dd4bf;
+      font-weight: 900;
+      font-size: 1.15rem;
+    }
+
+    .latest-writing {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: 1.25rem;
       align-items: center;
     }
 
-    .pill {
-      display: inline-block;
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.8rem;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
+    .writing-thumb {
+      min-height: 110px;
+      border: 1px solid rgba(45, 212, 191, 0.22);
+      border-radius: 8px;
+      background:
+        linear-gradient(rgba(45, 212, 191, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 212, 191, 0.1) 1px, transparent 1px),
+        rgba(6, 25, 35, 0.9);
+      background-size: 18px 18px;
+      box-shadow: inset 0 0 32px rgba(45, 212, 191, 0.08);
     }
 
     .newsletter-panel {
-      background: linear-gradient(145deg, rgba(22, 34, 61, 0.9), rgba(15, 23, 42, 0.95));
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.95fr);
+      gap: 2rem;
+      padding: 1.5rem;
+    }
+
+    .newsletter-panel .newsletter-spotlight {
+      margin-top: 0;
+    }
+
+    @keyframes dot-pulse {
+      0%, 100% {
+        opacity: 0.35;
+        transform: scale(0.8);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
     }
 
     @media (max-width: 880px) {
-      .hero-grid {
+      .hero {
+        min-height: auto;
+        padding-top: 1rem;
+      }
+
+      .hero-grid,
+      .signup-panel .signup-form-grid,
+      .signup-actions,
+      .feature-grid,
+      .latest-writing,
+      .newsletter-panel {
         grid-template-columns: 1fr;
       }
 
-      .kpi-grid {
-        grid-template-columns: 1fr;
+      .hero-copy h1 {
+        max-width: 12ch;
       }
 
-      .section-head {
-        flex-direction: column;
-        align-items: flex-start;
+      .status-row {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -146,39 +503,73 @@
   </div>
 </header>
 
-<main class="container">
+<main class="home-shell">
   <section class="hero">
-    <div class="hero-media" aria-hidden="true">
-      <img src="assets/easterlingms_header.png" alt="" />
-    </div>
-    <div class="hero-grid">
-      <div>
-        <span class="pill">Modern Command Center</span>
-        <h1>Systems-first execution for products, content, and growth.</h1>
-        <p>Explore shipped builds, practical writing, and monthly tactics designed to compound output over time.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="builds.html">Explore Builds</a>
-          <a class="btn" href="https://tonyeasterling88-tech.github.io/Pixel-Chomp/" target="_blank" rel="noopener noreferrer">Play Pixel Chomp</a>
-          <a class="btn" href="https://easterling-ms-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Join Newsletter</a>
-        </div>
+    <div class="hero-console">
+      <div class="console-chrome" aria-hidden="true">
+        <span class="console-dot"></span>
+        <span class="console-dot"></span>
+        <span class="console-dot"></span>
       </div>
-      <aside class="card">
-        <h3>Current Focus</h3>
-        <p class="muted">Ship consistently, publish clearly, and optimize conversion loops from audience to product.</p>
-        <div class="kpi-grid">
-          <div class="kpi"><strong>3</strong><span class="muted">Active builds</span></div>
-          <div class="kpi"><strong>4</strong><span class="muted">Published posts</span></div>
-          <div class="kpi"><strong data-beehiiv-subscriber-count>Loading...</strong><span class="muted">Beehiiv subscribers</span></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Modern Command Center</span>
+          <h1>Systems-first execution for products, content, and growth.</h1>
+          <p>Explore shipped builds, practical writing, and monthly tactics designed to compound output over time.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="builds.html">Explore Builds</a>
+            <a class="btn" href="https://tonyeasterling88-tech.github.io/Pixel-Chomp/" target="_blank" rel="noopener noreferrer">Play Pixel Chomp</a>
+            <a class="btn" href="https://easterling-ms-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Join Newsletter</a>
+          </div>
         </div>
-      </aside>
+
+        <aside class="system-status" aria-label="System status">
+          <div class="status-head">
+            <h3>System Status</h3>
+            <div class="status-dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="status-row">
+            <div>
+              <strong class="status-value">3</strong>
+              <span class="status-label">Active builds</span>
+            </div>
+            <div class="mini-line" aria-hidden="true"></div>
+          </div>
+          <div class="status-row">
+            <div>
+              <strong class="status-value">4</strong>
+              <span class="status-label">Published posts</span>
+            </div>
+            <div class="mini-bars" aria-hidden="true">
+              <span style="height: 32%"></span>
+              <span style="height: 58%"></span>
+              <span style="height: 42%"></span>
+              <span style="height: 82%"></span>
+              <span style="height: 50%"></span>
+              <span style="height: 64%"></span>
+              <span style="height: 48%"></span>
+              <span style="height: 70%"></span>
+            </div>
+          </div>
+          <div class="status-row">
+            <div>
+              <strong class="status-value" data-beehiiv-subscriber-count>Loading...</strong>
+              <span class="status-label">Beehiiv subscribers</span>
+            </div>
+            <div class="mini-meter" aria-hidden="true"></div>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 
   <section>
-    <div class="card signup-panel">
-      <span class="pill">MindMark Closed Test</span>
-      <h2>Join the MindMark Closed Testing List</h2>
-      <p class="muted">Be among the first to try MindMark and help shape the app before launch.</p>
+    <div class="signup-panel">
+      <div class="panel-bar">MindMark Closed Test</div>
       <form class="signup-form" data-closed-test-form data-source-page="home">
         <div class="signup-form-grid">
           <div class="field">
@@ -202,94 +593,93 @@
             <label for="home-phone-model">Phone model</label>
             <input id="home-phone-model" name="phone_model" type="text" placeholder="Pixel 8, Galaxy S24, etc." />
           </div>
+          <div class="field">
+            <label for="home-heard-about">How did you hear about MindMark?</label>
+            <input id="home-heard-about" name="heard_about" type="text" placeholder="Optional" />
+          </div>
+          <label class="checkbox-row" for="home-consent">
+            <input id="home-consent" name="consent_marketing" type="checkbox" required />
+            <span>I want updates about MindMark closed testing.</span>
+          </label>
         </div>
-        <div class="field">
-          <label for="home-heard-about">How did you hear about MindMark?</label>
-          <textarea id="home-heard-about" name="heard_about" placeholder="Optional"></textarea>
-        </div>
-        <label class="checkbox-row" for="home-consent">
-          <input id="home-consent" name="consent_marketing" type="checkbox" required />
-          <span>I want updates about MindMark closed testing.</span>
-        </label>
-        <div class="cta-row">
+        <div class="signup-actions">
+          <p class="form-status muted" data-closed-test-status data-state="info">Use the Google account email you plan to use on your Android device. Download access uses package com.tonyeasterling88.mindmark after approval.</p>
           <button class="btn primary" type="submit">Request Early Access</button>
         </div>
-        <p class="signup-helper muted">No spam. Just closed testing updates and launch news.</p>
-        <p class="form-status muted" data-closed-test-status data-state="info">Use the Google account email you plan to use on your Android device.</p>
       </form>
       <div class="card signup-success" data-closed-test-success hidden>
         <h3>Request received</h3>
-        <p class="muted" data-closed-test-success-message>Thanks for signing up. You’re on the list for MindMark closed testing updates.</p>
+        <p class="muted" data-closed-test-success-message>Thanks for signing up. After your Google account is added as a tester, use package com.tonyeasterling88.mindmark for download access.</p>
       </div>
     </div>
   </section>
 
   <section>
     <div class="section-head">
-      <h2>Featured Builds</h2>
-      <div class="section-actions">
-        <a class="btn" href="builds.html">View all builds</a>
-      </div>
+      <h2 class="section-kicker">Featured Builds</h2>
+      <a class="btn" href="builds.html">View all builds</a>
     </div>
-    <div class="grid">
-      <article class="card">
+    <div class="feature-grid">
+      <article class="card build-card">
+        <div class="build-icon">M</div>
         <h3>MindMark</h3>
         <p class="muted">Private journaling and reflection built to remove friction from capturing what matters.</p>
         <p><span class="badge beta">Closed Testing</span></p>
-        <p class="muted">Early-access signup is live for the first round of testers.</p>
       </article>
-      <article class="card">
+      <article class="card build-card">
+        <div class="build-icon">~</div>
         <h3>BreathMark</h3>
         <p class="muted">Tactical calm for high-stress days, designed around quick resets and low friction.</p>
         <p><span class="badge building">Building</span></p>
-        <p class="muted">Current work is focused on shaping the experience and positioning.</p>
       </article>
-      <article class="card">
+      <article class="card build-card">
+        <div class="build-icon">[]</div>
         <h3>LoFi Creator Tools</h3>
         <p class="muted">Internal tools for long-form LoFi visuals and more repeatable creator workflows.</p>
         <p><span class="badge building">Experimenting</span></p>
-        <p class="muted">Current work is focused on automating the parts that slow content output down.</p>
       </article>
     </div>
   </section>
 
   <section>
     <div class="section-head">
-      <h2>Latest Writing</h2>
+      <h2 class="section-kicker">Latest Writing</h2>
       <a class="btn" href="blogs.html">View all posts</a>
     </div>
-    <div class="grid">
-      <article class="card">
+    <article class="card latest-writing">
+      <div class="writing-thumb" aria-hidden="true"></div>
+      <div>
         <h3><a href="posts/from-idea-to-live-website-a-small-win-that-moves-everything-forward.html">From Idea to Live Website: A Small Win That Moves Everything Forward</a></h3>
         <p class="muted">Launching the site on its own domain while opening the door for the first wave of MindMark testers.</p>
-        <p class="muted">Published: 2026-03-13</p>
-      </article>
-    </div>
+        <p class="muted">Published: March 13, 2026</p>
+      </div>
+    </article>
   </section>
 
   <section>
     <div class="section-head">
-      <h2>Latest Content</h2>
+      <h2 class="section-kicker">Latest Content</h2>
       <a class="btn" href="content.html">View all content</a>
     </div>
-    <div class="grid">
-      <article class="card"><h3><a href="content.html">YouTube Channel</a></h3><p class="muted">Video | Build updates and creator systems</p></article>
-      <article class="card"><h3><a href="Newsletters/issue-001-strategic-launch-sequence.html">Newsletter: Strategic launch sequence</a></h3><p class="muted">Newsletter | Published on-site</p></article>
-      <article class="card"><h3><a href="posts/from-idea-to-live-website-a-small-win-that-moves-everything-forward.html">Blog: From Idea to Live Website</a></h3><p class="muted">Article | Published on-site</p></article>
+    <div class="feature-grid">
+      <article class="card build-card"><h3><a href="content.html">YouTube Channel</a></h3><p class="muted">Video | Build updates and creator systems</p></article>
+      <article class="card build-card"><h3><a href="Newsletters/issue-001-strategic-launch-sequence.html">Newsletter: Strategic launch sequence</a></h3><p class="muted">Newsletter | Published on-site</p></article>
+      <article class="card build-card"><h3><a href="posts/from-idea-to-live-website-a-small-win-that-moves-everything-forward.html">Blog: From Idea to Live Website</a></h3><p class="muted">Article | Published on-site</p></article>
     </div>
   </section>
 
   <section>
     <div class="newsletter-panel">
-      <h2>Monthly issue for builders</h2>
-      <p class="muted">One practical issue every month with frameworks, experiments, and immediate next actions.</p>
-      <form class="form-group" action="#" method="post">
-        <label for="home-email" class="muted">Email</label>
-        <input id="home-email" type="email" placeholder="you@example.com" required />
-        <button class="btn primary" type="submit">Subscribe</button>
-      </form>
-      <p class="muted">Subscribe directly: <a href="https://easterling-ms-newsletter.beehiiv.com/p/building-quietly" target="_blank" rel="noopener noreferrer">Beehiiv newsletter</a></p>
-      <p class="muted" data-beehiiv-sync-status>Showing the current newsletter spotlight from local site data.</p>
+      <div>
+        <h2>Monthly issue for builders</h2>
+        <p class="muted">One practical issue every month with frameworks, experiments, and immediate next actions.</p>
+        <form class="form-group" action="#" method="post">
+          <label for="home-email" class="muted">Email</label>
+          <input id="home-email" type="email" placeholder="you@example.com" required />
+          <button class="btn primary" type="submit">Subscribe</button>
+        </form>
+        <p class="muted" data-beehiiv-sync-status>Showing the current newsletter spotlight from local site data.</p>
+      </div>
       <div data-beehiiv-home-issue>
         <div class="newsletter-spotlight card">
           <p class="muted">Latest issue</p>
@@ -298,6 +688,7 @@
           <p>Launch sequencing, scope discipline, and proof-first execution.</p>
           <div class="cta-row">
             <a class="btn" href="newsletters.html">Read on-site</a>
+            <a class="btn primary" href="https://easterling-ms-newsletter.beehiiv.com/p/building-quietly" target="_blank" rel="noopener noreferrer">Open Beehiiv</a>
           </div>
         </div>
       </div>
@@ -320,11 +711,3 @@
 </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-

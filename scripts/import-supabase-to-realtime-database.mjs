@@ -106,7 +106,7 @@ function normalize(value) {
 
 function normalizeSource(value) {
   const normalized = String(value || '').trim().toLowerCase();
-  return ['home', 'blog', 'newsletter'].includes(normalized) ? normalized : 'home';
+  return ['home', 'blog', 'newsletter', 'mindmark'].includes(normalized) ? normalized : 'home';
 }
 
 function normalizeTimestamp(value) {

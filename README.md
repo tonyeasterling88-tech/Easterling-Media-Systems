@@ -39,6 +39,31 @@ The `closed_test_signups` path stores:
 
 The Realtime Database rules allow public creates from the site, block reads, and block updates/deletes so each email address behaves like a one-time signup.
 
+## Syncing Signups to Google Sheets
+
+The `closed_test_signups` Realtime Database path can be synced into Google Sheets with:
+
+```powershell
+npm run sync:sheets
+```
+
+The sync uses the same Firebase service account environment variables as the importer:
+
+```powershell
+$env:FIREBASE_PROJECT_ID="your-project-id"
+$env:FIREBASE_CLIENT_EMAIL="firebase-adminsdk-xxxx@your-project-id.iam.gserviceaccount.com"
+$env:FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+```
+
+To sync into an existing spreadsheet, share that spreadsheet with the service account email and set:
+
+```powershell
+$env:GOOGLE_SHEETS_SPREADSHEET_ID="your-spreadsheet-id"
+$env:GOOGLE_SHEETS_SHEET_NAME="MindMark Signups"
+```
+
+If `GOOGLE_SHEETS_SPREADSHEET_ID` is not set, the script creates a new spreadsheet owned by the service account and prints the spreadsheet ID. The sync rewrites the target tab with the latest signup table so repeated runs do not duplicate rows.
+
 ## Migrating Existing Supabase Data
 
 If you already have signup records in Supabase:
