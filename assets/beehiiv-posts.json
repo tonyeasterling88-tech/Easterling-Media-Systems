@@ -1,11 +1,26 @@
 {
-  "updatedAt": "2026-04-13T23:02:59.738Z",
+  "updatedAt": "2026-04-21T03:36:59.412Z",
   "publication": {
     "id": "",
     "name": "Easterling Media & Systems Newsletter",
     "websiteUrl": "https://easterling-ms-newsletter.beehiiv.com"
   },
   "issues": [
+    {
+      "id": "small-wins-sequenced-mvps-and-shipping-systems-d92e",
+      "slug": "small-wins-sequenced-mvps-and-shipping-systems-d92e",
+      "title": "Small Wins, Sequenced MVPs, and Shipping Systems",
+      "subtitle": "",
+      "excerpt": "Issue #4 April 20, 2026",
+      "publishedAt": "2026-04-21T03:30:49.538Z",
+      "webUrl": "https://easterling-ms-newsletter.beehiiv.com/p/small-wins-sequenced-mvps-and-shipping-systems-d92e",
+      "thumbnailUrl": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/fb8023c4-0de3-4f31-a735-01ddd71d63ba/ChatGPT_Image_Apr_20__2026__11_29_34_PM.png?t=1776742190",
+      "authors": [
+        "Anthony Easterling"
+      ],
+      "tags": [],
+      "html": "<p>Issue #4 April 20, 2026</p>"
+    },
     {
       "id": "ship-small-build-durable-wins-sequencing-and-systems",
       "slug": "ship-small-build-durable-wins-sequencing-and-systems",

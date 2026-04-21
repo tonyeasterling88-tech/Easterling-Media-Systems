@@ -407,6 +407,15 @@ async function fetchAllIssues(publicationId, apiKey) {
   return issues.map(normalizeIssue).filter((issue) => issue.publishedAt).sort(compareIssuesDescending);
 }
 
+function latestPublishedTimestamp(issues) {
+  const timestamps = (Array.isArray(issues) ? issues : [])
+    .map((issue) => (issue?.publishedAt ? Date.parse(issue.publishedAt) : Number.NaN))
+    .filter((timestamp) => Number.isFinite(timestamp));
+
+  if (!timestamps.length) return null;
+  return Math.max(...timestamps);
+}
+
 async function resolveIssues() {
   const existingPayload = await readExistingPayload();
   const publicationWebsiteUrl = resolveWebsiteUrl(existingPayload);
@@ -418,6 +427,7 @@ async function resolveIssues() {
       const issues = await fetchAllIssues(publication.id, apiKey);
       if (issues.length) {
         return {
+          existingPayload,
           publication: {
             id: String(publication?.id || ''),
             name: publication?.name || '',
@@ -438,13 +448,24 @@ async function resolveIssues() {
 
   const publicData = await fetchPublicIssues(publicationWebsiteUrl);
   return {
+    existingPayload,
     ...publicData,
     source: 'public-site',
   };
 }
 
 async function main() {
-  const { publication, issues, source } = await resolveIssues();
+  const { existingPayload, publication, issues, source } = await resolveIssues();
+  const localLatest = latestPublishedTimestamp(existingPayload?.issues);
+  const remoteLatest = latestPublishedTimestamp(issues);
+
+  if (existingPayload && localLatest !== null && remoteLatest !== null && remoteLatest <= localLatest) {
+    console.log(
+      `No newer Beehiiv issues found (latest remote ${new Date(remoteLatest).toISOString()} vs local ${new Date(localLatest).toISOString()}). ` +
+        `Leaving ${path.relative(repoRoot, outputPath)} unchanged.`
+    );
+    return;
+  }
 
   const payload = {
     updatedAt: new Date().toISOString(),
