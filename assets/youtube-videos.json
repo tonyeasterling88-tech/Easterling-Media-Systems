@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-04-21T14:28:50.754Z",
+  "updatedAt": "2026-04-22T14:28:44.291Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
     "feedUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCNhXHBT6Efo1xEjIGKgPNKw",
-    "source": "youtube-rss"
+    "source": "youtube-data-api"
   },
   "videos": [
     {
       "videoId": "_7IdL9J7WKI",
       "title": "NagiKumo ChillFi Rainy Cafe | Season 1 Episode 1",
-      "published": "2026-04-13T22:52:13+00:00",
+      "published": "2026-04-13T22:52:13Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=_7IdL9J7WKI"
     }
