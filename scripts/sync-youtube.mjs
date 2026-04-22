@@ -20,21 +20,52 @@ const youtubeApiKey = process.env.YOUTUBE_API_KEY?.trim() || '';
 const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
 
 async function main() {
+  const existingPayload = await readExistingPayload();
   let source = 'youtube-data-api';
   let videos = [];
 
   if (youtubeApiKey) {
-    videos = (await fetchYouTubeApiVideos()).slice(0, maxVideos);
+    try {
+      videos = (await fetchYouTubeApiVideos()).slice(0, maxVideos);
+    } catch (error) {
+      console.warn(`${error.message} Falling back to YouTube RSS.`);
+    }
+  } else {
+    console.warn('YOUTUBE_API_KEY is not set. Falling back to YouTube RSS.');
   }
 
   if (!videos.length) {
     source = 'youtube-rss';
-    videos = (await fetchFeedVideos()).slice(0, maxVideos);
+    try {
+      videos = (await fetchFeedVideos()).slice(0, maxVideos);
+    } catch (error) {
+      console.warn(`${error.message} Falling back to the public videos page.`);
+    }
   }
 
   if (!videos.length) {
     source = 'youtube-videos-page';
-    videos = (await fetchVideosTab(channelUrl)).slice(0, maxVideos);
+    try {
+      videos = (await fetchVideosTab(channelUrl)).slice(0, maxVideos);
+    } catch (error) {
+      console.warn(`${error.message} Unable to refresh YouTube videos from public sources.`);
+    }
+  }
+
+  if (!videos.length) {
+    if (Array.isArray(existingPayload?.videos) && existingPayload.videos.length) {
+      console.warn(`No YouTube videos could be refreshed. Leaving ${path.relative(repoRoot, outputPath)} unchanged.`);
+      return;
+    }
+
+    console.warn('No YouTube videos could be refreshed and no existing payload was found. Writing an empty feed.');
+  }
+
+  videos = mergeExistingVideoMetadata(videos, existingPayload?.videos);
+
+  if (hasSameVideoPayload(videos, existingPayload?.videos)) {
+    console.log(`No YouTube video changes found. Leaving ${path.relative(repoRoot, outputPath)} unchanged.`);
+    return;
   }
 
   const payload = {
@@ -50,6 +81,49 @@ async function main() {
 
   await fs.writeFile(outputPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
   console.log(`Synced ${videos.length} YouTube videos from ${source} to ${outputPath}`);
+}
+
+function hasSameVideoPayload(videos, existingVideos) {
+  if (!Array.isArray(videos) || !Array.isArray(existingVideos)) return false;
+  if (videos.length !== existingVideos.length) return false;
+
+  return videos.every((video, index) => {
+    const existing = existingVideos[index] || {};
+    return (
+      video.videoId === existing.videoId &&
+      video.title === existing.title &&
+      video.published === existing.published &&
+      video.author === existing.author &&
+      video.link === existing.link
+    );
+  });
+}
+
+function mergeExistingVideoMetadata(videos, existingVideos) {
+  if (!Array.isArray(videos) || !Array.isArray(existingVideos) || !existingVideos.length) {
+    return videos;
+  }
+
+  const existingById = new Map(existingVideos.map((video) => [video?.videoId, video]).filter(([videoId]) => videoId));
+
+  return videos.map((video) => {
+    const existing = existingById.get(video.videoId);
+    if (!existing) return video;
+
+    return {
+      ...video,
+      published: video.published || existing.published || '',
+      author: video.author || existing.author || '',
+    };
+  });
+}
+
+async function readExistingPayload() {
+  try {
+    return JSON.parse(await fs.readFile(outputPath, 'utf8'));
+  } catch {
+    return null;
+  }
 }
 
 async function loadEnvFiles() {
