@@ -466,61 +466,48 @@ button[disabled],
   background-clip: text;
 }
 
-.mockup-panel {
-  position: relative;
+.project-facts-panel {
+  display: grid;
+  align-content: center;
+  gap: 1rem;
   min-height: 320px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
-  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.38);
-  overflow: hidden;
-  animation: float-panel 6s ease-in-out infinite;
-}
-
-.mockup-panel::before {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  border-radius: 14px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(45, 212, 191, 0.28);
+  border-radius: 12px;
   background:
-    linear-gradient(rgba(45, 212, 191, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(45, 212, 191, 0.09) 1px, transparent 1px),
-    rgba(2, 6, 23, 0.88);
+    linear-gradient(rgba(45, 212, 191, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 212, 191, 0.08) 1px, transparent 1px),
+    rgba(2, 6, 23, 0.72);
   background-size: 28px 28px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
 }
 
-.mockup-panel::after {
-  content: "MindMark";
-  position: absolute;
-  left: 38px;
-  top: 38px;
+.project-facts-panel h2 {
+  margin: 0;
   color: #5eead4;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-facts-panel dl {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.project-facts-panel dt {
+  color: #94a3b8;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.mockup-lines {
-  position: absolute;
-  left: 38px;
-  right: 38px;
-  bottom: 38px;
-  display: grid;
-  gap: 0.85rem;
-}
-
-.mockup-lines span {
-  height: 14px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(45, 212, 191, 0.5), rgba(45, 212, 191, 0.08));
-}
-
-.mockup-lines span:nth-child(2) {
-  width: 72%;
-}
-
-.mockup-lines span:nth-child(3) {
-  width: 48%;
+.project-facts-panel dd {
+  margin: 0.15rem 0 0;
+  color: #f8fafc;
+  font-weight: 700;
 }
 
 .filter-row {
@@ -582,17 +569,6 @@ button[disabled],
 
 .archive-card.is-hidden {
   display: none;
-}
-
-@keyframes float-panel {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mockup-panel {
-    animation: none;
-  }
 }
 
 @media (max-width: 900px) {
@@ -787,16 +763,16 @@ button[disabled],
   box-shadow: 0 0 26px rgba(129, 140, 248, 0.12);
 }
 
-.mindmark-page {
+.build-detail-page {
   background: #020617;
 }
 
-.mindmark-page .detail-shell {
+.build-detail-page .detail-shell {
   width: min(100% - 2rem, 1180px);
   margin: 0 auto;
 }
 
-.mindmark-hero {
+.build-detail-hero {
   min-height: 520px;
   display: grid;
   align-items: center;
@@ -808,14 +784,14 @@ button[disabled],
     #050b18;
 }
 
-.mindmark-grid {
+.build-detail-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
   gap: 2rem;
   align-items: center;
 }
 
-.mindmark-grid h1 {
+.build-detail-grid h1 {
   font-size: clamp(2.5rem, 5vw, 4.4rem);
   line-height: 1;
   margin-bottom: 1rem;
@@ -920,7 +896,7 @@ button[disabled],
 
 @media (max-width: 900px) {
   .method-contact .two-col,
-  .mindmark-grid,
+  .build-detail-grid,
   .detail-grid,
   .roadmap,
   .beta-form-grid {

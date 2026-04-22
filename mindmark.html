@@ -9,7 +9,7 @@
   <script defer src="assets/site.js"></script>
   <script type="module" src="assets/closed-testing.js"></script>
 </head>
-<body class="mindmark-page">
+<body class="build-detail-page">
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="/">
@@ -30,8 +30,8 @@
 </header>
 
 <main>
-  <section class="mindmark-hero">
-    <div class="detail-shell mindmark-grid">
+  <section class="build-detail-hero">
+    <div class="detail-shell build-detail-grid">
       <div>
         <span class="eyebrow">MindMark Project</span>
         <h1>Private journaling with gentle reflection.</h1>
@@ -41,13 +41,15 @@
           <a class="btn" href="posts/from-idea-to-live-website-a-small-win-that-moves-everything-forward.html">Read the Build Note</a>
         </div>
       </div>
-      <div class="mockup-panel" aria-hidden="true">
-        <div class="mockup-lines">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+      <aside class="project-facts-panel">
+        <h2>Project Facts</h2>
+        <dl>
+          <div><dt>Type</dt><dd>Expo reflection journal</dd></div>
+          <div><dt>Package</dt><dd>com.tonyeasterling88.mindmark</dd></div>
+          <div><dt>Storage</dt><dd>On-device AsyncStorage</dd></div>
+          <div><dt>Status</dt><dd>Closed testing</dd></div>
+        </dl>
+      </aside>
     </div>
   </section>
 
