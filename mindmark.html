@@ -35,7 +35,7 @@
       <div>
         <span class="eyebrow">MindMark Project</span>
         <h1>Private journaling with gentle reflection.</h1>
-        <p class="muted">MindMark is being built as a simple way to capture thoughts, reflections, and ideas without friction, then revisit what matters later.</p>
+        <p class="muted">MindMark is an Expo Router / React Native journal app that saves entries locally, gives gentle affirmations and reflections, and keeps the first release focused on private use.</p>
         <div class="cta-row">
           <a class="btn primary" href="#mindmark-beta">Join Closed Testing</a>
           <a class="btn" href="posts/from-idea-to-live-website-a-small-win-that-moves-everything-forward.html">Read the Build Note</a>
@@ -56,16 +56,16 @@
       <h2>The Problem: capturing thoughts should not feel heavy.</h2>
       <div class="detail-grid">
         <article class="card detail-card">
-          <h3>Friction</h3>
-          <p class="muted">The original personal problem was needing a lighter way to capture thoughts and reflections when they show up.</p>
+          <h3>Local-first capture</h3>
+          <p class="muted">Journal entries are stored on-device with AsyncStorage under `mindmark:journals:v1`.</p>
         </article>
         <article class="card detail-card">
-          <h3>Revisiting</h3>
-          <p class="muted">The app is focused on helping people organize their thinking and return to ideas that matter.</p>
+          <h3>Saved entries</h3>
+          <p class="muted">The app has routes for new entries, saved entries, editing, reflections, settings, and onboarding.</p>
         </article>
         <article class="card detail-card">
-          <h3>Early feedback</h3>
-          <p class="muted">MindMark is in closed testing, with a small group invited to try it before a wider public release.</p>
+          <h3>Closed testing</h3>
+          <p class="muted">The Android package is `com.tonyeasterling88.mindmark`, and the site collects tester Google account emails.</p>
         </article>
       </div>
     </div>
@@ -76,16 +76,16 @@
       <h2>The Current Build</h2>
       <div class="detail-grid">
         <article class="card">
-          <h3>Private journaling</h3>
-          <p class="muted">The core product direction is structured journaling and reflection, not social posting or public content.</p>
+          <h3>Expo app</h3>
+          <p class="muted">The repo is `mindmark-reflection-journal`, built with Expo 54, React Native 0.81, React 19, TypeScript, and Expo Router.</p>
         </article>
         <article class="card">
-          <h3>Closed testing intake</h3>
-          <p class="muted">The site collects early-access requests with Google account email, device type, phone model, and optional source notes.</p>
+          <h3>Reflection rewards</h3>
+          <p class="muted">Saving an entry can show an affirmation and reflection prompt, with haptic feedback on success.</p>
         </article>
         <article class="card">
-          <h3>Feedback loop</h3>
-          <p class="muted">The next focus is getting MindMark into early testers' hands and using that feedback to guide the next iteration.</p>
+          <h3>Future subscription</h3>
+          <p class="muted">The menu includes a disabled “Subscribe to AI Reflection” item marked as coming soon.</p>
         </article>
       </div>
     </div>
@@ -96,20 +96,20 @@
       <h2>Development Roadmap</h2>
       <div class="roadmap">
         <div class="roadmap-item">
-          <h3>Closed testing intake</h3>
-          <p class="muted">Collect early tester requests through the site.</p>
+          <h3>Onboarding gate</h3>
+          <p class="muted">Users accept the welcome/disclaimer flow before reaching the main menu.</p>
         </div>
         <div class="roadmap-item">
-          <h3>Early tester onboarding</h3>
-          <p class="muted">Invite a small group to use the app before public availability.</p>
+          <h3>Journal loop</h3>
+          <p class="muted">Create, save, view, edit, and delete local journal entries.</p>
         </div>
         <div class="roadmap-item">
-          <h3>Feedback review</h3>
-          <p class="muted">Turn tester responses into the next product iteration.</p>
+          <h3>Reflection library</h3>
+          <p class="muted">Show affirmations and reflection prompts after entries exist.</p>
         </div>
         <div class="roadmap-item">
-          <h3>Public path</h3>
-          <p class="muted">Prepare for broader availability after closed testing.</p>
+          <h3>Closed test</h3>
+          <p class="muted">Use tester feedback before broadening availability.</p>
         </div>
       </div>
     </div>

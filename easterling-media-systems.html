@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Easterling Media & Systems Build | Easterling Media & Systems</title>
+  <meta name="description" content="The static website, Firebase intake, sync scripts, and content system behind Easterling Media & Systems." />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script defer src="assets/site.js"></script>
+</head>
+<body class="mindmark-page">
+<header><div class="container nav-wrap"><a class="brand" href="/"><img class="brand-mark" src="assets/Easterlingms_logo.png" alt="Easterling Media &amp; Systems logo" /><span class="brand-text">Easterling Media &amp; Systems</span></a><nav><ul><li><a href="builds.html">Builds</a></li><li><a href="blogs.html">Blog</a></li><li><a href="newsletters.html">Newsletter</a></li><li><a href="content.html">Content</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></nav></div></header>
+<main>
+  <section class="mindmark-hero"><div class="detail-shell mindmark-grid"><div><span class="eyebrow">Easterling Media &amp; Systems</span><h1>The static command center for builds, content, and intake.</h1><p class="muted">This repo is the public site: static HTML/CSS/JS, Firebase Realtime Database rules, local sync scripts, and content pages for builds, posts, newsletters, and video.</p><div class="cta-row"><a class="btn primary" href="/">Open Home</a><a class="btn" href="posts/from-idea-to-live-website-a-small-win-that-moves-everything-forward.html">Read Launch Note</a></div></div><div class="mockup-panel" aria-hidden="true"><div class="mockup-lines"><span></span><span></span><span></span></div></div></div></section>
+  <section class="problem-band"><div class="detail-shell"><h2>The Problem: public work needs one current source of truth.</h2><div class="detail-grid"><article class="card detail-card"><h3>Static hub</h3><p class="muted">The site collects builds, blog posts, content links, newsletter pages, and contact paths without a full app framework.</p></article><article class="card detail-card"><h3>Signup intake</h3><p class="muted">MindMark closed-test forms write to Firebase Realtime Database at `closed_test_signups`.</p></article><article class="card detail-card"><h3>Operational scripts</h3><p class="muted">The repo includes scripts for Beehiiv sync, YouTube sync, Firebase import, newsletter draft generation, Beehiiv publishing, and Google Sheets export.</p></article></div></div></section>
+  <section class="detail-section"><div class="detail-shell"><h2>The Current Build</h2><div class="detail-grid"><article class="card"><h3>Runtime</h3><p class="muted">The project is private, module-based Node, with Firebase and `google-auth-library` dependencies.</p></article><article class="card"><h3>Local server</h3><p class="muted">The `dev` script runs a static HTTP server on port 8080 with disabled caching and CORS enabled.</p></article><article class="card"><h3>Data flow</h3><p class="muted">Realtime Database rules allow public creates, block reads, and block updates/deletes for one-time email signups.</p></article></div></div></section>
+  <section class="detail-section"><div class="detail-shell"><h2>Development Timeline</h2><div class="roadmap"><div class="roadmap-item"><h3>Launch</h3><p class="muted">Publish a lightweight site on its own domain.</p></div><div class="roadmap-item"><h3>Intake</h3><p class="muted">Add Firebase closed-testing forms for MindMark.</p></div><div class="roadmap-item"><h3>Sync</h3><p class="muted">Connect Beehiiv, YouTube, newsletter draft, and Google Sheets workflows through scripts.</p></div><div class="roadmap-item"><h3>Archive</h3><p class="muted">Create dedicated pages for each build so the public hub can tell the fuller story.</p></div></div></div></section>
+</main>
+<footer><div class="container"><div class="footer-links"><a href="builds.html">Builds</a><a href="blogs.html">Blog</a><a href="newsletters.html">Newsletter</a><a href="content.html">Content</a><a href="about.html">About</a><a href="contact.html">Contact</a></div><p class="muted">&copy; 2026 Easterling Media &amp; Systems</p></div></footer>
+</body>
+</html>
