@@ -68,8 +68,8 @@ function setStatus(form, message, tone) {
 }
 
 function showSuccessState(form, message) {
-  const panel = form.closest('.signup-panel');
-  const success = panel?.querySelector('[data-closed-test-success]');
+  const container = findClosedTestContainer(form);
+  const success = container?.querySelector('[data-closed-test-success]');
   form.hidden = true;
   if (success) {
     const text = success.querySelector('[data-closed-test-success-message]');
@@ -78,6 +78,14 @@ function showSuccessState(form, message) {
     }
     success.hidden = false;
   }
+}
+
+function findClosedTestContainer(form) {
+  return (
+    form.closest('.signup-panel') ||
+    form.closest('.beta-band') ||
+    form.parentElement
+  );
 }
 
 async function handleSubmit(event, db) {
