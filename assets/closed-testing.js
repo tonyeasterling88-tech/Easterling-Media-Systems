@@ -135,7 +135,8 @@ async function handleSubmit(event, db) {
 
     showSuccessState(form, "Thanks for signing up. After your Google account is added as a tester, use package com.tonyeasterling88.mindmark for download access.");
   } catch (error) {
-    const duplicate = error?.code === 'permission-denied';
+    const errorCode = normalizeErrorCode(error);
+    const duplicate = isPermissionDenied(errorCode);
     if (duplicate) {
       showSuccessState(form, 'Thanks for signing up. You are already on the list. After your Google account is added as a tester, use package com.tonyeasterling88.mindmark for download access.');
       return;
@@ -148,11 +149,11 @@ async function handleSubmit(event, db) {
       email,
     });
 
-    const errorCode = normalizeErrorCode(error);
     const friendlyMessage =
-      errorCode === 'permission-denied'
+      isPermissionDenied(errorCode)
         ? 'There was a problem saving your request. Firebase rejected the write, which usually means the Realtime Database rules need attention.'
         : errorCode === 'network-request-failed'
+          || errorCode === 'network_request_failed'
           ? 'There was a problem reaching Firebase. Check your connection and try again.'
           : `There was a problem saving your request. Reference: ${errorCode}.`;
 
@@ -170,5 +171,10 @@ function normalizeErrorCode(error) {
     return 'unknown';
   }
 
-  return code.startsWith('database/') ? code.slice('database/'.length) : code;
+  const normalized = code.startsWith('database/') ? code.slice('database/'.length) : code;
+  return normalized.trim().toLowerCase();
+}
+
+function isPermissionDenied(code) {
+  return code === 'permission-denied' || code === 'permission_denied';
 }
