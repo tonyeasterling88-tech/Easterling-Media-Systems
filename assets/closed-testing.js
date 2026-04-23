@@ -141,14 +141,34 @@ async function handleSubmit(event, db) {
       return;
     }
 
-    setStatus(
-      form,
-      'There was a problem saving your request. Check your Firebase config and Realtime Database rules, then try again.',
-      'error'
-    );
+    console.error('Closed testing signup failed.', {
+      code: error?.code || 'unknown',
+      message: error?.message || 'Unknown Firebase error',
+      source,
+      email,
+    });
+
+    const errorCode = normalizeErrorCode(error);
+    const friendlyMessage =
+      errorCode === 'permission-denied'
+        ? 'There was a problem saving your request. Firebase rejected the write, which usually means the Realtime Database rules need attention.'
+        : errorCode === 'network-request-failed'
+          ? 'There was a problem reaching Firebase. Check your connection and try again.'
+          : `There was a problem saving your request. Reference: ${errorCode}.`;
+
+    setStatus(form, friendlyMessage, 'error');
   } finally {
     if (submitButton) {
       submitButton.disabled = false;
     }
   }
+}
+
+function normalizeErrorCode(error) {
+  const code = String(error?.code || '').trim();
+  if (!code) {
+    return 'unknown';
+  }
+
+  return code.startsWith('database/') ? code.slice('database/'.length) : code;
 }
