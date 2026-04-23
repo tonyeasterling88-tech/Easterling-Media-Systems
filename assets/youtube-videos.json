@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-22T14:28:44.291Z",
+  "updatedAt": "2026-04-23T14:43:57.345Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "GDwsK5wLEjg",
+      "title": "NagiKumo ChillFi Rainy Cafe Night S1:E1",
+      "published": "2026-04-23T01:12:27Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=GDwsK5wLEjg"
+    },
     {
       "videoId": "_7IdL9J7WKI",
       "title": "NagiKumo ChillFi Rainy Cafe | Season 1 Episode 1",
