@@ -70,14 +70,21 @@ function setStatus(form, message, tone) {
 function showSuccessState(form, message) {
   const container = findClosedTestContainer(form);
   const success = container?.querySelector('[data-closed-test-success]');
-  form.hidden = true;
-  if (success) {
-    const text = success.querySelector('[data-closed-test-success-message]');
-    if (text) {
-      text.textContent = message;
-    }
-    success.hidden = false;
+  setStatus(form, message, 'success');
+
+  if (!success) {
+    return;
   }
+
+  const text = success.querySelector('[data-closed-test-success-message]');
+  if (text) {
+    text.textContent = message;
+  }
+
+  success.hidden = false;
+  success.removeAttribute('hidden');
+  form.hidden = true;
+  success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function findClosedTestContainer(form) {
