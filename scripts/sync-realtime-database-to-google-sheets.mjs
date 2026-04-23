@@ -53,6 +53,7 @@ await updateSheet(accessToken, targetSpreadsheetId, sheetName, rows);
 
 console.log(`Synced ${rows.length - 1} signup records to Google Sheets.`);
 console.log(`Spreadsheet ID: ${targetSpreadsheetId}`);
+console.log(`Spreadsheet URL: https://docs.google.com/spreadsheets/d/${targetSpreadsheetId}/edit`);
 console.log(`Sheet tab: ${sheetName}`);
 
 async function readSignups(databaseUrlValue, accessTokenValue) {
