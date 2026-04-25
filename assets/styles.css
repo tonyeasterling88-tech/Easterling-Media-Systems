@@ -270,6 +270,17 @@ button[disabled],
   display: none;
 }
 
+.tester-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.tester-actions-note {
+  margin: 0.75rem 0 0;
+}
+
 .newsletter-reader {
   overflow: hidden;
 }

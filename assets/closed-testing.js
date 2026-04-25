@@ -9,6 +9,8 @@ import { firebaseConfig } from './firebase-config.js';
 
 const SIGNUPS_PATH = 'closed_test_signups';
 const ALLOWED_SOURCES = new Set(['home', 'blog', 'newsletter', 'mindmark']);
+const TESTER_GROUP_URL = 'https://groups.google.com/g/mindmark-closed-testers';
+const PLAY_OPT_IN_URL = 'https://play.google.com/apps/testing/com.tonyeasterling88.mindmark';
 
 const forms = Array.from(document.querySelectorAll('[data-closed-test-form]'));
 
@@ -81,10 +83,43 @@ function showSuccessState(form, message) {
     text.textContent = message;
   }
 
+  ensureTesterActions(success);
   success.hidden = false;
   success.removeAttribute('hidden');
   form.hidden = true;
   success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function ensureTesterActions(success) {
+  if (success.querySelector('[data-closed-test-actions]')) {
+    return;
+  }
+
+  const actions = document.createElement('div');
+  actions.className = 'tester-actions';
+  actions.dataset.closedTestActions = '';
+
+  const groupLink = document.createElement('a');
+  groupLink.className = 'btn primary';
+  groupLink.href = TESTER_GROUP_URL;
+  groupLink.target = '_blank';
+  groupLink.rel = 'noopener noreferrer';
+  groupLink.textContent = 'Join Google Group';
+
+  const playLink = document.createElement('a');
+  playLink.className = 'btn';
+  playLink.href = PLAY_OPT_IN_URL;
+  playLink.target = '_blank';
+  playLink.rel = 'noopener noreferrer';
+  playLink.textContent = 'Open Play Test';
+
+  actions.append(groupLink, playLink);
+
+  const helper = document.createElement('p');
+  helper.className = 'muted tester-actions-note';
+  helper.textContent = 'Use the same Google account for both steps. Join the group first, then open the Play test link to opt in.';
+
+  success.append(actions, helper);
 }
 
 function findClosedTestContainer(form) {
@@ -148,12 +183,12 @@ async function handleSubmit(event, db) {
       created_at: serverTimestamp(),
     });
 
-    showSuccessState(form, "Thanks for signing up. After your Google account is added as a tester, use package com.tonyeasterling88.mindmark for download access.");
+    showSuccessState(form, 'Thanks for signing up. Join the Google Group with this same account, then open the Play test link to opt in for MindMark.');
   } catch (error) {
     const errorCode = normalizeErrorCode(error);
     const duplicate = isPermissionDenied(errorCode);
     if (duplicate) {
-      showSuccessState(form, 'Thanks for signing up. You are already on the list. After your Google account is added as a tester, use package com.tonyeasterling88.mindmark for download access.');
+      showSuccessState(form, 'Thanks for signing up. You are already on the list. Join the Google Group with this same account, then open the Play test link to opt in for MindMark.');
       return;
     }
 

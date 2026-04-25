@@ -39,6 +39,21 @@ The `closed_test_signups` path stores:
 
 The Realtime Database rules allow public creates from the site, block reads, and block updates/deletes so each email address behaves like a one-time signup.
 
+## Google Play Closed Testing Flow
+
+After a closed-testing signup is saved, the site shows two tester buttons:
+
+- Join Google Group: `https://groups.google.com/g/mindmark-closed-testers`
+- Open Play Test: `https://play.google.com/apps/testing/com.tonyeasterling88.mindmark`
+
+Create or confirm the Google Group slug, then add the group email address in Play Console under the MindMark closed testing track:
+
+```text
+mindmark-closed-testers@googlegroups.com
+```
+
+If the Google Group uses a different slug, update `TESTER_GROUP_URL` in [assets/closed-testing.js](/c:/Dev/easterling-ms/assets/closed-testing.js). Testers should join the Google Group first, then open the Play test link using the same Google account.
+
 ## Syncing Signups to Google Sheets
 
 The `closed_test_signups` Realtime Database path can be synced into Google Sheets with:
