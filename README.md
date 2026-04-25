@@ -54,6 +54,8 @@ mindmark-closed-testers@googlegroups.com
 
 If the Google Group uses a different slug, update `TESTER_GROUP_URL` in [assets/closed-testing.js](/c:/Dev/easterling-ms/assets/closed-testing.js). Testers should join the Google Group first, then open the Play test link using the same Google account.
 
+If Google Groups shows "Content unavailable," fix the group visibility/settings in Google Groups before sharing the site link. The group needs to exist at that slug, allow the tester's account to view/request membership, and allow external members if testers are outside your Google Workspace.
+
 ## Syncing Signups to Google Sheets
 
 The `closed_test_signups` Realtime Database path can be synced into Google Sheets with:

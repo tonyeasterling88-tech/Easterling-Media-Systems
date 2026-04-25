@@ -10,6 +10,7 @@ import { firebaseConfig } from './firebase-config.js';
 const SIGNUPS_PATH = 'closed_test_signups';
 const ALLOWED_SOURCES = new Set(['home', 'blog', 'newsletter', 'mindmark']);
 const TESTER_GROUP_URL = 'https://groups.google.com/g/mindmark-closed-testers';
+const TESTER_GROUP_SUBSCRIBE_EMAIL = 'mindmark-closed-testers+subscribe@googlegroups.com';
 const PLAY_OPT_IN_URL = 'https://play.google.com/apps/testing/com.tonyeasterling88.mindmark';
 
 const forms = Array.from(document.querySelectorAll('[data-closed-test-form]'));
@@ -19,6 +20,8 @@ if (forms.length) {
   const db = firebaseReady ? getDatabase(initializeApp(firebaseConfig)) : null;
 
   forms.forEach((form) => {
+    ensureSignupLinks(form);
+
     if (!firebaseReady) {
       setStatus(form, 'Add your Firebase config in assets/firebase-config.js before collecting signups.', 'error');
     }
@@ -27,6 +30,27 @@ if (forms.length) {
       void handleSubmit(event, db);
     });
   });
+}
+
+function ensureSignupLinks(form) {
+  if (form.querySelector('[data-closed-test-signup-links]')) {
+    return;
+  }
+
+  const links = createTesterActions('Join Google Group', 'Open Play Test');
+  links.dataset.closedTestSignupLinks = '';
+
+  const helper = document.createElement('p');
+  helper.className = 'muted tester-actions-note';
+  helper.innerHTML = `The Google Group controls Play testing access. If Google says content is unavailable, sign in or switch accounts, or <a href="mailto:${TESTER_GROUP_SUBSCRIBE_EMAIL}">request access by email</a>.`;
+
+  const target =
+    form.querySelector('.signup-actions') ||
+    form.querySelector('.cta-row') ||
+    form.querySelector('button[type="submit"], input[type="submit"]')?.parentElement ||
+    form;
+
+  target.append(links, helper);
 }
 
 function isFirebaseConfigured(config) {
@@ -95,31 +119,34 @@ function ensureTesterActions(success) {
     return;
   }
 
+  const actions = createTesterActions('Join Google Group', 'Open Play Test');
+  actions.dataset.closedTestActions = '';
+
+  const helper = document.createElement('p');
+  helper.className = 'muted tester-actions-note';
+  helper.innerHTML = `Use the same Google account for both steps. If Google says content is unavailable, sign in or switch accounts, or <a href="mailto:${TESTER_GROUP_SUBSCRIBE_EMAIL}">request access by email</a>.`;
+
+  success.append(actions, helper);
+}
+
+function createTesterActions(groupLabel, playLabel) {
   const actions = document.createElement('div');
   actions.className = 'tester-actions';
-  actions.dataset.closedTestActions = '';
 
   const groupLink = document.createElement('a');
   groupLink.className = 'btn primary';
   groupLink.href = TESTER_GROUP_URL;
-  groupLink.target = '_blank';
   groupLink.rel = 'noopener noreferrer';
-  groupLink.textContent = 'Join Google Group';
+  groupLink.textContent = groupLabel;
 
   const playLink = document.createElement('a');
   playLink.className = 'btn';
   playLink.href = PLAY_OPT_IN_URL;
-  playLink.target = '_blank';
   playLink.rel = 'noopener noreferrer';
-  playLink.textContent = 'Open Play Test';
+  playLink.textContent = playLabel;
 
   actions.append(groupLink, playLink);
-
-  const helper = document.createElement('p');
-  helper.className = 'muted tester-actions-note';
-  helper.textContent = 'Use the same Google account for both steps. Join the group first, then open the Play test link to opt in.';
-
-  success.append(actions, helper);
+  return actions;
 }
 
 function findClosedTestContainer(form) {
