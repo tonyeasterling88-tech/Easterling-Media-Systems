@@ -360,13 +360,27 @@
 
     .signup-actions {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(190px, auto);
       gap: 0.85rem;
-      align-items: end;
+      grid-template-columns: 1fr;
+      align-items: stretch;
     }
 
     .signup-panel .form-status {
       margin: 0;
+      max-width: 72ch;
+      min-width: 0;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    .signup-actions .btn {
+      justify-self: stretch;
+      text-align: center;
+    }
+
+    .signup-actions .tester-actions,
+    .signup-actions .tester-actions-note {
+      margin-top: 0;
     }
 
     .feature-grid {
