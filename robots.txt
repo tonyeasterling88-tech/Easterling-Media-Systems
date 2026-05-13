@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://easterlingms.com/sitemap.xml
+Sitemap: https://www.easterlingmediasystems.com/sitemap.xml
