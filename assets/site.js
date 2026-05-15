@@ -238,6 +238,7 @@
   wireBeehiivNewsletterSignups();
   updateBeehiivSubscriberCount();
   updateYouTubeVideos();
+  import('./visitor-count.js').catch(() => {});
 
   // Lightweight analytics placeholder
   window.commandCenterAnalytics = {
