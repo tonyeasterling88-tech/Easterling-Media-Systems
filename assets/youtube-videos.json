@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-24T14:27:17.316Z",
+  "updatedAt": "2026-05-18T16:16:24.116Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "JtbK6qXd0ng",
+      "title": "Ame no Café | Rainy Anime Lofi for Study, Sleep &amp; Calm Focus #lofi #chill #music #anime",
+      "published": "2026-05-18T02:01:48Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=JtbK6qXd0ng"
+    },
     {
       "videoId": "GDwsK5wLEjg",
       "title": "NagiKumo ChillFi Rainy Cafe Night S1:E1",
