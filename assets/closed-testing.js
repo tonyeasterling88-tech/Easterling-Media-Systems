@@ -14,11 +14,13 @@ const TESTER_GROUP_SUBSCRIBE_EMAIL = 'mindmark-closed-testers+subscribe@googlegr
 const PLAY_OPT_IN_URL = 'https://play.google.com/apps/testing/com.tonyeasterling88.mindmark';
 
 const forms = Array.from(document.querySelectorAll('[data-closed-test-form]'));
+const contactForm = document.querySelector('.contact-form');
+const inquiryForm = document.querySelector('.inquiry-form');
+
+const firebaseReady = isFirebaseConfigured(firebaseConfig);
+const db = firebaseReady ? getDatabase(initializeApp(firebaseConfig)) : null;
 
 if (forms.length) {
-  const firebaseReady = isFirebaseConfigured(firebaseConfig);
-  const db = firebaseReady ? getDatabase(initializeApp(firebaseConfig)) : null;
-
   forms.forEach((form) => {
     ensureSignupLinks(form);
 
@@ -29,6 +31,24 @@ if (forms.length) {
     form.addEventListener('submit', (event) => {
       void handleSubmit(event, db);
     });
+  });
+}
+
+if (contactForm) {
+  if (!firebaseReady) {
+    setStatus(contactForm, 'Add your Firebase config in assets/firebase-config.js before sending messages.', 'error');
+  }
+  contactForm.addEventListener('submit', (event) => {
+    void handleContactSubmit(event, db);
+  });
+}
+
+if (inquiryForm) {
+  if (!firebaseReady) {
+    setStatus(inquiryForm, 'Add your Firebase config in assets/firebase-config.js before submitting inquiries.', 'error');
+  }
+  inquiryForm.addEventListener('submit', (event) => {
+    void handleInquirySubmit(event, db);
   });
 }
 
@@ -213,8 +233,16 @@ async function handleSubmit(event, db) {
     showSuccessState(form, 'Thanks for signing up. Join the Google Group with this same account, then open the Play test link to opt in for MindMark.');
   } catch (error) {
     const errorCode = normalizeErrorCode(error);
-    const duplicate = isPermissionDenied(errorCode);
-    if (duplicate) {
+    const permissionDenied = isPermissionDenied(errorCode);
+    
+    if (permissionDenied) {
+      // In production, permission-denied represents a blocked overwrite (the user is already signed up).
+      // We log a detailed warning in case it is actually a database rules misconfiguration during setup.
+      console.warn(
+        'Closed testing signup: Write permission denied. This is expected if the email is already registered (updates are blocked by security rules), but it can also mean that your Firebase Realtime Database security rules have not been deployed or are rejecting writes globally. Verify your database rules if this is a new setup.',
+        { email, error }
+      );
+      
       showSuccessState(form, 'Thanks for signing up. You are already on the list. Join the Google Group with this same account, then open the Play test link to opt in for MindMark.');
       return;
     }
@@ -227,12 +255,9 @@ async function handleSubmit(event, db) {
     });
 
     const friendlyMessage =
-      isPermissionDenied(errorCode)
-        ? 'There was a problem saving your request. Firebase rejected the write, which usually means the Realtime Database rules need attention.'
-        : errorCode === 'network-request-failed'
-          || errorCode === 'network_request_failed'
-          ? 'There was a problem reaching Firebase. Check your connection and try again.'
-          : `There was a problem saving your request. Reference: ${errorCode}.`;
+      errorCode === 'network-request-failed' || errorCode === 'network_request_failed'
+        ? 'There was a problem reaching Firebase. Check your connection and try again.'
+        : `There was a problem saving your request. Reference: ${errorCode}.`;
 
     setStatus(form, friendlyMessage, 'error');
   } finally {
@@ -254,4 +279,153 @@ function normalizeErrorCode(error) {
 
 function isPermissionDenied(code) {
   return code === 'permission-denied' || code === 'permission_denied';
+}
+
+async function sendFormSubmitEmail(recipient, data) {
+  try {
+    const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      const text = await response.text();
+      console.warn('Email forwarding failed:', text);
+    }
+  } catch (err) {
+    console.error('Failed to forward email:', err);
+  }
+}
+
+async function handleContactSubmit(event, db) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const nameInput = form.querySelector('[name="name"]') || form.querySelector('input[placeholder="Name"]');
+  const emailInput = form.querySelector('[name="email"]') || form.querySelector('input[placeholder="Email"]');
+  const messageInput = form.querySelector('[name="message"]') || form.querySelector('textarea');
+  
+  const name = normalize(nameInput?.value);
+  const email = normalizeEmail(emailInput?.value);
+  const message = normalize(messageInput?.value);
+
+  if (!email || !isValidEmail(email)) {
+    setStatus(form, 'Enter a valid email address.', 'error');
+    return;
+  }
+
+  setStatus(form, 'Sending message...', 'info');
+  if (submitButton) submitButton.disabled = true;
+
+  try {
+    // 1. Save to Firebase if configured
+    if (db) {
+      try {
+        const key = `msg_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+        await set(ref(db, `contact_messages/${key}`), {
+          name,
+          email,
+          message,
+          user_agent: window.navigator.userAgent,
+          created_at: serverTimestamp(),
+        });
+      } catch (fbErr) {
+        console.warn('Firebase logging failed, continuing with email forward:', fbErr);
+      }
+    } else {
+      console.warn('Firebase is not configured yet. Saving to database was skipped, proceeding with email forwarding.');
+    }
+
+    // 2. Forward email to site owner via FormSubmit.co
+    await sendFormSubmitEmail('tonyeasterlingappsdev@gmail.com', {
+      name: name || 'Anonymous',
+      email: email,
+      message: message || '(No message content)',
+      _subject: 'New Contact Message from Easterling Media & Systems',
+      _captcha: 'false'
+    });
+
+    showContactSuccess(form, 'Thank you! Your message has been sent successfully. We will contact you shortly.');
+  } catch (error) {
+    console.error('Contact submission failed:', error);
+    setStatus(form, 'There was a problem sending your message. Please try again.', 'error');
+  } finally {
+    if (submitButton) submitButton.disabled = false;
+  }
+}
+
+async function handleInquirySubmit(event, db) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const nameInput = form.querySelector('[name="name"]') || form.querySelector('input[placeholder="Name"]');
+  const emailInput = form.querySelector('[name="email"]') || form.querySelector('input[placeholder="Email"]');
+  const companyInput = form.querySelector('[name="company"]') || form.querySelector('input[placeholder="Company"]');
+  const messageInput = form.querySelector('[name="message"]') || form.querySelector('textarea');
+  
+  const name = normalize(nameInput?.value);
+  const email = normalizeEmail(emailInput?.value);
+  const company = normalize(companyInput?.value);
+  const message = normalize(messageInput?.value);
+
+  if (!email || !isValidEmail(email)) {
+    setStatus(form, 'Enter a valid email address.', 'error');
+    return;
+  }
+
+  setStatus(form, 'Submitting inquiry...', 'info');
+  if (submitButton) submitButton.disabled = true;
+
+  try {
+    // 1. Save to Firebase if configured
+    if (db) {
+      try {
+        const key = `inq_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+        await set(ref(db, `collaboration_inquiries/${key}`), {
+          name,
+          email,
+          company: company || 'N/A',
+          message,
+          user_agent: window.navigator.userAgent,
+          created_at: serverTimestamp(),
+        });
+      } catch (fbErr) {
+        console.warn('Firebase logging failed, continuing with email forward:', fbErr);
+      }
+    } else {
+      console.warn('Firebase is not configured yet. Saving to database was skipped, proceeding with email forwarding.');
+    }
+
+    // 2. Forward email to site owner via FormSubmit.co
+    await sendFormSubmitEmail('tonyeasterlingappsdev@gmail.com', {
+      name: name || 'Anonymous',
+      email: email,
+      company: company || 'N/A',
+      message: message || '(No message content)',
+      _subject: 'New Collaboration Inquiry from Easterling Media & Systems',
+      _captcha: 'false'
+    });
+
+    showContactSuccess(form, 'Thank you! Your collaboration inquiry has been received. We will review it shortly.');
+  } catch (error) {
+    console.error('Inquiry submission failed:', error);
+    setStatus(form, 'There was a problem submitting your inquiry. Please try again.', 'error');
+  } finally {
+    if (submitButton) submitButton.disabled = false;
+  }
+}
+
+function showContactSuccess(form, message) {
+  const heading = form.parentElement.querySelector('h2');
+  if (heading) heading.textContent = 'Submission Received!';
+  
+  form.innerHTML = `
+    <div class="card signup-success" style="margin-top: 0;">
+      <h3>Message Sent</h3>
+      <p class="muted">${message}</p>
+    </div>
+  `;
 }

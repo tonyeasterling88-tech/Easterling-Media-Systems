@@ -233,7 +233,7 @@
     revealTargets.forEach((el) => observer.observe(el));
   }
 
-  initIntersectionReveals();
+  // initIntersectionReveals();
   wireBuildFilters();
   wireBeehiivNewsletterSignups();
   updateBeehiivSubscriberCount();

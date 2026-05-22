@@ -9,6 +9,20 @@
         ".validate": "newData.hasChildren(['email', 'email_key', 'source', 'consent_marketing', 'created_at']) && newData.child('email').isString() && newData.child('email').val().matches(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/) && newData.child('email_key').isString() && newData.child('email_key').val() == $emailKey && (!newData.child('name').exists() || newData.child('name').isString()) && (!newData.child('device_type').exists() || newData.child('device_type').isString()) && (!newData.child('phone_model').exists() || newData.child('phone_model').isString()) && (!newData.child('heard_about').exists() || newData.child('heard_about').isString()) && newData.child('source').isString() && (newData.child('source').val() == 'home' || newData.child('source').val() == 'blog' || newData.child('source').val() == 'newsletter' || newData.child('source').val() == 'mindmark') && newData.child('consent_marketing').isBoolean() && newData.child('consent_marketing').val() == true && (!newData.child('user_agent').exists() || newData.child('user_agent').isString()) && newData.child('created_at').isNumber()"
       }
     },
+    "contact_messages": {
+      "$messageId": {
+        ".read": false,
+        ".write": "!data.exists() && newData.exists()",
+        ".validate": "newData.hasChildren(['name', 'email', 'message', 'created_at']) && newData.child('email').isString() && newData.child('message').isString() && newData.child('created_at').isNumber()"
+      }
+    },
+    "collaboration_inquiries": {
+      "$inquiryId": {
+        ".read": false,
+        ".write": "!data.exists() && newData.exists()",
+        ".validate": "newData.hasChildren(['name', 'email', 'company', 'message', 'created_at']) && newData.child('email').isString() && newData.child('message').isString() && newData.child('created_at').isNumber()"
+      }
+    },
     "site_metrics": {
       "visits": {
         "total": {

@@ -12,6 +12,13 @@
   --build: #60a5fa;
   --radius: 12px;
   --max: 1100px;
+  
+  /* Google Stitch Inspired variables (Zero Purple) */
+  --accent-blue: #3b82f6;
+  --accent-blue-rgb: 59, 130, 246;
+  --accent-blue-deep: #2563eb;
+  --accent-cyan: #22d3ee;
+  --accent-cyan-rgb: 34, 211, 238;
 }
 
 * { box-sizing: border-box; }
@@ -100,6 +107,9 @@ section { padding: 3.5rem 0; }
   border: 1px solid var(--border);
   color: var(--text);
   text-decoration: none;
+  font: inherit;
+  line-height: inherit;
+  cursor: pointer;
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 .btn.primary {
@@ -319,21 +329,16 @@ button[disabled],
 }
 
 .reveal {
-  opacity: 0;
-  transform: translate3d(0, 28px, 0) scale(0.985);
-  filter: blur(6px);
-  transition:
-    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 720ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 720ms cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform, filter;
+  /* Regular scrolling experience: fully visible by default */
+  opacity: 1;
+  transform: none;
+  filter: none;
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
-  filter: blur(0);
+  transform: none;
+  filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -363,7 +368,7 @@ button[disabled],
   border-radius: 8px;
   padding: clamp(2rem, 5vw, 4.5rem);
   background:
-    radial-gradient(circle at 84% 16%, rgba(124, 58, 237, 0.18), transparent 20rem),
+    radial-gradient(circle at 84% 16%, rgba(59, 130, 246, 0.18), transparent 20rem),
     radial-gradient(circle at 70% 72%, rgba(45, 212, 191, 0.13), transparent 18rem),
     rgba(5, 11, 24, 0.86);
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
@@ -472,7 +477,7 @@ button[disabled],
 
 .gradient-text {
   color: transparent;
-  background: linear-gradient(90deg, #a78bfa, #22d3ee);
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -608,12 +613,13 @@ button[disabled],
 }
 
 .methodology-page {
-  background: #f8fafc;
-  color: #071526;
+  /* Inherit global deep dark background and text */
+  background: var(--bg);
+  color: var(--text);
 }
 
 .methodology-page header {
-  background: rgba(5, 11, 24, 0.94);
+  background: rgba(5, 11, 24, 0.9);
 }
 
 .methodology-page .hero-band {
@@ -621,11 +627,10 @@ button[disabled],
   margin-right: calc(50% - 50vw);
   padding: 4rem 1rem 3rem;
   text-align: center;
-  color: #f8fafc;
+  color: var(--text);
   background:
-    linear-gradient(rgba(5, 11, 24, 0.86), rgba(5, 11, 24, 0.88)),
     radial-gradient(circle at 50% 0%, rgba(45, 212, 191, 0.16), transparent 30rem),
-    #071526;
+    #050b18;
 }
 
 .methodology-page .hero-band h1 {
@@ -641,37 +646,39 @@ button[disabled],
 }
 
 .methodology-page .method-card {
-  border: 0;
-  background: transparent;
-  color: #071526;
-  backdrop-filter: none;
-  box-shadow: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(11, 23, 40, 0.72), rgba(5, 11, 24, 0.78));
+  color: var(--text);
+  box-shadow: 0 0 22px rgba(45, 212, 191, 0.08);
+  padding: 1.5rem;
 }
 
 .methodology-page .method-card h3 {
-  color: #071526;
+  color: var(--text);
 }
 
 .methodology-page .method-card .muted {
-  color: #0f172a;
+  color: var(--muted);
 }
 
 .methodology-page .method-node {
-  background: #12324a;
-  border-color: #12324a;
+  background: var(--bg-elev);
+  border-color: var(--accent-teal);
   color: #fff;
+  box-shadow: 0 0 22px rgba(45, 212, 191, 0.4);
 }
 
 .methodology-page .method-timeline::before {
-  background: #12324a;
-  box-shadow: none;
+  background: linear-gradient(var(--accent-teal), rgba(45, 212, 191, 0.08));
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.3);
 }
 
 .method-visual {
   display: grid;
   gap: 0.35rem;
   justify-items: center;
-  color: #12324a;
+  color: var(--accent-teal);
   font-weight: 800;
   text-align: center;
 }
@@ -711,9 +718,11 @@ button[disabled],
   max-width: 720px;
   margin: 0 auto;
   padding: 1.4rem;
-  border-radius: 6px;
-  background: #071526;
-  color: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 0 22px rgba(45, 212, 191, 0.08);
 }
 
 .method-contact h2 {
@@ -740,7 +749,7 @@ button[disabled],
 
 .builds-page {
   background:
-    radial-gradient(circle at 66% 22%, rgba(124, 58, 237, 0.24), transparent 28rem),
+    radial-gradient(circle at 66% 22%, rgba(59, 130, 246, 0.24), transparent 28rem),
     radial-gradient(circle at 34% 38%, rgba(45, 212, 191, 0.15), transparent 25rem),
     linear-gradient(to right, rgba(45, 212, 191, 0.08) 1px, transparent 1px),
     #050b18;
@@ -765,13 +774,13 @@ button[disabled],
 }
 
 .archive-card[data-status="Experiment"] {
-  border-color: rgba(168, 85, 247, 0.55);
-  box-shadow: 0 0 26px rgba(168, 85, 247, 0.16);
+  border-color: rgba(var(--accent-blue-rgb), 0.55);
+  box-shadow: 0 0 26px rgba(var(--accent-blue-rgb), 0.16);
 }
 
 .archive-card[data-status="Legacy"] {
-  border-color: rgba(129, 140, 248, 0.5);
-  box-shadow: 0 0 26px rgba(129, 140, 248, 0.12);
+  border-color: rgba(148, 163, 184, 0.5);
+  box-shadow: 0 0 26px rgba(148, 163, 184, 0.12);
 }
 
 .build-detail-page {
@@ -791,7 +800,7 @@ button[disabled],
   border-radius: 0 0 8px 8px;
   background:
     radial-gradient(circle at 78% 36%, rgba(45, 212, 191, 0.2), transparent 18rem),
-    radial-gradient(circle at 65% 8%, rgba(124, 58, 237, 0.26), transparent 22rem),
+    radial-gradient(circle at 65% 8%, rgba(59, 130, 246, 0.26), transparent 22rem),
     #050b18;
 }
 
@@ -817,8 +826,8 @@ button[disabled],
   margin-right: calc(50% - 50vw);
   padding: 4rem 1rem;
   background:
-    radial-gradient(circle at 16% 30%, rgba(168, 85, 247, 0.22), transparent 20rem),
-    #1d0b3f;
+    radial-gradient(circle at 16% 30%, rgba(var(--accent-blue-rgb), 0.22), transparent 20rem),
+    #08162d;
 }
 
 .detail-grid {
@@ -847,7 +856,7 @@ button[disabled],
   right: 0;
   top: 24px;
   height: 3px;
-  background: linear-gradient(90deg, #22d3ee, #a855f7);
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue-deep));
 }
 
 .roadmap-item {
@@ -863,20 +872,25 @@ button[disabled],
   width: 22px;
   height: 22px;
   border-radius: 999px;
-  background: #22d3ee;
-  box-shadow: 0 0 22px rgba(34, 211, 238, 0.6);
+  background: var(--accent-cyan);
+  box-shadow: 0 0 22px rgba(var(--accent-cyan-rgb), 0.6);
 }
 
 .roadmap-item:nth-child(n+3)::before {
-  background: #a855f7;
-  box-shadow: 0 0 22px rgba(168, 85, 247, 0.6);
+  background: var(--accent-blue-deep);
+  box-shadow: 0 0 22px rgba(var(--accent-blue-rgb), 0.6);
 }
 
 .beta-band {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding: 3.5rem 1rem;
-  background: linear-gradient(120deg, #9333ea, #22d3ee);
+  background:
+    radial-gradient(circle at 84% 80%, rgba(34, 211, 238, 0.15), transparent 22rem),
+    radial-gradient(circle at 16% 20%, rgba(59, 130, 246, 0.2), transparent 22rem),
+    #050b18;
+  border-top: 1px solid rgba(34, 211, 238, 0.25);
+  border-bottom: 1px solid rgba(34, 211, 238, 0.25);
 }
 
 .beta-form {
@@ -884,6 +898,16 @@ button[disabled],
   gap: 0.7rem;
   max-width: 620px;
   margin: 1.2rem auto 0;
+}
+
+.beta-form .btn {
+  justify-self: start;
+}
+
+@media (max-width: 900px) {
+  .beta-form .btn {
+    justify-self: stretch;
+  }
 }
 
 .beta-form-grid {
@@ -932,4 +956,42 @@ button[disabled],
     top: 0.2rem;
     left: 0;
   }
+}
+
+/* Global Signup Actions Layout */
+.signup-actions {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  margin-top: 1rem;
+}
+
+.signup-panel .form-status {
+  margin: 0;
+  max-width: 72ch;
+  min-width: 0;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.signup-actions .btn,
+.tester-actions .btn {
+  justify-self: start;
+  text-align: center;
+  min-width: 210px;
+}
+
+@media (max-width: 880px) {
+  .signup-actions .btn,
+  .tester-actions .btn {
+    justify-self: stretch;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.signup-actions .tester-actions,
+.signup-actions .tester-actions-note {
+  margin-top: 0;
 }
