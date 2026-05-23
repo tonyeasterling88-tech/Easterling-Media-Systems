@@ -7,7 +7,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js';
 import { firebaseConfig } from './firebase-config.js';
 
-const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+const WEB3FORMS_ACCESS_KEY = '9fb157e5-6f34-4f74-981c-0825a361dfce';
 const SIGNUPS_PATH = 'closed_test_signups';
 const ALLOWED_SOURCES = new Set(['home', 'blog', 'newsletter', 'mindmark']);
 const TESTER_GROUP_URL = 'https://groups.google.com/g/mindmark-closed-testers';
