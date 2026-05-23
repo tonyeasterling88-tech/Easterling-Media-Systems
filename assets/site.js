@@ -1,7 +1,11 @@
 (function () {
   const BEEHIIV_NEWSLETTER_URL = 'https://easterling-ms-newsletter.beehiiv.com/p/building-quietly';
   const BEEHIIV_SUBSCRIBE_URL = 'https://easterling-ms-newsletter.beehiiv.com/subscribe';
-  const YOUTUBE_DATA_URL = 'assets/youtube-videos.json';
+  
+  // Use Vercel Serverless Function dynamically in production, 
+  // and fallback to static local mock json on the raw local static file server.
+  const isLocalStaticServer = window.location.hostname === 'localhost' && window.location.port === '8080';
+  const YOUTUBE_DATA_URL = isLocalStaticServer ? 'assets/youtube-videos.json' : '/api/youtube';
   const search = document.querySelector('#post-search');
   const tagFilter = document.querySelector('#tag-filter');
   const cards = Array.from(document.querySelectorAll('article.card[data-tags]'));
