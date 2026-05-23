@@ -7,6 +7,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js';
 import { firebaseConfig } from './firebase-config.js';
 
+const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
 const SIGNUPS_PATH = 'closed_test_signups';
 const ALLOWED_SOURCES = new Set(['home', 'blog', 'newsletter', 'mindmark']);
 const TESTER_GROUP_URL = 'https://groups.google.com/g/mindmark-closed-testers';
@@ -281,9 +282,38 @@ function isPermissionDenied(code) {
   return code === 'permission-denied' || code === 'permission_denied';
 }
 
-async function sendFormSubmitEmail(recipient, data) {
+async function sendEmailForward(data) {
+  // If Web3Forms Access Key is configured, use Web3Forms (extremely stable, no activation links)
+  if (WEB3FORMS_ACCESS_KEY && !WEB3FORMS_ACCESS_KEY.startsWith('YOUR_')) {
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: data.name,
+          email: data.email,
+          company: data.company || 'N/A',
+          message: data.message,
+          subject: data._subject || 'New Form Submission'
+        }),
+      });
+      if (!response.ok) {
+        const text = await response.text();
+        console.warn('Web3Forms forwarding failed:', text);
+      }
+    } catch (err) {
+      console.error('Failed to forward email via Web3Forms:', err);
+    }
+    return;
+  }
+
+  // Fallback: use FormSubmit.co
   try {
-    const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
+    const response = await fetch('https://formsubmit.co/ajax/tonyeasterlingappsdev@gmail.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -293,10 +323,10 @@ async function sendFormSubmitEmail(recipient, data) {
     });
     if (!response.ok) {
       const text = await response.text();
-      console.warn('Email forwarding failed:', text);
+      console.warn('FormSubmit email forwarding failed:', text);
     }
   } catch (err) {
-    console.error('Failed to forward email:', err);
+    console.error('Failed to forward email via FormSubmit:', err);
   }
 }
 
@@ -339,8 +369,8 @@ async function handleContactSubmit(event, db) {
       console.warn('Firebase is not configured yet. Saving to database was skipped, proceeding with email forwarding.');
     }
 
-    // 2. Forward email to site owner via FormSubmit.co
-    await sendFormSubmitEmail('tonyeasterlingappsdev@gmail.com', {
+    // 2. Forward email to site owner
+    await sendEmailForward({
       name: name || 'Anonymous',
       email: email,
       message: message || '(No message content)',
@@ -399,8 +429,8 @@ async function handleInquirySubmit(event, db) {
       console.warn('Firebase is not configured yet. Saving to database was skipped, proceeding with email forwarding.');
     }
 
-    // 2. Forward email to site owner via FormSubmit.co
-    await sendFormSubmitEmail('tonyeasterlingappsdev@gmail.com', {
+    // 2. Forward email to site owner
+    await sendEmailForward({
       name: name || 'Anonymous',
       email: email,
       company: company || 'N/A',
