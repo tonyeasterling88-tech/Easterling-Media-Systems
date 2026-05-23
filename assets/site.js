@@ -1,11 +1,6 @@
 (function () {
   const BEEHIIV_NEWSLETTER_URL = 'https://easterling-ms-newsletter.beehiiv.com/p/building-quietly';
   const BEEHIIV_SUBSCRIBE_URL = 'https://easterling-ms-newsletter.beehiiv.com/subscribe';
-  
-  // Use Vercel Serverless Function dynamically in production, 
-  // and fallback to static local mock json on the raw local static file server.
-  const isLocalStaticServer = window.location.hostname === 'localhost' && window.location.port === '8080';
-  const YOUTUBE_DATA_URL = isLocalStaticServer ? 'assets/youtube-videos.json' : '/api/youtube';
   const search = document.querySelector('#post-search');
   const tagFilter = document.querySelector('#tag-filter');
   const cards = Array.from(document.querySelectorAll('article.card[data-tags]'));
@@ -144,7 +139,23 @@
   }
 
   async function loadYouTubeVideos() {
-    const response = await fetch(`${YOUTUBE_DATA_URL}?v=${Date.now()}`, {
+    try {
+      // 1. Try to fetch from the live Vercel API endpoint
+      const response = await fetch(`/api/youtube?v=${Date.now()}`, {
+        headers: { Accept: 'application/json' },
+      });
+      if (response.ok) {
+        const payload = await response.json();
+        if (Array.isArray(payload?.videos)) {
+          return payload.videos.slice(0, 6);
+        }
+      }
+    } catch (apiErr) {
+      console.warn('Live API fetch failed, falling back to local static JSON:', apiErr.message);
+    }
+
+    // 2. Fallback: load the local static JSON mock
+    const response = await fetch(`assets/youtube-videos.json?v=${Date.now()}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -152,7 +163,7 @@
     });
 
     if (!response.ok) {
-      throw new Error(`Request failed: ${response.status}`);
+      throw new Error(`Fallback request failed: ${response.status}`);
     }
 
     const payload = await response.json();
