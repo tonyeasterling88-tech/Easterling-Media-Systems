@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-24T06:33:45.678Z",
+  "updatedAt": "2026-05-24T13:14:12.188Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "drmZIExW2AA",
+      "title": "Midnight Shibuya Rain  #lofi  #chill #shorts",
+      "published": "2026-05-24T11:13:48Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=drmZIExW2AA"
+    },
     {
       "videoId": "JtbK6qXd0ng",
       "title": "Ame no Café | Rainy Anime Lofi for Study, Sleep &amp; Calm Focus #lofi #chill #music #anime",
