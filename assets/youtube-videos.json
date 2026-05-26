@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-26T02:42:33.911Z",
+  "updatedAt": "2026-05-26T17:54:06.545Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "KV1g6j22qIc",
+      "title": "Kumo by the Window YT #anime  #lofi #shorts",
+      "published": "2026-05-26T07:00:04Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=KV1g6j22qIc"
+    },
     {
       "videoId": "drmZIExW2AA",
       "title": "Midnight Shibuya Rain #lofi #shorts",
