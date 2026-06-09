@@ -19,6 +19,7 @@ const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 const beehiivApiKey = process.env.BEEHIIV_API_KEY;
 const beehiivPublicationId = process.env.BEEHIIV_PUBLICATION_ID;
 const beehiivPublicationName = process.env.BEEHIIV_PUBLICATION_NAME;
+const beehiivPostStatus = process.env.BEEHIIV_POST_STATUS || 'draft';
 
 if (!projectId || !clientEmail || !privateKey) {
   console.error('Missing FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, or FIREBASE_PRIVATE_KEY.');
@@ -27,6 +28,11 @@ if (!projectId || !clientEmail || !privateKey) {
 
 if (!beehiivApiKey) {
   console.error('Missing BEEHIIV_API_KEY.');
+  process.exit(1);
+}
+
+if (!['draft', 'confirmed'].includes(beehiivPostStatus)) {
+  console.error('BEEHIIV_POST_STATUS must be either "draft" or "confirmed".');
   process.exit(1);
 }
 
@@ -58,7 +64,7 @@ if (!draft) {
 }
 
 if (draft.beehiivPostId || draft.beehiivUrl) {
-  console.error(`Draft ${draftCollection}/${issueDate} already appears to be published to Beehiiv.`);
+  console.error(`Draft ${draftCollection}/${issueDate} already appears to have been sent to Beehiiv.`);
   process.exit(1);
 }
 
@@ -73,7 +79,7 @@ const post = await createBeehiivPost({
   title: draft.title || draft.subjectLine || `Newsletter ${issueDate}`,
   subtitle: draft.summary || '',
   bodyHtml: draft.contentHtml || markdownToHtml(draft.contentMarkdown || ''),
-  status: 'confirmed',
+  status: beehiivPostStatus,
 });
 
 const beehiivUrl =
@@ -84,16 +90,20 @@ const beehiivUrl =
 await updateDraft(projectId, accessToken, draftCollection, issueDate, {
   beehiivPostId: cleanText(post?.id),
   beehiivUrl: cleanText(beehiivUrl),
-  status: 'published',
+  status: beehiivPostStatus === 'draft' ? 'beehiiv_draft' : 'published',
   updatedAt: new Date().toISOString(),
   generator: {
     ...(draft.generator || {}),
     beehiivPublicationId: publication.id,
-    beehiivPublishedAt: new Date().toISOString(),
+    ...(beehiivPostStatus === 'draft'
+      ? { beehiivDraftedAt: new Date().toISOString() }
+      : { beehiivPublishedAt: new Date().toISOString() }),
   },
 });
 
-console.log(`Published draft ${draftCollection}/${issueDate} to Beehiiv as ${cleanText(post?.id) || 'unknown-id'}.`);
+console.log(
+  `Created Beehiiv ${beehiivPostStatus} from ${draftCollection}/${issueDate} as ${cleanText(post?.id) || 'unknown-id'}.`
+);
 
 async function loadEnvFiles(paths) {
   for (const filePath of paths) {
@@ -203,6 +213,9 @@ async function updateDraft(projectIdValue, accessTokenValue, collectionName, doc
             : {}),
           ...(patch.generator.beehiivPublicationId
             ? { beehiivPublicationId: { stringValue: patch.generator.beehiivPublicationId } }
+            : {}),
+          ...(patch.generator.beehiivDraftedAt
+            ? { beehiivDraftedAt: { timestampValue: patch.generator.beehiivDraftedAt } }
             : {}),
           ...(patch.generator.beehiivPublishedAt
             ? { beehiivPublishedAt: { timestampValue: patch.generator.beehiivPublishedAt } }

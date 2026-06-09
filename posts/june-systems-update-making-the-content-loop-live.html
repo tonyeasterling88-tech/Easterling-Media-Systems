@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>June Systems Update: Making the Content Loop Live</title>
+  <meta name="description" content="This month: a real-time YouTube feed with fallbacks, a cleaner newsletter archive, and small reliability upgrades that keep the site and the work in sync." />
+  <meta name="author" content="Tony Easterling" />
+  <meta property="og:title" content="June Systems Update: Making the Content Loop Live" />
+  <meta property="og:description" content="A grounded June update on keeping distribution (YouTube + Beehiiv) connected to the site without fragile automation, plus the lesson that 'static' does not have to mean stale." />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/Easterlingms_logo.png" alt="Easterling Media &amp; Systems logo" />
+        <span class="brand-text">Easterling Media &amp; Systems</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="../builds.html">Builds</a></li>
+          <li><a href="../blogs.html">Blog</a></li>
+          <li><a href="../newsletters.html">Newsletter</a></li>
+          <li><a href="../content.html">Content</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <h1>June Systems Update: Making the Content Loop Live</h1>
+      <p class="muted">Published: 2026-06-01 &middot; Author: Tony Easterling</p>
+
+      <p>My theme lately has been simple: keep the site honest, and keep the loop tight.</p>
+      <p>That means the public archive should reflect what I'm actually building right now, and the distribution channels (YouTube + the newsletter) should feed back into the site without me babysitting it.</p>
+      <p>June started with a small but important shift: treating "static" as the default for speed and simplicity, but adding a few carefully-scoped dynamic edges so the content does not go stale.</p>
+
+      <h2>What I built (and why it matters)</h2>
+
+      <p><strong>1) Real-time YouTube updates (without breaking static)</strong></p>
+      <p>I introduced a small API endpoint that returns the latest videos for the NagiKumo ChillFi channel, with a layered fallback strategy:</p>
+      <ul class="meta-list">
+        <li>Prefer the YouTube Data API when a key is available (clean, structured metadata).</li>
+        <li>Fallback to the channel RSS feed when quota/keys are unavailable.</li>
+        <li>Fallback again to the channel Videos page parsing when everything else fails.</li>
+      </ul>
+      <p>The point is not "more complexity." The point is resilience: the site can stay current in production while still being testable locally.</p>
+
+      <p><strong>2) Video cards that look clean, even with Shorts</strong></p>
+      <p>I standardized the video thumbnail cards to a consistent 16:9 layout with an elegant crop strategy. That removes the "letterbox" look when a feed contains a mix of traditional uploads and Shorts.</p>
+      <p>It is a small UI fix, but it reinforces the larger goal: the archive should be readable and consistent at a glance.</p>
+
+      <p><strong>3) Newsletter + content feeds staying in sync</strong></p>
+      <p>I kept tightening the publishing pipeline around Beehiiv and the on-site archive:</p>
+      <ul class="meta-list">
+        <li>Sync scripts that refresh local JSON feeds on a schedule.</li>
+        <li>A cleaned-up newsletter archive so the record of what shipped stays easy to browse.</li>
+        <li>A draft-first approach: automate the rough draft, keep the human review step.</li>
+      </ul>
+      <p>The theme is the same as last month: the system matters more than a single issue. If the pipeline is reliable, shipping becomes normal.</p>
+
+      <p><strong>4) Contact intake that does not drop the ball</strong></p>
+      <p>I added a Web3Forms integration with a fallback (so messages still route even if one provider fails). It is another small reliability win: if someone wants to reach me, the system should not be a bottleneck.</p>
+
+      <p><strong>5) DriftMetrics: keeping experiments visible, without pretending they're finished</strong></p>
+      <p>I refreshed the DriftMetrics build page and supporting components so the experiment is legible as an experiment: clear scope, clear objective, and a clean demo surface without overpromising.</p>
+
+      <h2>What I'm focusing on next</h2>
+      <ul class="meta-list">
+        <li><strong>MindMark:</strong> keep the closed testing loop tight (signups &rarr; invites &rarr; feedback &rarr; iteration).</li>
+        <li><strong>Easterling Media &amp; Systems:</strong> continue improving the home base so content, builds, and conversion paths stay current automatically.</li>
+        <li><strong>Newsletter Infrastructure:</strong> keep YouTube + Beehiiv connected so distribution and the site reinforce each other.</li>
+      </ul>
+
+      <h2>Lesson learned</h2>
+      <p>The archive is only useful if it is alive.</p>
+      <p>When I rely on manual steps, the system slowly drifts out of date. When I over-automate, the system becomes fragile. The right balance is a simple static foundation with a few durable sync points that can fail gracefully.</p>
+    </article>
+  </main>
+</body>
+</html>

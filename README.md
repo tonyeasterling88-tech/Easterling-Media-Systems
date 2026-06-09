@@ -210,20 +210,23 @@ npm run generate:newsletter -- 2026-04-13
 
 That uses the same draft shape and writes directly to Firestore as `newsletterDrafts/2026-04-13`.
 
-### Publish a draft to Beehiiv
+### Send a draft to Beehiiv for review
 
-Once a draft is ready in Firestore, publish it to Beehiiv with:
+Once a draft is ready in Firestore, create a Beehiiv draft with:
 
 ```powershell
 $env:BEEHIIV_API_KEY="your-beehiiv-key"
 $env:BEEHIIV_PUBLICATION_ID="your-publication-id"
-npm run publish:newsletter -- 2026-04-13
+npm run draft:newsletter -- 2026-04-13
 ```
 
 You can use `BEEHIIV_PUBLICATION_NAME` instead of `BEEHIIV_PUBLICATION_ID` if that is easier for your account setup.
 
 This script:
 
-- Refuses to publish if the Firestore draft already has Beehiiv fields set
-- Creates the Beehiiv post from the Firestore draft content
+- Refuses to create a duplicate Beehiiv post if the Firestore draft already has Beehiiv fields set
+- Creates the Beehiiv post from the Firestore draft content with `status: draft`
 - Writes the Beehiiv post ID and URL back into `newsletterDrafts/{YYYY-MM-DD}`
+- Marks the Firestore draft as `beehiiv_draft`
+
+Review and publish the newsletter from Beehiiv after the draft looks right. If you intentionally need the script to create a confirmed Beehiiv post, set `BEEHIIV_POST_STATUS=confirmed` before running it.
