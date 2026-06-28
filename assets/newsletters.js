@@ -117,8 +117,7 @@
         container.innerHTML = issues.map((issue) => renderArchiveCard(issue, selectedIssue.slug)).join('');
       });
 
-      const updatedDate = payload?.updatedAt ? formatDate(payload.updatedAt) : 'recently';
-      setStatus(`Auto-synced from Beehiiv. Last refresh: ${updatedDate}.`);
+      setStatus('Always up to date with the latest newsletter issue.');
     } catch (_error) {
       setStatus('Showing fallback newsletter content until the Beehiiv sync completes.');
     }

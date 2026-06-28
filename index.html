@@ -160,6 +160,16 @@
       line-height: 1.45;
     }
 
+    .audience-line {
+      margin-top: 0.8rem;
+      color: #5eead4;
+      font-weight: 700;
+    }
+
+    .hero-copy .cta-row .btn:not(.primary) {
+      background: rgba(2, 6, 23, 0.34);
+    }
+
     .system-status {
       position: relative;
       align-self: center;
@@ -268,11 +278,6 @@
       text-transform: uppercase;
     }
 
-    .status-value[data-beehiiv-subscriber-count] {
-      font-size: 1.05rem;
-      color: #94a3b8;
-    }
-
     .mini-line,
     .mini-bars {
       height: 46px;
@@ -338,27 +343,6 @@
       margin: 0;
     }
 
-    .signup-panel {
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .panel-bar {
-      padding: 0.42rem 0.8rem;
-      color: #f8fafc;
-      background: rgba(45, 212, 191, 0.16);
-    }
-
-    .signup-panel .signup-form {
-      margin: 0;
-      padding: 0.9rem;
-    }
-
-    .signup-panel .signup-form-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -398,19 +382,23 @@
     }
 
     .build-icon {
-      width: 28px;
-      height: 28px;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
       margin-bottom: 0.8rem;
+      border: 1px solid rgba(45, 212, 191, 0.32);
+      border-radius: 8px;
+      background: rgba(45, 212, 191, 0.1);
       color: #2dd4bf;
       font-weight: 900;
       font-size: 1.15rem;
     }
 
-    .latest-writing {
+    .writing-grid {
       display: grid;
-      grid-template-columns: 230px minmax(0, 1fr);
-      gap: 1.25rem;
-      align-items: center;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
     }
 
     .writing-thumb {
@@ -423,6 +411,27 @@
         rgba(6, 25, 35, 0.9);
       background-size: 18px 18px;
       box-shadow: inset 0 0 32px rgba(45, 212, 191, 0.08);
+    }
+
+    .content-card {
+      display: grid;
+      gap: 0.8rem;
+      align-content: start;
+    }
+
+    .content-thumb {
+      display: grid;
+      place-items: center;
+      min-height: 112px;
+      border: 1px solid rgba(45, 212, 191, 0.22);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 70% 22%, rgba(96, 165, 250, 0.32), transparent 8rem),
+        linear-gradient(135deg, rgba(45, 212, 191, 0.18), rgba(2, 6, 23, 0.72));
+      color: #f8fafc;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .newsletter-panel {
@@ -455,10 +464,9 @@
       }
 
       .hero-grid,
-      .signup-panel .signup-form-grid,
       .signup-actions,
       .feature-grid,
-      .latest-writing,
+      .writing-grid,
       .newsletter-panel {
         grid-template-columns: 1fr;
       }
@@ -483,9 +491,8 @@
     <nav>
       <ul>
         <li><a href="builds.html">Builds</a></li>
-        <li><a href="blogs.html">Blog</a></li>
+        <li><a href="blogs.html">Writing</a></li>
         <li><a href="newsletters.html">Newsletter</a></li>
-        <li><a href="content.html">Content</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -506,9 +513,9 @@
           <span class="eyebrow">Modern Command Center</span>
           <h1>Systems-first execution for products, content, and growth.</h1>
           <p>Explore shipped builds, practical writing, and monthly tactics designed to compound output over time.</p>
+          <p class="audience-line">Built for solo builders, indie makers, and operators turning ideas into repeatable systems.</p>
           <div class="cta-row">
             <a class="btn primary" href="builds.html">Explore Builds</a>
-            <a class="btn" href="https://tonyeasterling88-tech.github.io/Pixel-Chomp/" target="_blank" rel="noopener noreferrer">Play Pixel Chomp</a>
             <a class="btn" href="https://easterling-ms-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Join Newsletter</a>
           </div>
         </div>
@@ -547,8 +554,8 @@
           </div>
           <div class="status-row">
             <div>
-              <strong class="status-value" data-beehiiv-subscriber-count>Loading...</strong>
-              <span class="status-label">Beehiiv subscribers</span>
+              <strong class="status-value">Jun 2026</strong>
+              <span class="status-label">Latest newsletter issue</span>
             </div>
             <div class="mini-meter" aria-hidden="true"></div>
           </div>
@@ -588,53 +595,6 @@
   </section>
 
   <section>
-    <div class="signup-panel">
-      <div class="panel-bar">MindMark Closed Test</div>
-      <form class="signup-form" data-closed-test-form data-source-page="home">
-        <div class="signup-form-grid">
-          <div class="field">
-            <label for="home-name">First name or display name</label>
-            <input id="home-name" name="name" type="text" placeholder="Tony" />
-          </div>
-          <div class="field">
-            <label for="home-email-signup">Google account email</label>
-            <input id="home-email-signup" name="email" type="email" placeholder="your-google-account@email.com" required />
-          </div>
-          <div class="field">
-            <label for="home-device-type">Device type</label>
-            <select id="home-device-type" name="device_type">
-              <option value="">Select one</option>
-              <option value="android">Android</option>
-              <option value="iphone">iPhone</option>
-              <option value="either">Either</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="home-phone-model">Phone model</label>
-            <input id="home-phone-model" name="phone_model" type="text" placeholder="Pixel 8, Galaxy S24, etc." />
-          </div>
-          <div class="field">
-            <label for="home-heard-about">How did you hear about MindMark?</label>
-            <input id="home-heard-about" name="heard_about" type="text" placeholder="Optional" />
-          </div>
-          <label class="checkbox-row" for="home-consent">
-            <input id="home-consent" name="consent_marketing" type="checkbox" required />
-            <span>I want updates about MindMark closed testing.</span>
-          </label>
-        </div>
-        <div class="signup-actions">
-          <p class="form-status muted" data-closed-test-status data-state="info">Use the Google account email you plan to use on your Android device. Download access uses package com.tonyeasterling88.mindmark after approval.</p>
-          <button class="btn primary" type="submit">Request Early Access</button>
-        </div>
-      </form>
-      <div class="card signup-success" data-closed-test-success hidden>
-        <h3>Request received</h3>
-        <p class="muted" data-closed-test-success-message>Thanks for signing up. After your Google account is added as a tester, use package com.tonyeasterling88.mindmark for download access.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
     <div class="section-head">
       <h2 class="section-kicker">Featured Builds</h2>
       <a class="btn" href="builds.html">View all builds</a>
@@ -648,18 +608,18 @@
         <p><a class="btn" href="mindmark.html">View MindMark</a></p>
       </article>
       <article class="card build-card">
-        <div class="build-icon">N</div>
-        <h3><a href="newsletter-infrastructure.html">Newsletter Infrastructure</a></h3>
-        <p class="muted">The publishing pipeline behind the monthly builder issue: sync, drafting, review, and publish.</p>
-        <p><span class="badge live">Active</span></p>
-        <p><a class="btn" href="newsletter-infrastructure.html">View Build</a></p>
+        <div class="build-icon">B</div>
+        <h3><a href="breathmark.html">BreathMark</a></h3>
+        <p class="muted">Tactical calm for high-stress moments, shaped around quick resets and low-friction usage.</p>
+        <p><span class="badge building">Experiment</span></p>
+        <p><a class="btn" href="breathmark.html">View Build</a></p>
       </article>
       <article class="card build-card">
-        <div class="build-icon">E</div>
-        <h3><a href="easterling-media-systems.html">Easterling Media &amp; Systems</a></h3>
-        <p class="muted">The public command center for builds, writing, newsletter growth, and product conversion paths.</p>
-        <p><span class="badge live">Active</span></p>
-        <p><a class="btn" href="easterling-media-systems.html">View Build</a></p>
+        <div class="build-icon">D</div>
+        <h3><a href="driftmetrics.html">DriftMetrics</a></h3>
+        <p class="muted">Creator analytics review dashboard for TikTok video metadata, scoped for app review.</p>
+        <p><span class="badge building">Experiment</span></p>
+        <p><a class="btn" href="driftmetrics.html">View Build</a></p>
       </article>
     </div>
   </section>
@@ -669,14 +629,26 @@
       <h2 class="section-kicker">Latest Writing</h2>
       <a class="btn" href="blogs.html">View all posts</a>
     </div>
-    <article class="card latest-writing">
-      <div class="writing-thumb" aria-hidden="true"></div>
-      <div>
-        <h3><a href="posts/from-idea-to-live-website-a-small-win-that-moves-everything-forward.html">From Idea to Live Website: A Small Win That Moves Everything Forward</a></h3>
-        <p class="muted">Launching the site on its own domain while opening the door for the first wave of MindMark testers.</p>
-        <p class="muted">Published: March 13, 2026</p>
-      </div>
-    </article>
+    <div class="writing-grid">
+      <article class="card build-card">
+        <div class="writing-thumb" aria-hidden="true"></div>
+        <h3><a href="posts/june-systems-update-making-the-content-loop-live.html">June Systems Update: Making the Content Loop Live</a></h3>
+        <p class="muted">A grounded June update on keeping YouTube, Beehiiv, and the site connected without fragile automation.</p>
+        <p class="muted">Published: June 1, 2026</p>
+      </article>
+      <article class="card build-card">
+        <div class="writing-thumb" aria-hidden="true"></div>
+        <h3><a href="posts/may-systems-update-making-the-build-archive-honest.html">May Systems Update: Making the Build Archive Honest</a></h3>
+        <p class="muted">Clarifying what is active, experimental, and legacy so the public archive stays useful.</p>
+        <p class="muted">Published: May 4, 2026</p>
+      </article>
+      <article class="card build-card">
+        <div class="writing-thumb" aria-hidden="true"></div>
+        <h3><a href="posts/april-systems-update-turning-content-into-a-pipeline.html">April Systems Update: Turning Content into a Pipeline</a></h3>
+        <p class="muted">How the content system started becoming a repeatable publishing loop.</p>
+        <p class="muted">Published: April 20, 2026</p>
+      </article>
+    </div>
   </section>
 
   <section>
@@ -685,9 +657,24 @@
       <a class="btn" href="content.html">View all content</a>
     </div>
     <div class="feature-grid">
-      <article class="card build-card"><h3><a href="content.html">YouTube Channel</a></h3><p class="muted">Video | Build updates and creator systems</p></article>
-      <article class="card build-card"><h3><a href="Newsletters/issue-001-strategic-launch-sequence.html">Newsletter: Strategic launch sequence</a></h3><p class="muted">Newsletter | Published on-site</p></article>
-      <article class="card build-card"><h3><a href="posts/from-idea-to-live-website-a-small-win-that-moves-everything-forward.html">Blog: From Idea to Live Website</a></h3><p class="muted">Article | Published on-site</p></article>
+      <article class="card build-card content-card">
+        <div class="content-thumb">YouTube</div>
+        <h3><a href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer">NagiKumo ChillFi</a></h3>
+        <p class="muted">Video | LoFi visuals, creator systems, and channel experiments</p>
+        <p><a class="btn" href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer">Watch Now</a></p>
+      </article>
+      <article class="card build-card content-card">
+        <div class="content-thumb">Issue</div>
+        <h3><a href="Newsletters/issue-001-strategic-launch-sequence.html">Newsletter: Strategic launch sequence</a></h3>
+        <p class="muted">Newsletter | Launch sequencing, scope discipline, and proof-first execution</p>
+        <p><a class="btn" href="Newsletters/issue-001-strategic-launch-sequence.html">Read Issue</a></p>
+      </article>
+      <article class="card build-card content-card">
+        <div class="content-thumb">Post</div>
+        <h3><a href="posts/june-systems-update-making-the-content-loop-live.html">Blog: Making the Content Loop Live</a></h3>
+        <p class="muted">Article | A practical update on keeping the site and distribution loop current</p>
+        <p><a class="btn" href="posts/june-systems-update-making-the-content-loop-live.html">Read Post</a></p>
+      </article>
     </div>
   </section>
 
@@ -701,7 +688,7 @@
           <input id="home-email" type="email" placeholder="you@example.com" required />
           <button class="btn primary" type="submit">Subscribe</button>
         </form>
-        <p class="muted" data-beehiiv-sync-status>Showing the current newsletter spotlight from local site data.</p>
+        <p class="muted" data-beehiiv-sync-status>Always up to date with the latest newsletter issue.</p>
       </div>
       <div data-beehiiv-home-issue>
         <div class="newsletter-spotlight card">
@@ -723,12 +710,14 @@
   <div class="container">
     <div class="footer-links">
       <a href="builds.html">Builds</a>
-      <a href="blogs.html">Blog</a>
+      <a href="blogs.html">Writing</a>
       <a href="newsletters.html">Newsletter</a>
-      <a href="content.html">Content</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
+      <a href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://easterling-ms-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Beehiiv</a>
     </div>
+    <p class="muted">Building systems that compound for products, content, and growth.</p>
     <p class="muted">&copy; 2026 Easterling Media &amp; Systems</p>
   </div>
 </footer>

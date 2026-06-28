@@ -88,6 +88,14 @@ nav ul {
   padding: 0;
 }
 
+nav a[aria-current="page"],
+nav a.is-active {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.35rem;
+}
+
 .socials {
   display: flex;
   gap: 0.6rem;
