@@ -5,6 +5,18 @@
   const tagFilter = document.querySelector('#tag-filter');
   const cards = Array.from(document.querySelectorAll('article.card[data-tags]'));
 
+  function markActiveNavLink() {
+    const currentPage = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    const activeTargets = currentPage === 'index.html' ? ['index.html', ''] : [currentPage];
+
+    document.querySelectorAll('nav a[href]').forEach((link) => {
+      const hrefPage = (link.getAttribute('href') || '').split('/').pop().toLowerCase();
+      if (!activeTargets.includes(hrefPage)) return;
+      link.classList.add('is-active');
+      link.setAttribute('aria-current', 'page');
+    });
+  }
+
   function applyFilters() {
     if (!cards.length) return;
     const q = (search?.value || '').toLowerCase();
@@ -249,6 +261,7 @@
   }
 
   // initIntersectionReveals();
+  markActiveNavLink();
   wireBuildFilters();
   wireBeehiivNewsletterSignups();
   updateBeehiivSubscriberCount();
