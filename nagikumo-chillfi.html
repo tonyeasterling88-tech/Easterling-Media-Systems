@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NagiKumo ChillFi | Japanese Lo-fi Stories for Study, Sleep & Focus</title>
+  <meta name="description" content="NagiKumo ChillFi is a cozy Japanese lo-fi channel following Nagi and Kumo through rainy cafes, tatami mornings, sunset train rides, and quiet study worlds." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.easterlingmediasystems.com/nagikumo-chillfi.html" />
+  <meta property="og:title" content="NagiKumo ChillFi" />
+  <meta property="og:description" content="A cozy Japanese lo-fi world for study, sleep, focus, and quiet Nagi and Kumo adventures." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.easterlingmediasystems.com/nagikumo-chillfi.html" />
+  <meta property="og:image" content="https://www.easterlingmediasystems.com/assets/nagikumo/rainy-cafe.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NagiKumo ChillFi" />
+  <meta name="twitter:description" content="Japanese rain ambience, cozy anime lo-fi, and quiet Nagi and Kumo adventures." />
+  <meta name="twitter:image" content="https://www.easterlingmediasystems.com/assets/nagikumo/rainy-cafe.jpg" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script defer src="assets/site.js"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "NagiKumo ChillFi",
+      "url": "https://www.easterlingmediasystems.com/nagikumo-chillfi.html",
+      "description": "A cozy Japanese lo-fi channel following Nagi and Kumo through rainy cafes, tatami mornings, sunset train rides, and quiet study worlds.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Easterling Media & Systems",
+        "url": "https://www.easterlingmediasystems.com/"
+      },
+      "about": [
+        "Japanese lo-fi",
+        "study music",
+        "rain ambience",
+        "anime lo-fi",
+        "focus music"
+      ],
+      "sameAs": [
+        "https://www.youtube.com/@NagiKumoChillFi"
+      ]
+    }
+  </script>
+  <style>
+    :root {
+      --nagi-ink: #081018;
+      --nagi-warm: #f3b46f;
+      --nagi-pink: #f59ab4;
+      --nagi-mist: #dbeafe;
+      --nagi-cyan: #67e8f9;
+      --nagi-line: rgba(255, 255, 255, 0.13);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 16% 18%, rgba(245, 154, 180, 0.11), transparent 26rem),
+        radial-gradient(circle at 82% 8%, rgba(243, 180, 111, 0.12), transparent 26rem),
+        #050b18;
+    }
+
+    .nagi-hero {
+      min-height: calc(88svh - 84px);
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: clamp(3.5rem, 8vw, 6rem) 1rem 3rem;
+      display: grid;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(5, 11, 24, 0.92) 0%, rgba(5, 11, 24, 0.68) 40%, rgba(5, 11, 24, 0.18) 100%),
+        url("assets/nagikumo/rainy-cafe.jpg");
+      background-position: center;
+      background-size: cover;
+    }
+
+    .nagi-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 72%, #050b18 100%),
+        linear-gradient(90deg, rgba(5, 11, 24, 0.28), transparent 62%);
+      pointer-events: none;
+    }
+
+    .nagi-shell,
+    .nagi-hero-inner {
+      width: min(100% - 2rem, 1120px);
+      margin: 0 auto;
+    }
+
+    .nagi-hero-inner {
+      position: relative;
+      z-index: 1;
+      animation: nagi-rise 760ms ease both;
+    }
+
+    .nagi-kicker {
+      color: var(--nagi-cyan);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .nagi-hero h1 {
+      max-width: 11ch;
+      margin: 0.7rem 0 1rem;
+      font-size: clamp(3rem, 8vw, 6.4rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .nagi-hero p {
+      max-width: 43rem;
+      margin: 0;
+      color: #eef6ff;
+      font-size: clamp(1.05rem, 2vw, 1.24rem);
+      line-height: 1.5;
+    }
+
+    .nagi-hero .cta-row {
+      margin-top: 1.6rem;
+    }
+
+    .nagi-hero .btn {
+      background: rgba(5, 11, 24, 0.58);
+      backdrop-filter: blur(10px);
+    }
+
+    .nagi-hero .btn.primary {
+      background: var(--nagi-warm);
+      color: #170c04;
+      border-color: transparent;
+      box-shadow: 0 18px 50px rgba(243, 180, 111, 0.24);
+    }
+
+    .nagi-section {
+      padding: 4.5rem 0;
+    }
+
+    .nagi-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(320px, 1fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .nagi-intro h2,
+    .season-map h2,
+    .production-pulse h2,
+    .adventure-journal h2,
+    .channel-cta h2 {
+      margin: 0.5rem 0 0.8rem;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .nagi-intro p,
+    .production-pulse p,
+    .adventure-journal p,
+    .channel-cta p {
+      max-width: 66ch;
+    }
+
+    .world-notes {
+      display: grid;
+      gap: 1rem;
+      padding-top: 0.35rem;
+    }
+
+    .world-note {
+      display: grid;
+      grid-template-columns: 7.5rem minmax(0, 1fr);
+      gap: 1.2rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--nagi-line);
+    }
+
+    .world-note strong {
+      color: var(--nagi-warm);
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+    }
+
+    .world-note p {
+      margin: 0;
+    }
+
+    .season-map {
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 4.5rem 1rem;
+      background: #07111d;
+      border-top: 1px solid var(--nagi-line);
+      border-bottom: 1px solid var(--nagi-line);
+    }
+
+    .season-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: end;
+      margin-bottom: 1.6rem;
+    }
+
+    .season-head p {
+      max-width: 38rem;
+      margin: 0;
+    }
+
+    .episode-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .episode {
+      position: relative;
+      min-height: 330px;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--nagi-line);
+      background: #020617;
+    }
+
+    .episode img {
+      width: 100%;
+      height: 100%;
+      min-height: 330px;
+      display: block;
+      object-fit: cover;
+      filter: saturate(0.98);
+      transition: transform 420ms ease, filter 420ms ease;
+    }
+
+    .episode:hover img {
+      transform: scale(1.035);
+      filter: saturate(1.08);
+    }
+
+    .episode::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 28%, rgba(2, 6, 23, 0.9) 100%);
+      pointer-events: none;
+    }
+
+    .episode-copy {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 1;
+    }
+
+    .episode-copy span {
+      color: var(--nagi-cyan);
+      font-weight: 900;
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .episode-copy h3 {
+      margin: 0.25rem 0;
+      font-size: 1.35rem;
+      line-height: 1.05;
+    }
+
+    .episode-copy p {
+      margin: 0;
+      color: #dbeafe;
+      font-size: 0.93rem;
+      line-height: 1.35;
+    }
+
+    .production-pulse {
+      display: grid;
+      grid-template-columns: minmax(0, 0.76fr) minmax(320px, 1fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .pulse-list {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .pulse-item {
+      display: grid;
+      grid-template-columns: 4.5rem minmax(0, 1fr) 8rem;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.95rem 0;
+      border-top: 1px solid var(--nagi-line);
+    }
+
+    .pulse-item:first-child {
+      border-top: 0;
+    }
+
+    .pulse-item strong {
+      color: #fff7ed;
+      font-size: 1.15rem;
+    }
+
+    .pulse-item span {
+      color: var(--nagi-warm);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    .pulse-item p {
+      margin: 0.15rem 0 0;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .sound-band {
+      margin: 0;
+      padding: clamp(1.25rem, 4vw, 2rem);
+      border: 1px solid rgba(243, 180, 111, 0.24);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(243, 180, 111, 0.11), transparent 48%),
+        rgba(8, 18, 34, 0.72);
+    }
+
+    .sound-band ul {
+      display: grid;
+      gap: 0.65rem;
+      padding-left: 1.2rem;
+      margin-bottom: 0;
+      color: #dbeafe;
+    }
+
+    .adventure-journal {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(290px, 0.62fr);
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .journal-image {
+      position: sticky;
+      top: 7rem;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--nagi-line);
+      background: #020617;
+    }
+
+    .journal-image img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
+
+    .journal-entries {
+      display: grid;
+      gap: 1.15rem;
+      margin-top: 1.4rem;
+    }
+
+    .journal-entry {
+      display: grid;
+      grid-template-columns: 8rem minmax(0, 1fr);
+      gap: 1.2rem;
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--nagi-line);
+    }
+
+    .journal-entry time {
+      color: var(--nagi-cyan);
+      font-weight: 900;
+    }
+
+    .journal-entry h3 {
+      margin: 0 0 0.35rem;
+      line-height: 1.12;
+    }
+
+    .journal-entry p {
+      margin: 0;
+    }
+
+    .channel-cta {
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 4.5rem 1rem;
+      background:
+        linear-gradient(90deg, rgba(5, 11, 24, 0.92), rgba(5, 11, 24, 0.58)),
+        url("assets/nagikumo/cherry-blossom-picnic.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .channel-cta-inner {
+      width: min(100% - 2rem, 1120px);
+      margin: 0 auto;
+    }
+
+    @keyframes nagi-rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .episode-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 880px) {
+      .nagi-hero {
+        min-height: calc(86svh - 116px);
+        padding-top: 2.4rem;
+        background-position: 58% center;
+      }
+
+      .nagi-hero h1 {
+        font-size: clamp(2.8rem, 14vw, 4.3rem);
+      }
+
+      .nagi-intro,
+      .production-pulse,
+      .adventure-journal,
+      .world-note,
+      .journal-entry {
+        grid-template-columns: 1fr;
+      }
+
+      .season-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .episode-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .pulse-item {
+        grid-template-columns: 1fr;
+      }
+
+      .pulse-item span {
+        text-align: left;
+      }
+
+      .journal-image {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="assets/Easterlingms_logo.png" alt="Easterling Media &amp; Systems logo" />
+      <span class="brand-text">Easterling Media &amp; Systems</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="builds.html">Builds</a></li>
+        <li><a href="blogs.html">Writing</a></li>
+        <li><a href="newsletters.html">Newsletter</a></li>
+        <li><a href="nagikumo-chillfi.html">NagiKumo</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="nagi-hero">
+    <div class="nagi-hero-inner">
+      <span class="nagi-kicker">NagiKumo ChillFi</span>
+      <h1>Japanese LoFi stories for quiet focus.</h1>
+      <p>Follow Nagi and Kumo through rainy cafes, tatami mornings, sunset train rides, and soft study worlds built for sleep, work, focus, and calm.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <a class="btn" href="#season-one">Explore Season 1</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="nagi-shell nagi-section nagi-intro">
+    <div>
+      <span class="nagi-kicker">Channel World</span>
+      <h2>A calm anime travel diary with a production system behind it.</h2>
+      <p class="muted">NagiKumo ChillFi is built as a Season 1 journey, not a loose upload folder. Each episode has a place, mood, source image, music direction, and animation plan.</p>
+      <p class="muted">The sound is modern Japanese lo-fi pop rap instrumental: J-pop inspired chords, lo-fi rap bounce, soft 808 bass, Rhodes, koto, shamisen, shakuhachi, subtle taiko, vinyl warmth, and no vocals.</p>
+    </div>
+    <div class="world-notes" aria-label="NagiKumo continuity notes">
+      <div class="world-note">
+        <strong>Nagi</strong>
+        <p class="muted">Shy, quiet, reflective, intelligent, genuine, and slowly evolving from scene to scene.</p>
+      </div>
+      <div class="world-note">
+        <strong>Kumo</strong>
+        <p class="muted">Calm, curious, companionable, usually sleepy, and never chaotic.</p>
+      </div>
+      <div class="world-note">
+        <strong>Motion</strong>
+        <p class="muted">Static camera, subtle loops, rain, steam, warm lights, breathing, tiny resets, and no dramatic action.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="season-one" class="season-map">
+    <div class="nagi-shell">
+      <div class="season-head">
+        <div>
+          <span class="nagi-kicker">Season 1</span>
+          <h2>Episodes are places Nagi and Kumo can return to.</h2>
+        </div>
+        <p class="muted">The first season moves through cozy rain, morning stillness, gentle travel, study spaces, spring air, city rooftops, temple rain, snow, and airport nights.</p>
+      </div>
+      <div class="episode-strip">
+        <article class="episode">
+          <img src="assets/nagikumo/rainy-cafe.jpg" alt="Nagi and Kumo inside a rainy cafe at night" loading="lazy" />
+          <div class="episode-copy">
+            <span>Episode 01 | Published</span>
+            <h3>Rainy Cafe</h3>
+            <p>Cozy rainy cafe night; quiet companionship and reflective calm.</p>
+          </div>
+        </article>
+        <article class="episode">
+          <img src="assets/nagikumo/tatami-morning.jpg" alt="Nagi writing beside Kumo in a warm tatami room" loading="lazy" />
+          <div class="episode-copy">
+            <span>Episode 02 | Edit Phase</span>
+            <h3>Tatami Morning</h3>
+            <p>Soft morning interior, rain texture, grounded calm.</p>
+          </div>
+        </article>
+        <article class="episode">
+          <img src="assets/nagikumo/train-ride-sunset.jpg" alt="Nagi and Kumo riding a train at sunset" loading="lazy" />
+          <div class="episode-copy">
+            <span>Episode 03 | Music Phase</span>
+            <h3>Train Ride Sunset</h3>
+            <p>Warm train-window lo-fi with quiet observation.</p>
+          </div>
+        </article>
+        <article class="episode">
+          <img src="assets/nagikumo/cherry-blossom-picnic.jpg" alt="Nagi and Kumo at a cherry blossom picnic" loading="lazy" />
+          <div class="episode-copy">
+            <span>Episode 05 | Music Phase</span>
+            <h3>Cherry Blossom Picnic</h3>
+            <p>Spring picnic warmth, soft petals, and gentle focus.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="nagi-shell nagi-section production-pulse">
+    <div>
+      <span class="nagi-kicker">What She Is Up To</span>
+      <h2>The channel is moving from first publish into a repeatable season pipeline.</h2>
+      <p class="muted">The working system tracks music runtime, source-image animation loops, approvals, and edit readiness. The current bottleneck is not ideas; it is turning each episode into a finished one-hour atmosphere with approved music and loops.</p>
+      <div class="sound-band">
+        <span class="nagi-kicker">Sound Identity</span>
+        <ul>
+          <li>Modern Japanese lo-fi pop rap instrumentals</li>
+          <li>J-pop chords, Rhodes, soft piano, mellow pads</li>
+          <li>Koto sparkle, shamisen hooks, shakuhachi phrases</li>
+          <li>Rain, city, snow, travel, and room-tone ambience</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pulse-list" aria-label="Season 1 production status">
+      <div class="pulse-item">
+        <strong>01</strong>
+        <div>
+          <h3>Rainy Cafe</h3>
+          <p>Published and reoptimized around Japanese rain ambience, study, sleep, and focus keywords.</p>
+        </div>
+        <span>Published</span>
+      </div>
+      <div class="pulse-item">
+        <strong>02</strong>
+        <div>
+          <h3>Tatami Morning</h3>
+          <p>Ready for Tony approval before movement or editing.</p>
+        </div>
+        <span>Edit Phase</span>
+      </div>
+      <div class="pulse-item">
+        <strong>03-10</strong>
+        <div>
+          <h3>Season buildout</h3>
+          <p>Music and image-to-video loops are the main workstream before edit readiness.</p>
+        </div>
+        <span>Music Phase</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="nagi-shell nagi-section adventure-journal">
+    <div>
+      <span class="nagi-kicker">Nagi and Kumo Adventures</span>
+      <h2>A tiny story log for shorts, scenes, and future posts.</h2>
+      <p class="muted">The page can become a lightweight blog from inside the NagiKumo world: not production notes only, but small entries from the places they pass through.</p>
+      <div class="journal-entries">
+        <article class="journal-entry">
+          <time datetime="2026-06">June</time>
+          <div>
+            <h3>Rainy Cafe becomes the anchor.</h3>
+            <p class="muted">The first published world sets the channel language: rain on glass, warm cafe light, Nagi studying quietly, and Kumo sleeping nearby.</p>
+          </div>
+        </article>
+        <article class="journal-entry">
+          <time datetime="2026-06">Next</time>
+          <div>
+            <h3>Tatami Morning waits for approval.</h3>
+            <p class="muted">The morning episode is staged as the softer counterpart to Rainy Cafe: low rain, teacup steam, warm floor, and a day that does not need to rush.</p>
+          </div>
+        </article>
+        <article class="journal-entry">
+          <time datetime="2026-06">Shorts</time>
+          <div>
+            <h3>Vending Machine Rain Walk opens a side path.</h3>
+            <p class="muted">The short-form world follows smaller moments: street rain, vending-machine glow, warm hands, and Kumo tucked close while the city stays quiet.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+    <figure class="journal-image">
+      <img src="assets/nagikumo/vending-rain-walk.jpg" alt="Nagi standing beside a glowing vending machine on a rainy night" loading="lazy" />
+    </figure>
+  </section>
+
+  <section class="channel-cta">
+    <div class="channel-cta-inner">
+      <span class="nagi-kicker">Watch the World Unfold</span>
+      <h2>Study, sleep, focus, or just stay a little longer.</h2>
+      <p class="muted">NagiKumo ChillFi is growing into a season of quiet places: long-form lo-fi episodes, rain ambience, calm shorts, and character-led scenes built to loop without demanding attention.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer">Open YouTube Channel</a>
+        <a class="btn" href="content.html">Back to Content Hub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="builds.html">Builds</a>
+      <a href="blogs.html">Writing</a>
+      <a href="newsletters.html">Newsletter</a>
+      <a href="nagikumo-chillfi.html">NagiKumo ChillFi</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer">YouTube</a>
+    </div>
+    <p class="muted">Japanese lo-fi stories for study, sleep, focus, and calm.</p>
+    <p class="muted">&copy; 2026 Easterling Media &amp; Systems</p>
+  </div>
+</footer>
+</body>
+</html>
