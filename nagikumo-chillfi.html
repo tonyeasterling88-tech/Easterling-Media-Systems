@@ -279,7 +279,7 @@
 
     .episode-strip {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 1rem;
     }
 
@@ -307,12 +307,46 @@
       filter: saturate(1.08);
     }
 
+    .episode.unrevealed img {
+      filter: blur(18px) saturate(0.75) brightness(0.68);
+      transform: scale(1.08);
+    }
+
+    .episode.unrevealed:hover img {
+      filter: blur(18px) saturate(0.82) brightness(0.72);
+      transform: scale(1.1);
+    }
+
     .episode::after {
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, transparent 28%, rgba(2, 6, 23, 0.9) 100%);
       pointer-events: none;
+    }
+
+    .episode.unrevealed::after {
+      background:
+        radial-gradient(circle at 50% 38%, rgba(2, 6, 23, 0.22), rgba(2, 6, 23, 0.76) 58%),
+        linear-gradient(180deg, rgba(2, 6, 23, 0.26), rgba(2, 6, 23, 0.94) 100%);
+      backdrop-filter: blur(3px);
+    }
+
+    .episode.unrevealed::before {
+      content: "Thumbnail reveal soon";
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1;
+      padding: 0.44rem 0.62rem;
+      border: 1px solid rgba(255, 247, 237, 0.2);
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.72);
+      color: #fff7ed;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .episode-copy {
@@ -645,7 +679,7 @@
             <p>Cozy rainy cafe night; quiet companionship and reflective calm.</p>
           </div>
         </article>
-        <article class="episode">
+        <article class="episode unrevealed">
           <img src="assets/nagikumo/tatami-morning.jpg" alt="Nagi writing beside Kumo in a warm tatami room" loading="lazy" />
           <div class="episode-copy">
             <span>Episode 02 | Edit Phase</span>
@@ -653,7 +687,7 @@
             <p>Soft morning interior, rain texture, grounded calm.</p>
           </div>
         </article>
-        <article class="episode">
+        <article class="episode unrevealed">
           <img src="assets/nagikumo/train-ride-sunset.jpg" alt="Nagi and Kumo riding a train at sunset" loading="lazy" />
           <div class="episode-copy">
             <span>Episode 03 | Music Phase</span>
@@ -661,7 +695,15 @@
             <p>Warm train-window lo-fi with quiet observation.</p>
           </div>
         </article>
-        <article class="episode">
+        <article class="episode unrevealed">
+          <img src="assets/nagikumo/rainy-desk-night.png" alt="Nagi studying at a rainy desk at night" loading="lazy" />
+          <div class="episode-copy">
+            <span>Episode 04 | Music Phase</span>
+            <h3>Rainy Desk Night</h3>
+            <p>Focused late-night desk calm with rain on the window.</p>
+          </div>
+        </article>
+        <article class="episode unrevealed">
           <img src="assets/nagikumo/cherry-blossom-picnic.jpg" alt="Nagi and Kumo at a cherry blossom picnic" loading="lazy" />
           <div class="episode-copy">
             <span>Episode 05 | Music Phase</span>
