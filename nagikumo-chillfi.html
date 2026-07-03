@@ -38,7 +38,11 @@
         "focus music"
       ],
       "sameAs": [
-        "https://www.youtube.com/@NagiKumoChillFi"
+        "https://www.youtube.com/@NagiKumoChillFi",
+        "https://www.instagram.com/nagikumochillfi/",
+        "https://www.tiktok.com/@nagikumochillfi",
+        "https://www.facebook.com/61591627730941/",
+        "https://linktr.ee/NagiKumoChillFi"
       ]
     }
   </script>
@@ -135,6 +139,66 @@
       color: #170c04;
       border-color: transparent;
       box-shadow: 0 18px 50px rgba(243, 180, 111, 0.24);
+    }
+
+    .social-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+      margin-top: 1.4rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(226, 232, 240, 0.2);
+      border-radius: 999px;
+      background: rgba(5, 11, 24, 0.48);
+      color: #fff7ed;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(243, 180, 111, 0.62);
+      background: rgba(8, 18, 34, 0.78);
+      text-decoration: none;
+    }
+
+    .social-link svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .social-link.youtube svg,
+    .social-link.nagikumo svg,
+    .social-link.facebook svg,
+    .social-link.tiktok svg {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .social-link .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     .nagi-section {
@@ -468,6 +532,17 @@
         position: static;
       }
     }
+
+    @media (max-width: 520px) {
+      .social-nav {
+        gap: 0.5rem;
+      }
+
+      .social-link {
+        width: 44px;
+        height: 44px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -499,6 +574,32 @@
       <div class="cta-row">
         <a class="btn primary" href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
         <a class="btn" href="#season-one">Explore Season 1</a>
+      </div>
+      <div class="social-nav" aria-label="Social media">
+        <a class="social-link youtube" href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer" title="YouTube">
+          <span class="sr-only">YouTube</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.9 12 4.9 12 4.9s-6 0-7.7.4a2.7 2.7 0 0 0-1.9 1.9C2 8.9 2 12 2 12s0 3.1.4 4.8a2.7 2.7 0 0 0 1.9 1.9c1.7.4 7.7.4 7.7.4s6 0 7.7-.4a2.7 2.7 0 0 0 1.9-1.9c.4-1.7.4-4.8.4-4.8s0-3.1-.4-4.8ZM10 15.2V8.8l5.6 3.2-5.6 3.2Z"/></svg>
+        </a>
+        <a class="social-link instagram" href="https://www.instagram.com/nagikumochillfi/" target="_blank" rel="noopener noreferrer" title="Instagram">
+          <span class="sr-only">Instagram</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+        </a>
+        <a class="social-link tiktok" href="https://www.tiktok.com/@nagikumochillfi" target="_blank" rel="noopener noreferrer" title="TikTok">
+          <span class="sr-only">TikTok</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.2 3c.4 2.6 1.9 4.4 4.8 4.8v3.1a8.1 8.1 0 0 1-4.7-1.5v6.2a5.4 5.4 0 1 1-5.4-5.4c.4 0 .8 0 1.1.1v3.3a2.1 2.1 0 1 0 1.3 2V3h2.9Z"/></svg>
+        </a>
+        <a class="social-link facebook" href="https://www.facebook.com/61591627730941/" target="_blank" rel="noopener noreferrer" title="Facebook Page">
+          <span class="sr-only">Facebook Page</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.1 0-5 1.9-5 5v3H6v4h3v5h4v-5h3.2l.8-4h-4V9c0-.7.3-1 1-1Z"/></svg>
+        </a>
+        <a class="social-link linktree" href="https://linktr.ee/NagiKumoChillFi" target="_blank" rel="noopener noreferrer" title="Linktree">
+          <span class="sr-only">Linktree</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"/><path d="m6 8 6-5 6 5"/><path d="m6 14 6-5 6 5"/><path d="M9 21h6"/></svg>
+        </a>
+        <a class="social-link" href="https://easterling-ms-newsletter.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" title="Beehiiv Newsletter">
+          <span class="sr-only">Beehiiv Newsletter</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg>
+        </a>
       </div>
     </div>
   </section>
