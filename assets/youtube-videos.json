@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-26T02:49:52.001Z",
+  "updatedAt": "2026-07-06T12:41:20.585Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "7d9_8z2UIx0",
+      "title": "A Quiet Night with Nagi &amp; Kumo ☕ Rainy Café Lofi [S1:E1]",
+      "published": "2026-07-06T09:00:12Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=7d9_8z2UIx0"
+    },
     {
       "videoId": "neIiem4NH_c",
       "title": "Café de Ame ☔ Cozy Rainy Night LoFi",
