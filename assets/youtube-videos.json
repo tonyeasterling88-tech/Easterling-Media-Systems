@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-06T12:41:20.585Z",
+  "updatedAt": "2026-07-12T05:51:27.120Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,20 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "eDdL1ebTMuE",
+      "title": "Soft Floor Slow Rain #lofi #shorts",
+      "published": "2026-07-12T03:51:35Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=eDdL1ebTMuE"
+    },
+    {
+      "videoId": "k3DzZ_SiXeg",
+      "title": "Tatami Morning ☀️ Cozy Japanese LoFi for Study &amp; Relaxation | NagiKumo ChillFi Episode 2",
+      "published": "2026-07-12T03:51:24Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=k3DzZ_SiXeg"
+    },
     {
       "videoId": "7d9_8z2UIx0",
       "title": "A Quiet Night with Nagi &amp; Kumo ☕ Rainy Café Lofi [S1:E1]",
@@ -34,20 +48,6 @@
       "published": "2026-05-24T11:13:48Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=drmZIExW2AA"
-    },
-    {
-      "videoId": "JtbK6qXd0ng",
-      "title": "Rainy Cafe Anime Lofi | Japanese Rain Music for Study, Sleep &amp; Focus",
-      "published": "2026-05-18T02:01:48Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=JtbK6qXd0ng"
-    },
-    {
-      "videoId": "GDwsK5wLEjg",
-      "title": "Rainy Cafe Night Lofi | Japanese Rain Ambience for Study, Sleep &amp; Focus",
-      "published": "2026-04-24T05:04:00Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=GDwsK5wLEjg"
     }
   ]
 }
