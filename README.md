@@ -1,20 +1,11 @@
 # Easterling Media & Systems
 Website hub for all my content, builds, blogs, newsletter, etc.
 
-## Beehiiv Sync
+## Owned Newsletter Archive
 
-The site can auto-sync Beehiiv newsletter content into the local static file [assets/beehiiv-posts.json](/c:/Dev/easterling-ms/assets/beehiiv-posts.json) by running:
+The newsletter is published directly on the website. [assets/newsletter-issues.json](/c:/Dev/easterling-ms/assets/newsletter-issues.json) is the public archive source, and [assets/newsletters.js](/c:/Dev/easterling-ms/assets/newsletters.js) renders the latest issue and archive on the home, content, and newsletter pages.
 
-```powershell
-$env:BEEHIIV_API_KEY="your-key"
-npm run sync:beehiiv
-```
-
-If `BEEHIIV_API_KEY` is missing or the API request fails, the sync script falls back to the public Beehiiv publication website so the on-site archive can still stay current.
-
-For GitHub automation, add a repository secret named `BEEHIIV_API_KEY`.
-If your Beehiiv account has more than one publication, also add a repository variable named `BEEHIIV_PUBLICATION_ID` or `BEEHIIV_PUBLICATION_NAME`.
-If you want to force the public-site fallback to a specific publication URL, set `BEEHIIV_WEBSITE_URL`.
+Historical issue images are stored under `assets/newsletter-images` so the archive does not depend on an external newsletter host.
 
 ## Closed Testing Signups
 
@@ -105,7 +96,7 @@ The importer writes records into the `closed_test_signups` path using an encoded
 
 ## Scheduled Newsletter Draft Generator
 
-There is now a Firebase scheduled function that generates newsletter drafts with OpenAI and stores them in Firestore for review before anything is sent to Beehiiv.
+There is a Firebase scheduled function that generates newsletter drafts with OpenAI and stores them in Firestore for review before anything is published to the website.
 
 ### What it does
 
@@ -115,7 +106,7 @@ There is now a Firebase scheduled function that generates newsletter drafts with
 - Stores the result in `newsletterDrafts/{YYYY-MM-DD}`
 - Marks the consumed source items as `drafted`
 
-This worker does **not** publish to Beehiiv yet. It only creates reviewable drafts.
+This worker does **not** publish automatically. It only creates reviewable drafts.
 
 ### Firestore collections
 
@@ -210,23 +201,19 @@ npm run generate:newsletter -- 2026-04-13
 
 That uses the same draft shape and writes directly to Firestore as `newsletterDrafts/2026-04-13`.
 
-### Send a draft to Beehiiv for review
+### Publish an approved draft to the website
 
-Once a draft is ready in Firestore, create a Beehiiv draft with:
+Set the Firestore draft's `approved` field to `true` (or its `status` to `approved`), then run:
 
 ```powershell
-$env:BEEHIIV_API_KEY="your-beehiiv-key"
-$env:BEEHIIV_PUBLICATION_ID="your-publication-id"
-npm run draft:newsletter -- 2026-04-13
+npm run publish:newsletter -- 2026-04-13
 ```
-
-You can use `BEEHIIV_PUBLICATION_NAME` instead of `BEEHIIV_PUBLICATION_ID` if that is easier for your account setup.
 
 This script:
 
-- Refuses to create a duplicate Beehiiv post if the Firestore draft already has Beehiiv fields set
-- Creates the Beehiiv post from the Firestore draft content with `status: draft`
-- Writes the Beehiiv post ID and URL back into `newsletterDrafts/{YYYY-MM-DD}`
-- Marks the Firestore draft as `beehiiv_draft`
+- Refuses to publish an unapproved or duplicate issue
+- Converts the draft Markdown to on-site HTML
+- Adds the issue to `assets/newsletter-issues.json`
+- Writes the on-site URL and published status back into `newsletterDrafts/{YYYY-MM-DD}`
 
-Review and publish the newsletter from Beehiiv after the draft looks right. If you intentionally need the script to create a confirmed Beehiiv post, set `BEEHIIV_POST_STATUS=confirmed` before running it.
+Commit and deploy the updated archive after publishing so the new issue is live on the site.

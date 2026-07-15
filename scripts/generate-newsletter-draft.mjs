@@ -497,8 +497,8 @@ async function writeDraft({
     sourceCount: { integerValue: String(sources.length) },
     status: { stringValue: 'ready_for_review' },
     approved: { booleanValue: false },
-    beehiivPostId: { nullValue: null },
-    beehiivUrl: { nullValue: null },
+    siteUrl: { nullValue: null },
+    publishedAt: { nullValue: null },
     sources: {
       arrayValue: {
         values: sources.map((source) => ({

@@ -405,8 +405,8 @@ export const generateScheduledNewsletterDraft = onSchedule(
       sourceCount: resolvedSources.length,
       status: 'ready_for_review',
       approved: false,
-      beehiivPostId: null,
-      beehiivUrl: null,
+      siteUrl: null,
+      publishedAt: null,
       generator: {
         model: draft.model,
         openAiResponseId: draft.openAiResponseId,

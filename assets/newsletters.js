@@ -1,13 +1,11 @@
 (function () {
-  const dataUrl = 'assets/beehiiv-posts.json';
-  const latestIssueContainers = Array.from(document.querySelectorAll('[data-beehiiv-latest-issue]'));
-  const archiveContainers = Array.from(document.querySelectorAll('[data-beehiiv-archive]'));
-  const homeContainers = Array.from(document.querySelectorAll('[data-beehiiv-home-issue]'));
-  const statusTargets = Array.from(document.querySelectorAll('[data-beehiiv-sync-status]'));
+  const dataUrl = 'assets/newsletter-issues.json';
+  const latestIssueContainers = Array.from(document.querySelectorAll('[data-newsletter-latest-issue]'));
+  const archiveContainers = Array.from(document.querySelectorAll('[data-newsletter-archive]'));
+  const homeContainers = Array.from(document.querySelectorAll('[data-newsletter-home-issue]'));
+  const statusTargets = Array.from(document.querySelectorAll('[data-newsletter-archive-status]'));
 
-  if (!latestIssueContainers.length && !archiveContainers.length && !homeContainers.length) {
-    return;
-  }
+  if (!latestIssueContainers.length && !archiveContainers.length && !homeContainers.length) return;
 
   function escapeHtml(value) {
     return String(value || '')
@@ -22,11 +20,7 @@
     if (!value) return 'Date unavailable';
     const parsed = new Date(value);
     if (Number.isNaN(parsed.getTime())) return value;
-    return parsed.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+    return parsed.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   }
 
   function issueUrl(issue) {
@@ -34,9 +28,7 @@
   }
 
   function setStatus(text) {
-    statusTargets.forEach((target) => {
-      target.textContent = text;
-    });
+    statusTargets.forEach((target) => { target.textContent = text; });
   }
 
   function renderHomeIssue(issue) {
@@ -46,82 +38,63 @@
         <h3><a href="${issueUrl(issue)}">${escapeHtml(issue.title)}</a></h3>
         <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))}</p>
         <p>${escapeHtml(issue.excerpt)}</p>
-        <div class="cta-row">
-          <a class="btn" href="${issueUrl(issue)}">Read on-site</a>
-          ${issue.webUrl ? `<a class="btn" href="${escapeHtml(issue.webUrl)}" target="_blank" rel="noopener noreferrer">Open on Beehiiv</a>` : ''}
-        </div>
-      </div>
-    `;
+        <a class="btn" href="${issueUrl(issue)}">Read on-site</a>
+      </div>`;
   }
 
   function renderLatestIssue(issue) {
-    const authorText = Array.isArray(issue.authors) && issue.authors.length
+    const authors = Array.isArray(issue.authors) && issue.authors.length
       ? issue.authors.join(', ')
       : 'Easterling Media & Systems';
 
     return `
       <article class="newsletter-reader card">
         <div class="newsletter-reader-head">
-          <p class="muted">Latest issue</p>
+          <p class="muted">Newsletter issue</p>
           <h2>${escapeHtml(issue.title)}</h2>
-          <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))} &middot; ${escapeHtml(authorText)}</p>
-          <div class="cta-row">
-            ${issue.webUrl ? `<a class="btn" href="${escapeHtml(issue.webUrl)}" target="_blank" rel="noopener noreferrer">Open on Beehiiv</a>` : ''}
-            <a class="btn" href="#newsletter-archive">Browse archive</a>
-          </div>
+          <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))} &middot; ${escapeHtml(authors)}</p>
+          <a class="btn" href="#newsletter-archive">Browse archive</a>
         </div>
-        <div class="newsletter-reader-body">
-          ${issue.html || `<p>${escapeHtml(issue.excerpt)}</p>`}
-        </div>
-      </article>
-    `;
+        <div class="newsletter-reader-body">${issue.html || `<p>${escapeHtml(issue.excerpt)}</p>`}</div>
+      </article>`;
   }
 
   function renderArchiveCard(issue, activeSlug) {
-    const isActive = issue.slug === activeSlug;
     return `
-      <article class="card${isActive ? ' is-active-issue' : ''}">
+      <article class="card${issue.slug === activeSlug ? ' is-active-issue' : ''}">
         <h3><a href="${issueUrl(issue)}">${escapeHtml(issue.title)}</a></h3>
         <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))}</p>
         <p>${escapeHtml(issue.excerpt)}</p>
-      </article>
-    `;
+      </article>`;
   }
 
   async function loadIssues() {
     try {
       const response = await fetch(`${dataUrl}?v=${Date.now()}`, { cache: 'no-store' });
-      if (!response.ok) {
-        throw new Error(`Unable to load Beehiiv data (${response.status})`);
-      }
+      if (!response.ok) throw new Error(`Unable to load newsletter archive (${response.status})`);
 
       const payload = await response.json();
       const issues = Array.isArray(payload?.issues) ? payload.issues : [];
       if (!issues.length) {
-        setStatus('Beehiiv archive is waiting for its first sync.');
+        setStatus('The first issue is being prepared.');
         return;
       }
 
       const selectedSlug = new URLSearchParams(window.location.search).get('issue');
       const selectedIssue = issues.find((issue) => issue.slug === selectedSlug) || issues[0];
 
-      homeContainers.forEach((container) => {
-        container.innerHTML = renderHomeIssue(issues[0]);
-      });
-
-      latestIssueContainers.forEach((container) => {
-        container.innerHTML = renderLatestIssue(selectedIssue);
-      });
-
+      homeContainers.forEach((container) => { container.innerHTML = renderHomeIssue(issues[0]); });
+      latestIssueContainers.forEach((container) => { container.innerHTML = renderLatestIssue(selectedIssue); });
       archiveContainers.forEach((container) => {
         container.innerHTML = issues.map((issue) => renderArchiveCard(issue, selectedIssue.slug)).join('');
       });
 
-      setStatus('Always up to date with the latest newsletter issue.');
-    } catch (_error) {
-      setStatus('Showing fallback newsletter content until the Beehiiv sync completes.');
+      setStatus(`${issues.length} issue${issues.length === 1 ? '' : 's'} published on this site.`);
+    } catch (error) {
+      console.error('Newsletter archive failed to load.', error);
+      setStatus('The newsletter archive is temporarily unavailable.');
     }
   }
 
-  loadIssues();
+  void loadIssues();
 })();

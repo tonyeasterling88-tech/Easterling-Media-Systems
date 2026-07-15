@@ -1,4 +1,4 @@
-name: Sync Content Feeds
+name: Sync YouTube Feed
 
 on:
   workflow_dispatch:
@@ -26,13 +26,6 @@ jobs:
         with:
           node-version: 24
 
-      - name: Sync Beehiiv content
-        env:
-          BEEHIIV_API_KEY: ${{ secrets.BEEHIIV_API_KEY }}
-          BEEHIIV_PUBLICATION_ID: ${{ vars.BEEHIIV_PUBLICATION_ID }}
-          BEEHIIV_PUBLICATION_NAME: ${{ vars.BEEHIIV_PUBLICATION_NAME }}
-        run: npm run sync:beehiiv
-
       - name: Sync YouTube content
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
@@ -42,10 +35,10 @@ jobs:
 
       - name: Commit updated content data
         run: |
-          if [[ -n "$(git status --porcelain assets/beehiiv-posts.json assets/youtube-videos.json)" ]]; then
+          if [[ -n "$(git status --porcelain assets/youtube-videos.json)" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add assets/beehiiv-posts.json assets/youtube-videos.json
+            git add assets/youtube-videos.json
             git commit -m "chore: sync content feeds"
             git push
           fi
