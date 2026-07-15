@@ -82,6 +82,20 @@ const issue = {
   thumbnailUrl: '',
   authors: ['Anthony Easterling'],
   tags: [],
+  cta: {
+    heading: 'Keep building with me',
+    body: 'Test the next product, watch the latest creative work, or follow the build in public.',
+    mindmarkLabel: 'Join MindMark testing',
+    mindmarkUrl: 'mindmark.html#mindmark-beta',
+    youtubeLabel: 'Watch on YouTube',
+    youtubeUrl: 'https://www.youtube.com/@NagiKumoChillFi',
+    socials: [
+      { label: 'Instagram', url: 'https://www.instagram.com/nagikumochillfi/' },
+      { label: 'TikTok', url: 'https://www.tiktok.com/@nagikumochillfi' },
+      { label: 'Facebook', url: 'https://www.facebook.com/61591627730941/' },
+      { label: 'Linktree', url: 'https://linktr.ee/NagiKumoChillFi' },
+    ],
+  },
   html: draft.contentHtml || markdownToHtml(draft.contentMarkdown),
 };
 

@@ -18,6 +18,32 @@
         "Anthony Easterling"
       ],
       "tags": [],
+      "cta": {
+        "heading": "Keep building with me",
+        "body": "Test the next product, watch the latest creative work, or follow the build in public.",
+        "mindmarkLabel": "Join MindMark testing",
+        "mindmarkUrl": "mindmark.html#mindmark-beta",
+        "youtubeLabel": "Watch on YouTube",
+        "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi",
+        "socials": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/nagikumochillfi/"
+          },
+          {
+            "label": "TikTok",
+            "url": "https://www.tiktok.com/@nagikumochillfi"
+          },
+          {
+            "label": "Facebook",
+            "url": "https://www.facebook.com/61591627730941/"
+          },
+          {
+            "label": "Linktree",
+            "url": "https://linktr.ee/NagiKumoChillFi"
+          }
+        ]
+      },
       "html": "<p>Systems work is boring until it isn't. Over the past three months the focus has been simple: turn content into a reliable pipeline, tighten the feedback loop for MindMark, and prioritize small, demonstrable wins that unlock testing and iteration. Below are the concrete changes and the operational lessons worth stealing.</p>\n<h3>Make publishing a pipeline, not a ritual</h3>\n<p>April started the move toward a real publishing pipeline across the newsletter, YouTube, and the website. In June that pipeline became more resilient: a real-time YouTube feed with fallbacks, a cleaner newsletter archive, and small reliability upgrades that reduce manual sync work. The result is less context-switching and fewer one-off fixes - content moves from idea to audience through predictable steps.</p>\n<h3>Tighten the intake and testing loop for MindMark</h3>\n<p>MindMark's progress has been about making feedback fast and useful. The work included a closed testing intake flow and tools for producing reviewable drafts so early testers see real output and useful responses can shape the next build. May's updates focused on tightening that feedback loop so submissions and responses do not get lost in manual processes.</p>\n<h3>Small wins: live site, honest Builds archive, and MVP sequencing</h3>\n<p>Launching the site on a personal domain was intentionally small but important: it opened the door to recruit early testers for MindMark and anchored the rest of the work. The Builds page was refreshed to honestly reflect progress rather than aspiration. Combine that with the MVP sequencing approach - phase launches for speed and proof - and you get a repeatable pattern: ship a focused surface, gather signals, iterate. Small, visible wins keep momentum and make prioritization clearer.</p>\n<p>What to do next: tighten the parts of your pipeline that still need manual steps, select one small public surface to ship this week, and set up a simple intake for structured feedback. If you want to test a flow or talk through sequencing for your product, use the <a href=\"https://www.easterlingmediasystems.com/contact.html\" rel=\"noopener noreferrer\">contact page</a>.</p>\n<p>- Easterling Media &amp; Systems</p>"
     },
     {

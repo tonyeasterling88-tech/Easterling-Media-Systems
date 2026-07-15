@@ -42,6 +42,30 @@
       </div>`;
   }
 
+  function renderIssueCta(issue) {
+    const cta = issue?.cta;
+    if (!cta) return '';
+
+    const socials = Array.isArray(cta.socials)
+      ? cta.socials
+        .filter((social) => social?.label && social?.url)
+        .map((social) => `<a href="${escapeHtml(social.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(social.label)}</a>`)
+        .join('')
+      : '';
+
+    return `
+      <aside class="newsletter-cta" aria-labelledby="newsletter-cta-heading">
+        <span class="section-kicker">Keep exploring</span>
+        <h3 id="newsletter-cta-heading">${escapeHtml(cta.heading)}</h3>
+        <p>${escapeHtml(cta.body)}</p>
+        <div class="newsletter-cta-actions">
+          <a class="btn primary" href="${escapeHtml(cta.mindmarkUrl)}">${escapeHtml(cta.mindmarkLabel)}</a>
+          <a class="btn" href="${escapeHtml(cta.youtubeUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(cta.youtubeLabel)}</a>
+        </div>
+        ${socials ? `<div class="newsletter-cta-social"><span>Follow</span>${socials}</div>` : ''}
+      </aside>`;
+  }
+
   function renderLatestIssue(issue) {
     const authors = Array.isArray(issue.authors) && issue.authors.length
       ? issue.authors.join(', ')
@@ -55,7 +79,10 @@
           <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))} &middot; ${escapeHtml(authors)}</p>
           <a class="btn" href="#newsletter-archive">Browse archive</a>
         </div>
-        <div class="newsletter-reader-body">${issue.html || `<p>${escapeHtml(issue.excerpt)}</p>`}</div>
+        <div class="newsletter-reader-body">
+          ${issue.html || `<p>${escapeHtml(issue.excerpt)}</p>`}
+          ${renderIssueCta(issue)}
+        </div>
       </article>`;
   }
 
