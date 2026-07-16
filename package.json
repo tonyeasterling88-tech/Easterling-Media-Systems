@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "npx http-server . -p 8080 -c-1 --cors",
+    "build": "node scripts/build-sites.mjs",
     "sync:youtube": "node scripts/sync-youtube.mjs",
     "sync:sheets": "node scripts/sync-realtime-database-to-google-sheets.mjs",
     "import:firebase": "node scripts/import-supabase-to-realtime-database.mjs",
