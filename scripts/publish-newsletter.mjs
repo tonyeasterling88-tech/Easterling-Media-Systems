@@ -92,7 +92,6 @@ const issue = {
     socials: [
       { label: 'Instagram', url: 'https://www.instagram.com/nagikumochillfi/' },
       { label: 'TikTok', url: 'https://www.tiktok.com/@nagikumochillfi' },
-      { label: 'Facebook', url: 'https://www.facebook.com/61591627730941/' },
       { label: 'Linktree', url: 'https://linktr.ee/NagiKumoChillFi' },
     ],
   },
