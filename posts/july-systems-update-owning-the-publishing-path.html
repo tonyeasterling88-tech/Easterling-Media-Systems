@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>July Systems Update: Owning the Publishing Path</title>
+  <meta name="description" content="This month: moving the newsletter into the site, making deployments portable, giving Pixel Chomp a playable home, and removing links that no longer serve the system." />
+  <meta name="author" content="Tony Easterling" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content="July Systems Update: Owning the Publishing Path" />
+  <meta property="og:description" content="A grounded July update on owning the publishing path from draft to archive, keeping deployment portable, and removing dependencies that stopped earning their place." />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/Easterlingms_logo.png" alt="Easterling Media &amp; Systems logo" />
+        <span class="brand-text">Easterling Media &amp; Systems</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="../builds.html">Builds</a></li>
+          <li><a href="../blogs.html">Blog</a></li>
+          <li><a href="../newsletters.html">Newsletter</a></li>
+          <li><a href="../content.html">Content</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <h1>July Systems Update: Owning the Publishing Path</h1>
+      <p class="muted">Draft: 2026-07-20 &middot; Author: Tony Easterling</p>
+
+      <p>July has been less about adding another platform and more about making the system easier to own.</p>
+      <p>The site already held the builds, blog, and project history. This month I tightened the path around them: how a draft becomes a published issue, how a static site becomes a portable deployment, and how a playable experiment gets a clear public home.</p>
+      <p>The work is not flashy, but it reduces the number of places where the truth can drift.</p>
+
+      <h2>What I built (and why it matters)</h2>
+
+      <p><strong>1) An owned newsletter archive</strong></p>
+      <p>I replaced the old Beehiiv sync with a newsletter system that lives with the rest of the site. Published issues now come from structured local data, render through the site&rsquo;s own reader, and can point people toward the active work without depending on a separate publishing archive.</p>
+      <p>That change makes the newsletter less of an external channel and more of a durable part of the home base.</p>
+
+      <p><strong>2) A review gate that stays in the loop</strong></p>
+      <p>The draft and publish scripts now have different jobs. One gathers current sources and creates a reviewable draft. The other refuses to publish until that draft is approved, and it checks whether the issue already appears to be live.</p>
+      <p>Automation should remove repetitive work without removing judgment. A clear approval boundary keeps the system useful and honest.</p>
+
+      <p><strong>3) A portable Sites build</strong></p>
+      <p>I added a build step that packages the static site and its public directories for Sites. That gives the project a repeatable deployment path without changing the simple HTML foundation that makes it easy to inspect and maintain.</p>
+      <p>The useful part is not the host itself. It is knowing the serving source, the build command, and the public files are explicit enough to move together.</p>
+
+      <p><strong>4) Pixel Chomp moved from project page to playable proof</strong></p>
+      <p>Pixel Chomp now has a public Sites build linked from its project page. The page documents the real stack&mdash;Phaser, TypeScript, Vite, and Capacitor&mdash;along with the current game loop, enemy system, and development path.</p>
+      <p>A build description is useful. A playable build is better evidence.</p>
+
+      <p><strong>5) Fewer stale exits</strong></p>
+      <p>I removed Facebook links from the site and newsletter publishing defaults. Keeping an inactive destination around does not make the system more connected; it makes the public record less accurate.</p>
+      <p>Every link is a small promise. If a destination is not active or useful, removing it is maintenance, not loss.</p>
+
+      <h2>What I&rsquo;m focusing on next</h2>
+      <ul class="meta-list">
+        <li><strong>Newsletter:</strong> keep the draft, review, and archive path dependable without turning publishing into a black box.</li>
+        <li><strong>Pixel Chomp:</strong> use the playable deployment as the source of truth for what the game actually does today.</li>
+        <li><strong>NagiKumo ChillFi:</strong> keep new releases visible through the site&rsquo;s YouTube data and fallback flow.</li>
+        <li><strong>Easterling Media &amp; Systems:</strong> keep removing stale dependencies as the owned home base gets stronger.</li>
+      </ul>
+
+      <h2>Lesson learned</h2>
+      <p>Ownership is not the same as doing everything yourself.</p>
+      <p>It means the important path stays understandable: where the content comes from, what requires review, what gets deployed, and which public page tells the truth. External tools can still help, but the system should not become mysterious when one of them changes.</p>
+      <p>This month&rsquo;s progress came from making that path shorter, clearer, and easier to verify.</p>
+    </article>
+  </main>
+</body>
+</html>
