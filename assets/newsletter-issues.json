@@ -1,10 +1,47 @@
 {
-  "updatedAt": "2026-07-15T23:07:22.840Z",
+  "updatedAt": "2026-07-20T15:31:53.605Z",
   "publication": {
     "name": "Easterling Media & Systems Newsletter",
     "websiteUrl": "https://www.easterlingmediasystems.com/newsletters.html"
   },
   "issues": [
+    {
+      "id": "issue_2026-07-20",
+      "slug": "systems-small-wins-content-pipeline-site-launch-and-mvp-sequencing",
+      "title": "Systems & Small Wins: Content Pipeline, Site Launch, and MVP Sequencing",
+      "subtitle": "This issue pulls three threads: the work to turn content into a reliable publishing pipeline, a small but important site launch that opens MindMark testing, and a short, practical framing for sequencing an MVP for speed and proof.",
+      "excerpt": "This issue pulls three threads: the work to turn content into a reliable publishing pipeline, a small but important site launch that opens MindMark testing, and a short, practical framing for sequencing an MVP for speed and proof.",
+      "publishedAt": "2026-07-20T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=systems-small-wins-content-pipeline-site-launch-and-mvp-sequencing#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": [
+        "Anthony Easterling"
+      ],
+      "tags": [],
+      "cta": {
+        "heading": "Keep building with me",
+        "body": "Test the next product, watch the latest creative work, or follow the build in public.",
+        "mindmarkLabel": "Join MindMark testing",
+        "mindmarkUrl": "mindmark.html#mindmark-beta",
+        "youtubeLabel": "Watch on YouTube",
+        "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi",
+        "socials": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/nagikumochillfi/"
+          },
+          {
+            "label": "TikTok",
+            "url": "https://www.tiktok.com/@nagikumochillfi"
+          },
+          {
+            "label": "Linktree",
+            "url": "https://linktr.ee/NagiKumoChillFi"
+          }
+        ]
+      },
+      "html": "<p>Display date: July 20, 2026. Short updates and practical takeaways from recent systems work and product progress — aimed at founders and builders who prioritize reliable publishing and fast, evidence-driven launches.</p>\n<h3>Turn content into a dependable pipeline</h3>\n<p>Recent systems work focused on making publication predictable instead of manual. The setup now includes a real publishing pipeline (Beehiiv with a YouTube sync), a reviewable newsletter-draft generator, and a real-time YouTube feed with fallbacks. Parallel changes cleaned up the newsletter archive and added small reliability upgrades so the site and the publishing workflow stay in sync without routine busywork. The emphasis is practical: automate the handoffs that trip you up most, and add fallbacks where live sources can be flaky.</p>\n<h3>A small win: my site live and MindMark testing opening</h3>\n<p>Launching the website on a personal domain was intentionally minimal but meaningful: it provides a stable place to collect attention and to direct early users. That same anchor lets the team open the door to early testers for the MindMark app, supported by a closed-testing intake flow. Small, visible progress like this reduces friction for feedback and makes future iterations easier to route and measure.</p>\n<h3>MVP sequencing: phase for speed and proof</h3>\n<p>The guiding idea: sequence your launch so you get evidence quickly. Keep scope tight on the first public iteration, prioritize a fast feedback loop from real users, and treat each release as an experiment that yields decision-ready data. Practically, that means shipping the least you need to learn whether the core value resonates, then iterating the next smallest thing that converts learning into improvement.</p>\n<p>Practical thread: automate the parts of publishing that waste time, make small public moves that invite feedback, and sequence your MVP to prioritize speed and useful evidence. If you’re building, those three habits keep momentum without ballooning complexity.</p>"
+    },
     {
       "id": "issue_2026-06-29",
       "slug": "systems-small-wins-june-29-2026",
