@@ -1,10 +1,66 @@
 {
-  "updatedAt": "2026-07-20T15:31:53.605Z",
+  "updatedAt": "2026-07-20T18:55:00.000Z",
   "publication": {
     "name": "Easterling Media & Systems Newsletter",
     "websiteUrl": "https://www.easterlingmediasystems.com/newsletters.html"
   },
   "issues": [
+    {
+      "id": "issue_2026-07-13",
+      "slug": "owned-archives-clear-handoffs-july-13-2026",
+      "title": "Owned Archives, Clear Handoffs — July 13, 2026",
+      "subtitle": "A practical note on bringing the newsletter archive home, keeping the review step visible, and making each issue useful after it is sent.",
+      "excerpt": "A practical note on bringing the newsletter archive home, keeping the review step visible, and making each issue useful after it is sent.",
+      "publishedAt": "2026-07-13T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=owned-archives-clear-handoffs-july-13-2026#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": ["Anthony Easterling"],
+      "tags": [],
+      "cta": {"heading": "Keep building with me", "body": "Test the next product, watch the latest creative work, or follow the build in public.", "mindmarkLabel": "Join MindMark testing", "mindmarkUrl": "mindmark.html#mindmark-beta", "youtubeLabel": "Watch on YouTube", "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi", "socials": [{"label": "Instagram", "url": "https://www.instagram.com/nagikumochillfi/"}, {"label": "TikTok", "url": "https://www.tiktok.com/@nagikumochillfi"}, {"label": "Linktree", "url": "https://linktr.ee/NagiKumoChillFi"}]},
+      "html": "<p>The newsletter should strengthen the home base, not split the record of the work across platforms that are hard to maintain.</p><h2>Bring the archive home</h2><p>The current direction is an owned archive that sits alongside the builds and blog. Issues can be represented as structured data, rendered by the site, and connected directly to the projects they reference.</p><h2>Keep review visible</h2><p>A useful workflow separates a draft from publication. Automation can gather and format the first version, but a clear review step keeps the editorial decision visible and prevents accidental duplicates.</p><h2>Practical takeaway</h2><p>Ownership does not mean rejecting every external tool. It means keeping the important record, review step, and public destination understandable when those tools change.</p><p>— Tony</p>"
+    },
+    {
+      "id": "issue_2026-07-06",
+      "slug": "make-the-home-base-useful-july-6-2026",
+      "title": "Make the Home Base Useful — July 6, 2026",
+      "subtitle": "Projects, content, and next steps work better when the website is a useful center rather than a separate brochure.",
+      "excerpt": "Projects, content, and next steps work better when the website is a useful center rather than a separate brochure.",
+      "publishedAt": "2026-07-06T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=make-the-home-base-useful-july-6-2026#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": ["Anthony Easterling"],
+      "tags": [],
+      "cta": {"heading": "Keep building with me", "body": "Test the next product, watch the latest creative work, or follow the build in public.", "mindmarkLabel": "Join MindMark testing", "mindmarkUrl": "mindmark.html#mindmark-beta", "youtubeLabel": "Watch on YouTube", "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi", "socials": [{"label": "Instagram", "url": "https://www.instagram.com/nagikumochillfi/"}, {"label": "TikTok", "url": "https://www.tiktok.com/@nagikumochillfi"}, {"label": "Linktree", "url": "https://linktr.ee/NagiKumoChillFi"}]},
+      "html": "<p>The website is becoming less of a place to maintain separately and more of the home base for the actual work.</p><h2>Give each page a job</h2><p>Build pages, newsletter issues, video updates, and tester entry points should make the next action clearer. The goal is not more pages; it is a shorter path from a project to its evidence and a useful next step.</p><h2>Keep the record current</h2><p>Current project status, working contact paths, and a readable archive are operational details that make the whole system more useful. A visitor should not have to hunt through disconnected platforms to understand what is live.</p><h2>Practical takeaway</h2><p>A home base earns its place when it reduces friction for the next conversation. Keep the paths short, the claims current, and the work easy to verify.</p><p>— Tony</p>"
+    },
+    {
+      "id": "issue_2026-06-22",
+      "slug": "tighten-the-feedback-loop-june-22-2026",
+      "title": "Tighten the Feedback Loop — June 22, 2026",
+      "subtitle": "Early product feedback becomes useful when the path from interest to an actionable signal is short.",
+      "excerpt": "Early product feedback becomes useful when the path from interest to an actionable signal is short.",
+      "publishedAt": "2026-06-22T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=tighten-the-feedback-loop-june-22-2026#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": ["Anthony Easterling"],
+      "tags": [],
+      "cta": {"heading": "Keep building with me", "body": "Test the next product, watch the latest creative work, or follow the build in public.", "mindmarkLabel": "Join MindMark testing", "mindmarkUrl": "mindmark.html#mindmark-beta", "youtubeLabel": "Watch on YouTube", "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi", "socials": [{"label": "Instagram", "url": "https://www.instagram.com/nagikumochillfi/"}, {"label": "TikTok", "url": "https://www.tiktok.com/@nagikumochillfi"}, {"label": "Linktree", "url": "https://linktr.ee/NagiKumoChillFi"}]},
+      "html": "<p>Early testing only helps when the path from interest to a useful signal is short.</p><h2>Give feedback a front door</h2><p>The MindMark closed-testing flow gives prospective testers a clear place to raise their hand and provide the information needed for access. That is stronger than collecting vague interest and reconstructing the context later.</p><h2>Keep the loop small</h2><p>For a small product, the loop is simple: signups lead to invites, invites lead to feedback, and feedback leads to the next focused iteration. Every extra handoff weakens the signal.</p><h2>Practical takeaway</h2><p>Do not wait for a large audience to build a feedback system. Build the smallest loop that can turn one real response into a better next decision.</p><p>— Tony</p>"
+    },
+    {
+      "id": "issue_2026-06-15",
+      "slug": "make-the-draft-reviewable-june-15-2026",
+      "title": "Make the Draft Reviewable — June 15, 2026",
+      "subtitle": "Publishing automation is useful when it removes repetitive work without hiding the editorial decision.",
+      "excerpt": "Publishing automation is useful when it removes repetitive work without hiding the editorial decision.",
+      "publishedAt": "2026-06-15T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=make-the-draft-reviewable-june-15-2026#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": ["Anthony Easterling"],
+      "tags": [],
+      "cta": {"heading": "Keep building with me", "body": "Test the next product, watch the latest creative work, or follow the build in public.", "mindmarkLabel": "Join MindMark testing", "mindmarkUrl": "mindmark.html#mindmark-beta", "youtubeLabel": "Watch on YouTube", "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi", "socials": [{"label": "Instagram", "url": "https://www.instagram.com/nagikumochillfi/"}, {"label": "TikTok", "url": "https://www.tiktok.com/@nagikumochillfi"}, {"label": "Linktree", "url": "https://linktr.ee/NagiKumoChillFi"}]},
+      "html": "<p>Publishing gets harder when every issue starts from an empty page. The goal is not to automate a voice into existence; it is to make the first useful version easy to review.</p><h2>Separate drafting from publication</h2><p>The workflow gathers current source material, creates a structured draft, and stops there. The draft can be checked, edited, and approved before it becomes part of the public archive.</p><h2>Why that boundary matters</h2><p>Reviewable work is easier to improve than invisible work. It gives the writing something concrete to test against the actual projects, product pages, and releases.</p><h2>Practical takeaway</h2><p>Ask where a person should still be able to see and steer the result. A small approval gate protects quality without bringing back manual busywork.</p><p>— Tony</p>"
+    },
     {
       "id": "issue_2026-07-20",
       "slug": "systems-small-wins-content-pipeline-site-launch-and-mvp-sequencing",

@@ -101,7 +101,9 @@
       if (!response.ok) throw new Error(`Unable to load newsletter archive (${response.status})`);
 
       const payload = await response.json();
-      const issues = Array.isArray(payload?.issues) ? payload.issues : [];
+      const issues = Array.isArray(payload?.issues)
+        ? [...payload.issues].sort((left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt))
+        : [];
       if (!issues.length) {
         setStatus('The first issue is being prepared.');
         return;
