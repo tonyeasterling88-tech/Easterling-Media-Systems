@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-21T16:21:08.757Z",
+  "updatedAt": "2026-07-28T22:01:02.743Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "WbhsPqwAUwQ",
+      "title": "Focus Here - Rainy Desk Night LoFi",
+      "published": "2026-07-28T22:00:27Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=WbhsPqwAUwQ"
+    },
     {
       "videoId": "VrylQev5vNE",
       "title": "Reflect Here — Sunset Train LoFi",
@@ -41,13 +48,6 @@
       "published": "2026-06-23T16:42:44Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=neIiem4NH_c"
-    },
-    {
-      "videoId": "KV1g6j22qIc",
-      "title": "Kumo by the Window | Cozy Anime Lofi #lofi #shorts",
-      "published": "2026-05-26T07:00:04Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=KV1g6j22qIc"
     }
   ]
 }
