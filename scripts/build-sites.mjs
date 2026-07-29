@@ -19,6 +19,7 @@ const publicDirectories = ['assets', 'blogs', 'Newsletters', 'posts'];
 await rm(dist, { recursive: true, force: true });
 await mkdir(assetsOut, { recursive: true });
 await mkdir(serverOut, { recursive: true });
+await cp(path.join(root, '.openai'), path.join(dist, '.openai'), { recursive: true });
 
 for (const entry of await readdir(root, { withFileTypes: true })) {
   if (entry.isFile() && entry.name.endsWith('.html')) {
