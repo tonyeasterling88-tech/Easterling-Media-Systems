@@ -15,7 +15,7 @@ await loadEnvFiles();
 
 const channelId = process.env.YOUTUBE_CHANNEL_ID || 'UCNhXHBT6Efo1xEjIGKgPNKw';
 const channelUrl = process.env.YOUTUBE_CHANNEL_URL || 'https://www.youtube.com/@NagiKumoChillFi';
-const maxVideos = Number.parseInt(process.env.YOUTUBE_MAX_VIDEOS || '6', 10);
+const maxVideos = Number.parseInt(process.env.YOUTUBE_MAX_VIDEOS || '12', 10);
 const youtubeApiKey = process.env.YOUTUBE_API_KEY?.trim() || '';
 const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
 

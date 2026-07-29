@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   const channelId = process.env.YOUTUBE_CHANNEL_ID || 'UCNhXHBT6Efo1xEjIGKgPNKw';
   const channelUrl = process.env.YOUTUBE_CHANNEL_URL || 'https://www.youtube.com/@NagiKumoChillFi';
-  const maxVideos = 6;
+  const maxVideos = 12;
   const youtubeApiKey = process.env.YOUTUBE_API_KEY || '';
 
   let videos = [];

@@ -52,7 +52,7 @@ export default {
 
         if (!feedResponse.ok) throw new Error('YouTube RSS returned ' + feedResponse.status);
 
-        const videos = parseFeed(await feedResponse.text()).slice(0, 6);
+        const videos = parseFeed(await feedResponse.text()).slice(0, 12);
         if (!videos.length) throw new Error('YouTube RSS returned no videos');
 
         return Response.json(

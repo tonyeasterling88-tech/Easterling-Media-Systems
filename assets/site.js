@@ -101,7 +101,55 @@
     }
   }
 
-  async function loadYouTubeVideos() {
+  async function updateSeasonOneEpisodes() {
+    const episodes = Array.from(document.querySelectorAll('[data-youtube-episode]'));
+    if (!episodes.length) return;
+
+    try {
+      const videos = await loadYouTubeVideos();
+
+      episodes.forEach((episode) => {
+        const patterns = (episode.dataset.youtubeEpisode || '')
+          .split('|')
+          .map((pattern) => pattern.trim().toLowerCase())
+          .filter(Boolean);
+        const video = videos.find((candidate) => {
+          const title = String(candidate.title || '').toLowerCase();
+          return patterns.some((pattern) => title.includes(pattern));
+        });
+        if (!video?.videoId || !video?.link) return;
+
+        const status = episode.querySelector('[data-episode-status]');
+        const title = episode.querySelector('[data-episode-title]');
+        const thumbnail = episode.querySelector('[data-episode-thumbnail]');
+
+        if (status) {
+          status.textContent = status.textContent.replace(/\|.*$/, '| Published');
+        }
+        if (title) {
+          title.innerHTML = `<a href="${escapeHtml(video.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(video.title)}</a>`;
+        }
+        if (thumbnail) {
+          thumbnail.src = `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`;
+          thumbnail.alt = `${video.title} thumbnail`;
+        }
+        episode.classList.remove('unrevealed');
+      });
+    } catch (_error) {
+      // Keep the planned Season 1 artwork and statuses when YouTube is unavailable.
+    }
+  }
+
+  let youtubeVideosPromise;
+
+  function loadYouTubeVideos() {
+    if (!youtubeVideosPromise) {
+      youtubeVideosPromise = fetchYouTubeVideos();
+    }
+    return youtubeVideosPromise;
+  }
+
+  async function fetchYouTubeVideos() {
     try {
       // 1. Try to fetch from the live Vercel API endpoint
       const response = await fetch(`/api/youtube?v=${Date.now()}`, {
@@ -110,7 +158,7 @@
       if (response.ok) {
         const payload = await response.json();
         if (Array.isArray(payload?.videos)) {
-          return payload.videos.slice(0, 6);
+          return payload.videos.slice(0, 12);
         }
       }
     } catch (apiErr) {
@@ -130,7 +178,7 @@
     }
 
     const payload = await response.json();
-    return Array.isArray(payload?.videos) ? payload.videos.slice(0, 6) : [];
+    return Array.isArray(payload?.videos) ? payload.videos.slice(0, 12) : [];
   }
 
   function renderVideoCard(video) {
@@ -216,6 +264,7 @@
   wireBuildFilters();
   updateYouTubeVideos();
   updateLatestYouTubeThumbnail();
+  updateSeasonOneEpisodes();
   import('./visitor-count.js').catch(() => {});
 
   // Lightweight analytics placeholder
