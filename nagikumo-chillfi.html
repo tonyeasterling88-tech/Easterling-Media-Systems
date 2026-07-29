@@ -63,6 +63,7 @@
     }
 
     .nagi-hero {
+      --nagi-hero-image: url("assets/nagikumo/rainy-cafe.jpg");
       min-height: calc(88svh - 84px);
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
@@ -73,7 +74,7 @@
       overflow: hidden;
       background:
         linear-gradient(90deg, rgba(5, 11, 24, 0.92) 0%, rgba(5, 11, 24, 0.68) 40%, rgba(5, 11, 24, 0.18) 100%),
-        url("assets/nagikumo/rainy-cafe.jpg");
+        var(--nagi-hero-image);
       background-position: center;
       background-size: cover;
     }
@@ -602,7 +603,7 @@
 </header>
 
 <main>
-  <section class="nagi-hero">
+  <section class="nagi-hero" data-youtube-latest-thumbnail>
     <div class="nagi-hero-inner">
       <span class="nagi-kicker">NagiKumo ChillFi</span>
       <h1>Japanese LoFi stories for quiet focus.</h1>

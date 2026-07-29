@@ -77,6 +77,30 @@
     }
   }
 
+  async function updateLatestYouTubeThumbnail() {
+    const hero = document.querySelector('[data-youtube-latest-thumbnail]');
+    if (!hero) return;
+
+    try {
+      const [latestVideo] = await loadYouTubeVideos();
+      if (!latestVideo?.videoId) return;
+
+      const thumbnail = `https://i.ytimg.com/vi/${latestVideo.videoId}/maxresdefault.jpg`;
+      const fallbackThumbnail = `https://i.ytimg.com/vi/${latestVideo.videoId}/hqdefault.jpg`;
+      const image = new Image();
+
+      image.addEventListener('load', () => {
+        hero.style.setProperty('--nagi-hero-image', `url("${thumbnail}")`);
+      });
+      image.addEventListener('error', () => {
+        hero.style.setProperty('--nagi-hero-image', `url("${fallbackThumbnail}")`);
+      });
+      image.src = thumbnail;
+    } catch (_error) {
+      // Keep the local hero artwork when YouTube is temporarily unavailable.
+    }
+  }
+
   async function loadYouTubeVideos() {
     try {
       // 1. Try to fetch from the live Vercel API endpoint
@@ -191,6 +215,7 @@
   markActiveNavLink();
   wireBuildFilters();
   updateYouTubeVideos();
+  updateLatestYouTubeThumbnail();
   import('./visitor-count.js').catch(() => {});
 
   // Lightweight analytics placeholder
