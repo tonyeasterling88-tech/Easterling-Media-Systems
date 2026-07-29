@@ -18,6 +18,7 @@
   <meta name="twitter:image" content="https://www.easterlingmediasystems.com/assets/nagikumo/rainy-cafe.jpg" />
   <link rel="stylesheet" href="assets/styles.css" />
   <script defer src="assets/site.js"></script>
+  <script type="module" src="assets/episode-carousel.js"></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -276,22 +277,79 @@
       margin: 0;
     }
 
+    .episode-carousel {
+      position: relative;
+    }
+
     .episode-strip {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      display: flex;
       gap: 1rem;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-behavior: smooth;
+      scroll-snap-type: inline mandatory;
+      scrollbar-width: none;
+    }
+
+    .episode-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      z-index: 4;
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      padding: 0;
+      border: 1px solid rgba(103, 232, 249, 0.42);
+      border-radius: 50%;
+      background: rgba(2, 6, 23, 0.9);
+      color: #f8fafc;
+      font: inherit;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: background 180ms ease, border-color 180ms ease, opacity 180ms ease;
+    }
+
+    .carousel-control:hover:not(:disabled),
+    .carousel-control:focus-visible {
+      border-color: var(--nagi-cyan);
+      background: rgba(8, 47, 73, 0.96);
+      outline: 3px solid rgba(103, 232, 249, 0.24);
+      outline-offset: 3px;
+    }
+
+    .carousel-control:disabled {
+      opacity: 0.28;
+      cursor: default;
+    }
+
+    .carousel-control.prev {
+      left: -1.5rem;
+    }
+
+    .carousel-control.next {
+      right: -1.5rem;
     }
 
     .episode {
       position: relative;
+      flex: 0 0 calc((100% - 3rem) / 4);
       min-height: 330px;
       overflow: hidden;
       border-radius: 8px;
       border: 1px solid var(--nagi-line);
       background: #020617;
+      scroll-snap-align: start;
     }
 
-    .episode img {
+    .episode img,
+    .episode video,
+    .episode-placeholder {
       width: 100%;
       height: 100%;
       min-height: 330px;
@@ -301,29 +359,55 @@
       transition: transform 420ms ease, filter 420ms ease;
     }
 
-    .episode-tatami img {
+    .episode video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 220ms ease, transform 420ms ease;
+    }
+
+    .episode.is-previewing video {
+      opacity: 1;
+    }
+
+    .episode-tatami img,
+    .episode-tatami video {
       object-position: 85% center;
     }
 
-    .episode:hover img {
+    .episode:hover img,
+    .episode:hover video {
       transform: scale(1.035);
       filter: saturate(1.08);
     }
 
-    .episode.unrevealed img {
+    .episode.unrevealed img,
+    .episode.unrevealed video,
+    .episode.unrevealed .episode-placeholder {
       filter: blur(18px) saturate(0.75) brightness(0.68);
       transform: scale(1.08);
     }
 
-    .episode.unrevealed:hover img {
+    .episode.unrevealed:hover img,
+    .episode.unrevealed:hover video,
+    .episode.unrevealed:hover .episode-placeholder {
       filter: blur(18px) saturate(0.82) brightness(0.72);
       transform: scale(1.1);
+    }
+
+    .episode-placeholder {
+      background:
+        radial-gradient(circle at 30% 28%, rgba(103, 232, 249, 0.26), transparent 30%),
+        radial-gradient(circle at 70% 62%, rgba(244, 114, 182, 0.2), transparent 34%),
+        linear-gradient(145deg, #143257, #11162f 58%, #07111d);
     }
 
     .episode::after {
       content: "";
       position: absolute;
       inset: 0;
+      z-index: 1;
       background: linear-gradient(180deg, transparent 28%, rgba(2, 6, 23, 0.9) 100%);
       pointer-events: none;
     }
@@ -340,7 +424,7 @@
       position: absolute;
       top: 1rem;
       left: 1rem;
-      z-index: 1;
+      z-index: 2;
       padding: 0.44rem 0.62rem;
       border: 1px solid rgba(255, 247, 237, 0.2);
       border-radius: 999px;
@@ -357,7 +441,7 @@
       left: 1rem;
       right: 1rem;
       bottom: 1rem;
-      z-index: 1;
+      z-index: 2;
     }
 
     .episode-copy span {
@@ -525,8 +609,8 @@
     }
 
     @media (max-width: 980px) {
-      .episode-strip {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .episode {
+        flex-basis: calc((100% - 1rem) / 2);
       }
     }
 
@@ -554,10 +638,6 @@
         flex-direction: column;
       }
 
-      .episode-strip {
-        grid-template-columns: 1fr;
-      }
-
       .pulse-item {
         grid-template-columns: 1fr;
       }
@@ -571,7 +651,24 @@
       }
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 640px) {
+      .episode {
+        flex-basis: 100%;
+      }
+
+      .carousel-control {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .carousel-control.prev {
+        left: -0.5rem;
+      }
+
+      .carousel-control.next {
+        right: -0.5rem;
+      }
+
       .social-nav {
         gap: 0.5rem;
       }
@@ -675,47 +772,103 @@
           </div>
         </div>
       </div>
-      <div class="episode-strip">
-        <article class="episode" data-youtube-video-id="7d9_8z2UIx0" data-youtube-episode="stay here|rainy café|rainy cafe">
+      <div class="episode-carousel" data-episode-carousel role="region" aria-label="Season 1 episodes">
+        <button class="carousel-control prev" type="button" data-carousel-prev aria-label="Previous episode" aria-disabled="true">&#8592;</button>
+        <div class="episode-strip" data-carousel-track>
+        <article class="episode" data-episode-number="1" data-youtube-video-id="7d9_8z2UIx0" data-youtube-episode="stay here|rainy café|rainy cafe">
           <img data-episode-thumbnail src="assets/nagikumo/rainy-cafe.jpg" alt="Nagi and Kumo inside a rainy cafe at night" loading="lazy" />
+          <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/rainy-cafe.jpg" aria-hidden="true">
+            <source src="assets/nagikumo/previews/episode-01-rainy-cafe.mp4" type="video/mp4" />
+          </video>
           <div class="episode-copy">
             <span data-episode-status>Episode 01 | Published</span>
             <h3 data-episode-title>Rainy Cafe</h3>
             <p>Cozy rainy cafe night; quiet companionship and reflective calm.</p>
           </div>
         </article>
-        <article class="episode episode-tatami" data-youtube-video-id="k3DzZ_SiXeg" data-youtube-episode="tatami morning">
+        <article class="episode episode-tatami" data-episode-number="2" data-youtube-video-id="k3DzZ_SiXeg" data-youtube-episode="tatami morning">
           <img data-episode-thumbnail src="assets/nagikumo/tatami-morning.jpg" alt="Nagi writing beside Kumo in a warm tatami room" loading="lazy" />
+          <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/tatami-morning.jpg" aria-hidden="true">
+            <source src="assets/nagikumo/previews/episode-02-tatami-morning.mp4" type="video/mp4" />
+          </video>
           <div class="episode-copy">
-            <span data-episode-status>Episode 02 | Edit Phase</span>
+            <span data-episode-status>Episode 02 | Published</span>
             <h3 data-episode-title>Tatami Morning</h3>
             <p>Soft morning interior, rain texture, grounded calm.</p>
           </div>
         </article>
-        <article class="episode unrevealed" data-youtube-video-id="VrylQev5vNE" data-youtube-episode="sunset train">
+        <article class="episode" data-episode-number="3" data-youtube-video-id="VrylQev5vNE" data-youtube-episode="sunset train">
           <img data-episode-thumbnail src="assets/nagikumo/train-ride-sunset.jpg" alt="Nagi and Kumo riding a train at sunset" loading="lazy" />
+          <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/train-ride-sunset.jpg" aria-hidden="true">
+            <source src="assets/nagikumo/previews/episode-03-sunset-train.mp4" type="video/mp4" />
+          </video>
           <div class="episode-copy">
-            <span data-episode-status>Episode 03 | Music Phase</span>
+            <span data-episode-status>Episode 03 | Published</span>
             <h3 data-episode-title>Train Ride Sunset</h3>
             <p>Warm train-window lo-fi with quiet observation.</p>
           </div>
         </article>
-        <article class="episode unrevealed" data-youtube-video-id="WbhsPqwAUwQ" data-youtube-episode="rainy desk">
+        <article class="episode" data-episode-number="4" data-youtube-video-id="WbhsPqwAUwQ" data-youtube-episode="rainy desk">
           <img data-episode-thumbnail src="assets/nagikumo/rainy-desk-night.png" alt="Nagi studying at a rainy desk at night" loading="lazy" />
+          <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/rainy-desk-night.png" aria-hidden="true">
+            <source src="assets/nagikumo/previews/episode-04-rainy-desk.mp4" type="video/mp4" />
+          </video>
           <div class="episode-copy">
-            <span data-episode-status>Episode 04 | Music Phase</span>
+            <span data-episode-status>Episode 04 | Published</span>
             <h3 data-episode-title>Rainy Desk Night</h3>
             <p>Focused late-night desk calm with rain on the window.</p>
           </div>
         </article>
-        <article class="episode unrevealed" data-youtube-episode="cherry blossom">
+        <article class="episode unrevealed" data-episode-number="5" data-youtube-episode="cherry blossom">
           <img data-episode-thumbnail src="assets/nagikumo/cherry-blossom-picnic.jpg" alt="Nagi and Kumo at a cherry blossom picnic" loading="lazy" />
           <div class="episode-copy">
-            <span data-episode-status>Episode 05 | Music Phase</span>
+            <span data-episode-status>Episode 05 | Scheduled</span>
             <h3 data-episode-title>Cherry Blossom Picnic</h3>
             <p>Spring picnic warmth, soft petals, and gentle focus.</p>
           </div>
         </article>
+        <article class="episode unrevealed" data-episode-number="6">
+          <div class="episode-placeholder" aria-hidden="true"></div>
+          <div class="episode-copy">
+            <span data-episode-status>Episode 06 | Edit Phase</span>
+            <h3 data-episode-title>Library Study Time</h3>
+            <p>A quiet library chapter shaped around focus and patient motion.</p>
+          </div>
+        </article>
+        <article class="episode unrevealed" data-episode-number="7">
+          <div class="episode-placeholder" aria-hidden="true"></div>
+          <div class="episode-copy">
+            <span data-episode-status>Episode 07 | Edit Phase</span>
+            <h3 data-episode-title>City Rooftop Sunset</h3>
+            <p>Nagi and Kumo pause above the city as evening settles in.</p>
+          </div>
+        </article>
+        <article class="episode unrevealed" data-episode-number="8">
+          <div class="episode-placeholder" aria-hidden="true"></div>
+          <div class="episode-copy">
+            <span data-episode-status>Episode 08 | Edit Phase</span>
+            <h3 data-episode-title>Temple Porch Rain</h3>
+            <p>Temple rain, wooden shelter, and a slower reflective rhythm.</p>
+          </div>
+        </article>
+        <article class="episode unrevealed" data-episode-number="9">
+          <div class="episode-placeholder" aria-hidden="true"></div>
+          <div class="episode-copy">
+            <span data-episode-status>Episode 09 | Edit Phase</span>
+            <h3 data-episode-title>Snowy Cabin Morning</h3>
+            <p>Soft snow and warm cabin light frame a calm winter morning.</p>
+          </div>
+        </article>
+        <article class="episode unrevealed" data-episode-number="10">
+          <div class="episode-placeholder" aria-hidden="true"></div>
+          <div class="episode-copy">
+            <span data-episode-status>Episode 10 | Edit Phase</span>
+            <h3 data-episode-title>Airport Midnight</h3>
+            <p>The season closes in a quiet terminal between journeys.</p>
+          </div>
+        </article>
+        </div>
+        <button class="carousel-control next" type="button" data-carousel-next aria-label="Next episode" aria-disabled="false">&#8594;</button>
       </div>
     </div>
   </section>
