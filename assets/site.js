@@ -109,11 +109,12 @@
       const videos = await loadYouTubeVideos();
 
       episodes.forEach((episode) => {
+        const videoId = episode.dataset.youtubeVideoId || '';
         const patterns = (episode.dataset.youtubeEpisode || '')
           .split('|')
           .map((pattern) => pattern.trim().toLowerCase())
           .filter(Boolean);
-        const video = videos.find((candidate) => {
+        const video = videos.find((candidate) => candidate.videoId === videoId) || videos.find((candidate) => {
           const title = String(candidate.title || '').toLowerCase();
           return patterns.some((pattern) => title.includes(pattern));
         });
