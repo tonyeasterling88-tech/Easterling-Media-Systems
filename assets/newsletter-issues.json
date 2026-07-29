@@ -1,65 +1,46 @@
 {
-  "updatedAt": "2026-07-20T18:55:00.000Z",
+  "updatedAt": "2026-07-29T04:00:43.521Z",
   "publication": {
     "name": "Easterling Media & Systems Newsletter",
     "websiteUrl": "https://www.easterlingmediasystems.com/newsletters.html"
   },
   "issues": [
     {
-      "id": "issue_2026-07-13",
-      "slug": "owned-archives-clear-handoffs-july-13-2026",
-      "title": "Owned Archives, Clear Handoffs — July 13, 2026",
-      "subtitle": "A practical note on bringing the newsletter archive home, keeping the review step visible, and making each issue useful after it is sent.",
-      "excerpt": "A practical note on bringing the newsletter archive home, keeping the review step visible, and making each issue useful after it is sent.",
-      "publishedAt": "2026-07-13T12:00:00.000Z",
-      "webUrl": "newsletters.html?issue=owned-archives-clear-handoffs-july-13-2026#newsletter-reader",
+      "id": "issue_2026-07-28",
+      "slug": "owning-the-publishing-path",
+      "title": "Owning the publishing path",
+      "subtitle": "This issue covers work to turn content into a predictable pipeline (Beehiiv + YouTube sync, reviewable drafts), make the website the useful center of projects, and tidy deployments and product homes (portable deploys, Pixel Chomp, MindMark intake).",
+      "excerpt": "This issue covers work to turn content into a predictable pipeline (Beehiiv + YouTube sync, reviewable drafts), make the website the useful center of projects, and tidy deployments and product homes (portable deploys, Pixel Chomp, MindMark intake).",
+      "publishedAt": "2026-07-27T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=owning-the-publishing-path#newsletter-reader",
       "thumbnailUrl": "",
-      "authors": ["Anthony Easterling"],
+      "authors": [
+        "Anthony Easterling"
+      ],
       "tags": [],
-      "cta": {"heading": "Keep building with me", "body": "Test the next product, watch the latest creative work, or follow the build in public.", "mindmarkLabel": "Join MindMark testing", "mindmarkUrl": "mindmark.html#mindmark-beta", "youtubeLabel": "Watch on YouTube", "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi", "socials": [{"label": "Instagram", "url": "https://www.instagram.com/nagikumochillfi/"}, {"label": "TikTok", "url": "https://www.tiktok.com/@nagikumochillfi"}, {"label": "Linktree", "url": "https://linktr.ee/NagiKumoChillFi"}]},
-      "html": "<p>The newsletter should strengthen the home base, not split the record of the work across platforms that are hard to maintain.</p><h2>Bring the archive home</h2><p>The current direction is an owned archive that sits alongside the builds and blog. Issues can be represented as structured data, rendered by the site, and connected directly to the projects they reference.</p><h2>Keep review visible</h2><p>A useful workflow separates a draft from publication. Automation can gather and format the first version, but a clear review step keeps the editorial decision visible and prevents accidental duplicates.</p><h2>Practical takeaway</h2><p>Ownership does not mean rejecting every external tool. It means keeping the important record, review step, and public destination understandable when those tools change.</p><p>— Tony</p>"
-    },
-    {
-      "id": "issue_2026-07-06",
-      "slug": "make-the-home-base-useful-july-6-2026",
-      "title": "Make the Home Base Useful — July 6, 2026",
-      "subtitle": "Projects, content, and next steps work better when the website is a useful center rather than a separate brochure.",
-      "excerpt": "Projects, content, and next steps work better when the website is a useful center rather than a separate brochure.",
-      "publishedAt": "2026-07-06T12:00:00.000Z",
-      "webUrl": "newsletters.html?issue=make-the-home-base-useful-july-6-2026#newsletter-reader",
-      "thumbnailUrl": "",
-      "authors": ["Anthony Easterling"],
-      "tags": [],
-      "cta": {"heading": "Keep building with me", "body": "Test the next product, watch the latest creative work, or follow the build in public.", "mindmarkLabel": "Join MindMark testing", "mindmarkUrl": "mindmark.html#mindmark-beta", "youtubeLabel": "Watch on YouTube", "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi", "socials": [{"label": "Instagram", "url": "https://www.instagram.com/nagikumochillfi/"}, {"label": "TikTok", "url": "https://www.tiktok.com/@nagikumochillfi"}, {"label": "Linktree", "url": "https://linktr.ee/NagiKumoChillFi"}]},
-      "html": "<p>The website is becoming less of a place to maintain separately and more of the home base for the actual work.</p><h2>Give each page a job</h2><p>Build pages, newsletter issues, video updates, and tester entry points should make the next action clearer. The goal is not more pages; it is a shorter path from a project to its evidence and a useful next step.</p><h2>Keep the record current</h2><p>Current project status, working contact paths, and a readable archive are operational details that make the whole system more useful. A visitor should not have to hunt through disconnected platforms to understand what is live.</p><h2>Practical takeaway</h2><p>A home base earns its place when it reduces friction for the next conversation. Keep the paths short, the claims current, and the work easy to verify.</p><p>— Tony</p>"
-    },
-    {
-      "id": "issue_2026-06-22",
-      "slug": "tighten-the-feedback-loop-june-22-2026",
-      "title": "Tighten the Feedback Loop — June 22, 2026",
-      "subtitle": "Early product feedback becomes useful when the path from interest to an actionable signal is short.",
-      "excerpt": "Early product feedback becomes useful when the path from interest to an actionable signal is short.",
-      "publishedAt": "2026-06-22T12:00:00.000Z",
-      "webUrl": "newsletters.html?issue=tighten-the-feedback-loop-june-22-2026#newsletter-reader",
-      "thumbnailUrl": "",
-      "authors": ["Anthony Easterling"],
-      "tags": [],
-      "cta": {"heading": "Keep building with me", "body": "Test the next product, watch the latest creative work, or follow the build in public.", "mindmarkLabel": "Join MindMark testing", "mindmarkUrl": "mindmark.html#mindmark-beta", "youtubeLabel": "Watch on YouTube", "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi", "socials": [{"label": "Instagram", "url": "https://www.instagram.com/nagikumochillfi/"}, {"label": "TikTok", "url": "https://www.tiktok.com/@nagikumochillfi"}, {"label": "Linktree", "url": "https://linktr.ee/NagiKumoChillFi"}]},
-      "html": "<p>Early testing only helps when the path from interest to a useful signal is short.</p><h2>Give feedback a front door</h2><p>The MindMark closed-testing flow gives prospective testers a clear place to raise their hand and provide the information needed for access. That is stronger than collecting vague interest and reconstructing the context later.</p><h2>Keep the loop small</h2><p>For a small product, the loop is simple: signups lead to invites, invites lead to feedback, and feedback leads to the next focused iteration. Every extra handoff weakens the signal.</p><h2>Practical takeaway</h2><p>Do not wait for a large audience to build a feedback system. Build the smallest loop that can turn one real response into a better next decision.</p><p>— Tony</p>"
-    },
-    {
-      "id": "issue_2026-06-15",
-      "slug": "make-the-draft-reviewable-june-15-2026",
-      "title": "Make the Draft Reviewable — June 15, 2026",
-      "subtitle": "Publishing automation is useful when it removes repetitive work without hiding the editorial decision.",
-      "excerpt": "Publishing automation is useful when it removes repetitive work without hiding the editorial decision.",
-      "publishedAt": "2026-06-15T12:00:00.000Z",
-      "webUrl": "newsletters.html?issue=make-the-draft-reviewable-june-15-2026#newsletter-reader",
-      "thumbnailUrl": "",
-      "authors": ["Anthony Easterling"],
-      "tags": [],
-      "cta": {"heading": "Keep building with me", "body": "Test the next product, watch the latest creative work, or follow the build in public.", "mindmarkLabel": "Join MindMark testing", "mindmarkUrl": "mindmark.html#mindmark-beta", "youtubeLabel": "Watch on YouTube", "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi", "socials": [{"label": "Instagram", "url": "https://www.instagram.com/nagikumochillfi/"}, {"label": "TikTok", "url": "https://www.tiktok.com/@nagikumochillfi"}, {"label": "Linktree", "url": "https://linktr.ee/NagiKumoChillFi"}]},
-      "html": "<p>Publishing gets harder when every issue starts from an empty page. The goal is not to automate a voice into existence; it is to make the first useful version easy to review.</p><h2>Separate drafting from publication</h2><p>The workflow gathers current source material, creates a structured draft, and stops there. The draft can be checked, edited, and approved before it becomes part of the public archive.</p><h2>Why that boundary matters</h2><p>Reviewable work is easier to improve than invisible work. It gives the writing something concrete to test against the actual projects, product pages, and releases.</p><h2>Practical takeaway</h2><p>Ask where a person should still be able to see and steer the result. A small approval gate protects quality without bringing back manual busywork.</p><p>— Tony</p>"
+      "cta": {
+        "heading": "Keep building with me",
+        "body": "Test the next product, watch the latest creative work, or follow the build in public.",
+        "mindmarkLabel": "Join MindMark testing",
+        "mindmarkUrl": "mindmark.html#mindmark-beta",
+        "youtubeLabel": "Watch on YouTube",
+        "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi",
+        "socials": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/nagikumochillfi/"
+          },
+          {
+            "label": "TikTok",
+            "url": "https://www.tiktok.com/@nagikumochillfi"
+          },
+          {
+            "label": "Linktree",
+            "url": "https://linktr.ee/NagiKumoChillFi"
+          }
+        ]
+      },
+      "html": "<p>Display date: July 28, 2026. Short systems update for founders and operators: focus on making publication predictable and reviewable, making the website the operational center of projects, and removing friction around deployments and early testing.</p>\n<h3>Build a publishing pipeline, not a one-off publish</h3>\n<p>The work this month focused on treating publishing as a pipeline: a Beehiiv + YouTube sync to reduce manual steps, and a reviewable newsletter draft generator so pieces can be iterated on before they go out. The point is simple — make content flow from idea to publishable asset with predictable steps and points for review. For teams that publish regularly, a pipeline reduces last-minute friction and keeps quality consistent.</p>\n<h3>Make the site the useful home base</h3>\n<p>Owning the archive and the review process matters. The site was launched on a personal domain and restructured so it’s the central hub for projects, next steps, and the newsletter archive. That shift keeps the most important links under control and gives readers a single, useful place to discover work and opt into follow-ups — and it makes moving or reusing deployments easier because the site is the canonical source.</p>\n<h3>Tidy product moves: portable deploys, Pixel Chomp, and MindMark intake</h3>\n<p>A few practical cleanups: make deployments portable so pieces of the system can move without breaking links; give small projects a clear, playable home (Pixel Chomp); and stand up a closed testing intake flow for MindMark so early testers can be onboarded in a controlled way. These are low-friction, high-return moves — small structural changes that reduce maintenance and improve feedback loops.</p>\n<p>What to take away: treat publication as a pipeline you can inspect and iterate on, make the website the place that does the heavy lifting for discovery and next steps, and clean up small operational frictions (deploys, product homes, intake flows). If you’re building something similar, start by mapping manual steps and removing one friction point this week.</p>"
     },
     {
       "id": "issue_2026-07-20",
@@ -99,6 +80,80 @@
       "html": "<p>Display date: July 20, 2026. Short updates and practical takeaways from recent systems work and product progress — aimed at founders and builders who prioritize reliable publishing and fast, evidence-driven launches.</p>\n<h3>Turn content into a dependable pipeline</h3>\n<p>Recent systems work focused on making publication predictable instead of manual. The setup now includes a real publishing pipeline (Beehiiv with a YouTube sync), a reviewable newsletter-draft generator, and a real-time YouTube feed with fallbacks. Parallel changes cleaned up the newsletter archive and added small reliability upgrades so the site and the publishing workflow stay in sync without routine busywork. The emphasis is practical: automate the handoffs that trip you up most, and add fallbacks where live sources can be flaky.</p>\n<h3>A small win: my site live and MindMark testing opening</h3>\n<p>Launching the website on a personal domain was intentionally minimal but meaningful: it provides a stable place to collect attention and to direct early users. That same anchor lets the team open the door to early testers for the MindMark app, supported by a closed-testing intake flow. Small, visible progress like this reduces friction for feedback and makes future iterations easier to route and measure.</p>\n<h3>MVP sequencing: phase for speed and proof</h3>\n<p>The guiding idea: sequence your launch so you get evidence quickly. Keep scope tight on the first public iteration, prioritize a fast feedback loop from real users, and treat each release as an experiment that yields decision-ready data. Practically, that means shipping the least you need to learn whether the core value resonates, then iterating the next smallest thing that converts learning into improvement.</p>\n<p>Practical thread: automate the parts of publishing that waste time, make small public moves that invite feedback, and sequence your MVP to prioritize speed and useful evidence. If you’re building, those three habits keep momentum without ballooning complexity.</p>"
     },
     {
+      "id": "issue_2026-07-13",
+      "slug": "owned-archives-clear-handoffs-july-13-2026",
+      "title": "Owned Archives, Clear Handoffs — July 13, 2026",
+      "subtitle": "A practical note on bringing the newsletter archive home, keeping the review step visible, and making each issue useful after it is sent.",
+      "excerpt": "A practical note on bringing the newsletter archive home, keeping the review step visible, and making each issue useful after it is sent.",
+      "publishedAt": "2026-07-13T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=owned-archives-clear-handoffs-july-13-2026#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": [
+        "Anthony Easterling"
+      ],
+      "tags": [],
+      "cta": {
+        "heading": "Keep building with me",
+        "body": "Test the next product, watch the latest creative work, or follow the build in public.",
+        "mindmarkLabel": "Join MindMark testing",
+        "mindmarkUrl": "mindmark.html#mindmark-beta",
+        "youtubeLabel": "Watch on YouTube",
+        "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi",
+        "socials": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/nagikumochillfi/"
+          },
+          {
+            "label": "TikTok",
+            "url": "https://www.tiktok.com/@nagikumochillfi"
+          },
+          {
+            "label": "Linktree",
+            "url": "https://linktr.ee/NagiKumoChillFi"
+          }
+        ]
+      },
+      "html": "<p>The newsletter should strengthen the home base, not split the record of the work across platforms that are hard to maintain.</p><h2>Bring the archive home</h2><p>The current direction is an owned archive that sits alongside the builds and blog. Issues can be represented as structured data, rendered by the site, and connected directly to the projects they reference.</p><h2>Keep review visible</h2><p>A useful workflow separates a draft from publication. Automation can gather and format the first version, but a clear review step keeps the editorial decision visible and prevents accidental duplicates.</p><h2>Practical takeaway</h2><p>Ownership does not mean rejecting every external tool. It means keeping the important record, review step, and public destination understandable when those tools change.</p><p>— Tony</p>"
+    },
+    {
+      "id": "issue_2026-07-06",
+      "slug": "make-the-home-base-useful-july-6-2026",
+      "title": "Make the Home Base Useful — July 6, 2026",
+      "subtitle": "Projects, content, and next steps work better when the website is a useful center rather than a separate brochure.",
+      "excerpt": "Projects, content, and next steps work better when the website is a useful center rather than a separate brochure.",
+      "publishedAt": "2026-07-06T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=make-the-home-base-useful-july-6-2026#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": [
+        "Anthony Easterling"
+      ],
+      "tags": [],
+      "cta": {
+        "heading": "Keep building with me",
+        "body": "Test the next product, watch the latest creative work, or follow the build in public.",
+        "mindmarkLabel": "Join MindMark testing",
+        "mindmarkUrl": "mindmark.html#mindmark-beta",
+        "youtubeLabel": "Watch on YouTube",
+        "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi",
+        "socials": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/nagikumochillfi/"
+          },
+          {
+            "label": "TikTok",
+            "url": "https://www.tiktok.com/@nagikumochillfi"
+          },
+          {
+            "label": "Linktree",
+            "url": "https://linktr.ee/NagiKumoChillFi"
+          }
+        ]
+      },
+      "html": "<p>The website is becoming less of a place to maintain separately and more of the home base for the actual work.</p><h2>Give each page a job</h2><p>Build pages, newsletter issues, video updates, and tester entry points should make the next action clearer. The goal is not more pages; it is a shorter path from a project to its evidence and a useful next step.</p><h2>Keep the record current</h2><p>Current project status, working contact paths, and a readable archive are operational details that make the whole system more useful. A visitor should not have to hunt through disconnected platforms to understand what is live.</p><h2>Practical takeaway</h2><p>A home base earns its place when it reduces friction for the next conversation. Keep the paths short, the claims current, and the work easy to verify.</p><p>— Tony</p>"
+    },
+    {
       "id": "issue_2026-06-29",
       "slug": "systems-small-wins-june-29-2026",
       "title": "Systems & Small Wins — June 29, 2026",
@@ -134,6 +189,80 @@
         ]
       },
       "html": "<p>Systems work is boring until it isn't. Over the past three months the focus has been simple: turn content into a reliable pipeline, tighten the feedback loop for MindMark, and prioritize small, demonstrable wins that unlock testing and iteration. Below are the concrete changes and the operational lessons worth stealing.</p>\n<h3>Make publishing a pipeline, not a ritual</h3>\n<p>April started the move toward a real publishing pipeline across the newsletter, YouTube, and the website. In June that pipeline became more resilient: a real-time YouTube feed with fallbacks, a cleaner newsletter archive, and small reliability upgrades that reduce manual sync work. The result is less context-switching and fewer one-off fixes - content moves from idea to audience through predictable steps.</p>\n<h3>Tighten the intake and testing loop for MindMark</h3>\n<p>MindMark's progress has been about making feedback fast and useful. The work included a closed testing intake flow and tools for producing reviewable drafts so early testers see real output and useful responses can shape the next build. May's updates focused on tightening that feedback loop so submissions and responses do not get lost in manual processes.</p>\n<h3>Small wins: live site, honest Builds archive, and MVP sequencing</h3>\n<p>Launching the site on a personal domain was intentionally small but important: it opened the door to recruit early testers for MindMark and anchored the rest of the work. The Builds page was refreshed to honestly reflect progress rather than aspiration. Combine that with the MVP sequencing approach - phase launches for speed and proof - and you get a repeatable pattern: ship a focused surface, gather signals, iterate. Small, visible wins keep momentum and make prioritization clearer.</p>\n<p>What to do next: tighten the parts of your pipeline that still need manual steps, select one small public surface to ship this week, and set up a simple intake for structured feedback. If you want to test a flow or talk through sequencing for your product, use the <a href=\"https://www.easterlingmediasystems.com/contact.html\" rel=\"noopener noreferrer\">contact page</a>.</p>\n<p>- Easterling Media &amp; Systems</p>"
+    },
+    {
+      "id": "issue_2026-06-22",
+      "slug": "tighten-the-feedback-loop-june-22-2026",
+      "title": "Tighten the Feedback Loop — June 22, 2026",
+      "subtitle": "Early product feedback becomes useful when the path from interest to an actionable signal is short.",
+      "excerpt": "Early product feedback becomes useful when the path from interest to an actionable signal is short.",
+      "publishedAt": "2026-06-22T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=tighten-the-feedback-loop-june-22-2026#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": [
+        "Anthony Easterling"
+      ],
+      "tags": [],
+      "cta": {
+        "heading": "Keep building with me",
+        "body": "Test the next product, watch the latest creative work, or follow the build in public.",
+        "mindmarkLabel": "Join MindMark testing",
+        "mindmarkUrl": "mindmark.html#mindmark-beta",
+        "youtubeLabel": "Watch on YouTube",
+        "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi",
+        "socials": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/nagikumochillfi/"
+          },
+          {
+            "label": "TikTok",
+            "url": "https://www.tiktok.com/@nagikumochillfi"
+          },
+          {
+            "label": "Linktree",
+            "url": "https://linktr.ee/NagiKumoChillFi"
+          }
+        ]
+      },
+      "html": "<p>Early testing only helps when the path from interest to a useful signal is short.</p><h2>Give feedback a front door</h2><p>The MindMark closed-testing flow gives prospective testers a clear place to raise their hand and provide the information needed for access. That is stronger than collecting vague interest and reconstructing the context later.</p><h2>Keep the loop small</h2><p>For a small product, the loop is simple: signups lead to invites, invites lead to feedback, and feedback leads to the next focused iteration. Every extra handoff weakens the signal.</p><h2>Practical takeaway</h2><p>Do not wait for a large audience to build a feedback system. Build the smallest loop that can turn one real response into a better next decision.</p><p>— Tony</p>"
+    },
+    {
+      "id": "issue_2026-06-15",
+      "slug": "make-the-draft-reviewable-june-15-2026",
+      "title": "Make the Draft Reviewable — June 15, 2026",
+      "subtitle": "Publishing automation is useful when it removes repetitive work without hiding the editorial decision.",
+      "excerpt": "Publishing automation is useful when it removes repetitive work without hiding the editorial decision.",
+      "publishedAt": "2026-06-15T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=make-the-draft-reviewable-june-15-2026#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": [
+        "Anthony Easterling"
+      ],
+      "tags": [],
+      "cta": {
+        "heading": "Keep building with me",
+        "body": "Test the next product, watch the latest creative work, or follow the build in public.",
+        "mindmarkLabel": "Join MindMark testing",
+        "mindmarkUrl": "mindmark.html#mindmark-beta",
+        "youtubeLabel": "Watch on YouTube",
+        "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi",
+        "socials": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/nagikumochillfi/"
+          },
+          {
+            "label": "TikTok",
+            "url": "https://www.tiktok.com/@nagikumochillfi"
+          },
+          {
+            "label": "Linktree",
+            "url": "https://linktr.ee/NagiKumoChillFi"
+          }
+        ]
+      },
+      "html": "<p>Publishing gets harder when every issue starts from an empty page. The goal is not to automate a voice into existence; it is to make the first useful version easy to review.</p><h2>Separate drafting from publication</h2><p>The workflow gathers current source material, creates a structured draft, and stops there. The draft can be checked, edited, and approved before it becomes part of the public archive.</p><h2>Why that boundary matters</h2><p>Reviewable work is easier to improve than invisible work. It gives the writing something concrete to test against the actual projects, product pages, and releases.</p><h2>Practical takeaway</h2><p>Ask where a person should still be able to see and steer the result. A small approval gate protects quality without bringing back manual busywork.</p><p>— Tony</p>"
     },
     {
       "id": "post_a5f572df-994d-4da2-bfcc-690c6b74cd3f",
