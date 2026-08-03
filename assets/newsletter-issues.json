@@ -1,10 +1,47 @@
 {
-  "updatedAt": "2026-07-29T04:00:43.521Z",
+  "updatedAt": "2026-08-03T21:36:32.831Z",
   "publication": {
     "name": "Easterling Media & Systems Newsletter",
     "websiteUrl": "https://www.easterlingmediasystems.com/newsletters.html"
   },
   "issues": [
+    {
+      "id": "issue_2026-08-03",
+      "slug": "systems-update-turning-content-into-a-pipeline",
+      "title": "Systems Update — Turning Content into a Pipeline",
+      "subtitle": "This issue covers three practical moves: a real publishing pipeline that keeps Beehiiv and YouTube in sync, consolidating the newsletter and archive on the site so publication is reviewable, and the intake flow for closed testing of MindMark now that the site is live.",
+      "excerpt": "This issue covers three practical moves: a real publishing pipeline that keeps Beehiiv and YouTube in sync, consolidating the newsletter and archive on the site so publication is reviewable, and the intake flow for closed testing of MindMark now that the site is live.",
+      "publishedAt": "2026-08-03T12:00:00.000Z",
+      "webUrl": "newsletters.html?issue=systems-update-turning-content-into-a-pipeline#newsletter-reader",
+      "thumbnailUrl": "",
+      "authors": [
+        "Anthony Easterling"
+      ],
+      "tags": [],
+      "cta": {
+        "heading": "Keep building with me",
+        "body": "Test the next product, watch the latest creative work, or follow the build in public.",
+        "mindmarkLabel": "Join MindMark testing",
+        "mindmarkUrl": "mindmark.html#mindmark-beta",
+        "youtubeLabel": "Watch on YouTube",
+        "youtubeUrl": "https://www.youtube.com/@NagiKumoChillFi",
+        "socials": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/nagikumochillfi/"
+          },
+          {
+            "label": "TikTok",
+            "url": "https://www.tiktok.com/@nagikumochillfi"
+          },
+          {
+            "label": "Linktree",
+            "url": "https://linktr.ee/NagiKumoChillFi"
+          }
+        ]
+      },
+      "html": "<p>A short systems update for founders and operators: recent work focused on making content and product flows reliable and reviewable. The emphasis is on small, repeatable wins—own the archive, keep channels in sync, and create a clear intake path for early testers.</p>\n<h3>Build a repeatable publishing pipeline</h3>\n<p>The priority was a real publishing pipeline: newsletter content (Beehiiv) and YouTube releases now move in step instead of being separate one-offs. That includes synchronizing release metadata and thumbnails and keeping the site’s Season 1 record aligned with YouTube. The intent is simple—reduce manual reconciliation, keep public records consistent, and make each publish action reproducible.</p>\n<h3>Make the home base actually useful and reviewable</h3>\n<p>Owning the newsletter archive and the site matters for discovery and control. Recent work brought the newsletter home so the archive is under direct control and the publication process can be reviewed before sending. Making the website the central place for projects, content, and next steps also enabled a straightforward way to invite people into early testing.</p>\n<h3>Create a closed testing intake for MindMark</h3>\n<p>With the site live on a personal domain, the next practical step was a closed testing intake flow for MindMark. That intake gives a controlled path for early testers to join and provides a place to collect feedback while the app is still in closed testing. Alongside a reviewable newsletter draft generator, these pieces make it easier to move testers from discovery to useful feedback.</p>\n<p>If you’re testing similar workflows, focus on the smallest repeatable loop that closes the gap between content, product, and feedback. Reply with one friction point you’re trying to remove and I’ll share what worked here.</p>"
+    },
     {
       "id": "issue_2026-07-28",
       "slug": "owning-the-publishing-path",
