@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-03T02:29:07.572Z",
+  "updatedAt": "2026-08-10T07:24:49.318Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "LpnvCKMVFVQ",
+      "title": "Rainy Day Dreams ☔ Cozy Lofi Radio for Sleep, Study &amp; Coding | NagiKumo ChillFi",
+      "published": "2026-08-10T04:32:06Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=LpnvCKMVFVQ"
+    },
     {
       "videoId": "VVWWRfpta3Y",
       "title": "Rest Here - Cherry Blossom Picnic LoFi ",
