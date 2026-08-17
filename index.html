@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Easterling Media & Systems | Build. Write. Compound.</title>
-  <meta name="description" content="Easterling Media & Systems is the home for shipped products, practical writing, monthly builder systems, and NagiKumo ChillFi content experiments." />
+  <title>Easterling Media &amp; Systems | Build. Write. Compound.</title>
+  <meta name="description" content="Easterling Media &amp; Systems is the home for shipped products, practical writing, monthly builder systems, and NagiKumo ChillFi content experiments." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.easterlingmediasystems.com/" />
-  <meta property="og:title" content="Easterling Media & Systems" />
+  <meta property="og:title" content="Easterling Media &amp; Systems" />
   <meta property="og:description" content="Builds, writing, newsletter systems, and NagiKumo ChillFi content experiments that turn execution into leverage." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.easterlingmediasystems.com/" />
   <meta property="og:image" content="https://www.easterlingmediasystems.com/assets/easterlingms_header.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Easterling Media & Systems" />
+  <meta name="twitter:title" content="Easterling Media &amp; Systems" />
   <meta name="twitter:description" content="Builds, writing, newsletter systems, and NagiKumo ChillFi content experiments in one clean hub." />
   <meta name="twitter:image" content="https://www.easterlingmediasystems.com/assets/easterlingms_header.png" />
   <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/home.css" />
   <script defer src="assets/site.js"></script>
+  <script defer src="assets/home.js"></script>
   <script type="module" src="assets/closed-testing.js"></script>
   <script defer src="assets/newsletters.js?v=20260720"></script>
   <script type="application/ld+json">
@@ -39,816 +41,160 @@
       ]
     }
   </script>
-  <style>
-    body {
-      position: relative;
-      background:
-        linear-gradient(180deg, rgba(2, 6, 23, 0.12), #050b18 38rem),
-        #050b18;
-    }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    body::before {
-      z-index: -2;
-      background-image:
-        linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
-      background-size: 84px 84px;
-      mask-image: linear-gradient(180deg, black, transparent 62%);
-    }
-
-    body::after {
-      z-index: -1;
-      background:
-        radial-gradient(circle at 18% 22%, rgba(45, 212, 191, 0.12), transparent 24rem),
-        radial-gradient(circle at 82% 8%, rgba(96, 165, 250, 0.16), transparent 26rem);
-    }
-
-    .home-section {
-      width: min(100% - 2rem, 1120px);
-      margin: 0 auto;
-    }
-
-    .social-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      align-items: center;
-      margin-top: 1.6rem;
-    }
-
-    .social-link {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 48px;
-      height: 48px;
-      border: 1px solid rgba(226, 232, 240, 0.18);
-      border-radius: 999px;
-      background: rgba(2, 6, 23, 0.38);
-      color: #e0f2fe;
-      text-decoration: none;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-    }
-
-    .social-link:hover {
-      transform: translateY(-1px);
-      border-color: rgba(103, 232, 249, 0.5);
-      background: rgba(8, 18, 34, 0.72);
-      text-decoration: none;
-    }
-
-    .social-link svg {
-      width: 22px;
-      height: 22px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .social-link.youtube svg,
-    .social-link.nagikumo svg,
-    .social-link.tiktok svg {
-      fill: currentColor;
-      stroke: none;
-    }
-
-    .social-link .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    .hero {
-      min-height: calc(84svh - 84px);
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
-      padding: clamp(3rem, 8vw, 6rem) 1rem 3rem;
-      display: grid;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(90deg, rgba(5, 11, 24, 0.94) 0%, rgba(5, 11, 24, 0.72) 46%, rgba(5, 11, 24, 0.18) 100%),
-        url("assets/easterlingms_header.png");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 74%, #050b18 100%);
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 1120px);
-      margin: 0 auto;
-      display: grid;
-      gap: clamp(2rem, 5vw, 4rem);
-      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.42fr);
-      align-items: end;
-    }
-
-    .hero-copy {
-      max-width: 690px;
-      animation: hero-rise 700ms ease both;
-    }
-
-    .hero-copy h1 {
-      max-width: 11ch;
-      margin: 0.75rem 0 1rem;
-      font-size: clamp(2.85rem, 7.4vw, 5.9rem);
-      letter-spacing: 0;
-      line-height: 0.94;
-    }
-
-    .hero-copy p {
-      max-width: 39rem;
-      margin: 0;
-      color: #dbeafe;
-      font-size: clamp(1.05rem, 2vw, 1.28rem);
-      line-height: 1.5;
-    }
-
-    .audience-line {
-      margin-top: 0.9rem;
-      color: #a7f3d0;
-      font-weight: 700;
-    }
-
-    .eyebrow,
-    .section-kicker,
-    .panel-bar {
-      color: #67e8f9;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .hero-copy .cta-row {
-      margin-top: 1.7rem;
-    }
-
-    .hero-copy .btn {
-      background: rgba(2, 6, 23, 0.48);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-copy .btn.primary {
-      background: #67e8f9;
-      color: #06111f;
-    }
-
-    .system-status {
-      position: relative;
-      overflow: hidden;
-      padding: 1.05rem;
-      border: 1px solid rgba(226, 232, 240, 0.18);
-      border-radius: 8px;
-      background: rgba(2, 6, 23, 0.58);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 22px 80px rgba(0, 0, 0, 0.35);
-      animation: panel-rise 760ms 120ms ease both;
-    }
-
-    .system-status::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(135deg, rgba(103, 232, 249, 0.12), transparent 44%),
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 42px;
-      pointer-events: none;
-    }
-
-    .status-head {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: center;
-      margin-bottom: 1.05rem;
-    }
-
-    .status-head h3 {
-      margin: 0;
-      color: #e0f2fe;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .status-dots {
-      display: inline-flex;
-      gap: 0.3rem;
-      align-items: center;
-    }
-
-    .status-dots span {
-      width: 4px;
-      height: 4px;
-      border-radius: 999px;
-      background: #67e8f9;
-      box-shadow: 0 0 12px rgba(103, 232, 249, 0.9);
-      animation: dot-pulse 1.3s ease-in-out infinite;
-    }
-
-    .status-dots span:nth-child(2) {
-      animation-delay: 120ms;
-    }
-
-    .status-dots span:nth-child(3) {
-      animation-delay: 240ms;
-    }
-
-    .status-row {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: minmax(90px, 1fr) 112px;
-      gap: 0.85rem;
-      align-items: center;
-      padding: 0.72rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .status-row:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .status-value {
-      display: block;
-      color: #f8fafc;
-      font-size: clamp(1.45rem, 3vw, 1.95rem);
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .status-label {
-      display: block;
-      margin-top: 0.35rem;
-      color: #bac8d8;
-      font-size: 0.68rem;
-      line-height: 1.1;
-      text-transform: uppercase;
-    }
-
-    .mini-line,
-    .mini-bars {
-      height: 46px;
-      border-radius: 8px;
-      background: rgba(15, 23, 42, 0.68);
-      overflow: hidden;
-    }
-
-    .mini-line {
-      position: relative;
-    }
-
-    .mini-line::before {
-      content: "";
-      position: absolute;
-      inset: 8px 4px;
-      background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.16));
-      clip-path: polygon(0 68%, 18% 66%, 32% 38%, 48% 70%, 65% 54%, 78% 24%, 100% 48%, 100% 100%, 0 100%);
-    }
-
-    .mini-line::after {
-      content: "";
-      position: absolute;
-      inset: 8px 4px;
-      background: #67e8f9;
-      clip-path: polygon(0 66%, 18% 64%, 32% 36%, 48% 68%, 65% 52%, 78% 22%, 100% 46%, 100% 54%, 78% 30%, 65% 60%, 48% 76%, 32% 44%, 18% 72%, 0 74%);
-      filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.85));
-    }
-
-    .mini-bars {
-      display: flex;
-      align-items: end;
-      gap: 5px;
-      padding: 8px 9px;
-    }
-
-    .mini-bars span {
-      flex: 1;
-      min-width: 4px;
-      border-radius: 2px 2px 0 0;
-      background: linear-gradient(180deg, #67e8f9, #38bdf8);
-    }
-
-    .mini-meter {
-      height: 46px;
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg, rgba(103, 232, 249, 0.18), rgba(103, 232, 249, 0.36)),
-        rgba(15, 23, 42, 0.68);
-      mask-image: linear-gradient(90deg, black 70%, transparent);
-    }
-
-    .home-section {
-      padding: 4.5rem 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      color: #f8fafc;
-    }
-
-    .feature-grid,
-    .writing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.1rem;
-    }
-
-    .build-card {
-      position: relative;
-      min-height: 184px;
-      border-color: rgba(226, 232, 240, 0.12);
-      background: rgba(8, 18, 34, 0.72);
-      box-shadow: none;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-      will-change: transform;
-    }
-
-    .build-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(103, 232, 249, 0.42);
-      background: rgba(12, 28, 48, 0.84);
-    }
-
-    .build-icon {
-      display: grid;
-      place-items: center;
-      width: 40px;
-      height: 40px;
-      margin-bottom: 0.8rem;
-      border: 1px solid rgba(103, 232, 249, 0.28);
-      border-radius: 8px;
-      background: rgba(103, 232, 249, 0.09);
-      color: #67e8f9;
-      font-weight: 900;
-      font-size: 1.15rem;
-    }
-
-    .writing-thumb {
-      min-height: 110px;
-      border: 1px solid rgba(226, 232, 240, 0.12);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(103, 232, 249, 0.2), transparent 54%),
-        url("assets/Futuristic media studio design.png");
-      background-size: cover;
-      background-position: center;
-      opacity: 0.82;
-    }
-
-    .content-card {
-      display: grid;
-      gap: 0.8rem;
-      align-content: start;
-    }
-
-    .content-thumb {
-      display: grid;
-      place-items: center;
-      min-height: 112px;
-      border: 1px solid rgba(226, 232, 240, 0.12);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(103, 232, 249, 0.2), rgba(96, 165, 250, 0.18)),
-        rgba(2, 6, 23, 0.72);
-      color: #f8fafc;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .newsletter-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.95fr);
-      gap: 2rem;
-      padding: clamp(1.25rem, 4vw, 2rem);
-      border: 1px solid rgba(226, 232, 240, 0.12);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(103, 232, 249, 0.08), transparent 42%),
-        rgba(8, 18, 34, 0.72);
-    }
-
-    .newsletter-panel .newsletter-spotlight {
-      margin-top: 0;
-    }
-
-    .social-band {
-      display: grid;
-      grid-template-columns: minmax(0, 0.8fr) minmax(280px, 1fr);
-      gap: 2rem;
-      align-items: center;
-      border-top: 1px solid rgba(226, 232, 240, 0.1);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.1);
-    }
-
-    .social-band h2 {
-      margin-bottom: 0.5rem;
-    }
-
-    .social-band .social-nav {
-      margin-top: 0;
-      justify-content: flex-end;
-    }
-
-    @keyframes dot-pulse {
-      0%, 100% {
-        opacity: 0.35;
-        transform: scale(0.8);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1.2);
-      }
-    }
-
-    @keyframes hero-rise {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes panel-rise {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 880px) {
-      .hero {
-        min-height: calc(82svh - 116px);
-        padding-top: 2.5rem;
-        background-position: 62% center;
-      }
-
-      .hero-inner,
-      .signup-actions,
-      .feature-grid,
-      .writing-grid,
-      .social-band,
-      .newsletter-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .system-status {
-        align-self: stretch;
-      }
-
-      .status-row {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .social-band .social-nav {
-        justify-content: flex-start;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .social-nav {
-        gap: 0.5rem;
-      }
-
-      .social-link {
-        width: 44px;
-        height: 44px;
-      }
-    }
-  </style>
 </head>
-<body>
-<header>
-  <div class="container nav-wrap">
-    <a class="brand" href="/">
-      <img class="brand-mark" src="assets/Easterlingms_logo.png" alt="Easterling Media &amp; Systems logo" />
-      <span class="brand-text">Easterling Media &amp; Systems</span>
-    </a>
-    <nav>
-      <ul>
-        <li><a href="builds.html">Builds</a></li>
-        <li><a href="blogs.html">Writing</a></li>
-        <li><a href="newsletters.html">Newsletter</a></li>
-        <li><a href="nagikumo-chillfi.html">NagiKumo</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<body class="home-editorial">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<main>
-  <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <span class="eyebrow">Modern Command Center</span>
-          <h1>Systems-first execution for products, content, and growth.</h1>
-          <p>Explore shipped builds, practical writing, and monthly tactics designed to compound output over time.</p>
-          <p class="audience-line">Built for solo builders, indie makers, and operators turning ideas into repeatable systems.</p>
-          <div class="cta-row">
-            <a class="btn primary" href="builds.html">Explore Builds</a>
-            <a class="btn" href="newsletters.html">Join Newsletter</a>
-          </div>
-          <div class="social-nav" aria-label="Social media">
-            <a class="social-link youtube" href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer" title="YouTube">
-              <span class="sr-only">YouTube</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.9 12 4.9 12 4.9s-6 0-7.7.4a2.7 2.7 0 0 0-1.9 1.9C2 8.9 2 12 2 12s0 3.1.4 4.8a2.7 2.7 0 0 0 1.9 1.9c1.7.4 7.7.4 7.7.4s6 0 7.7-.4a2.7 2.7 0 0 0 1.9-1.9c.4-1.7.4-4.8.4-4.8s0-3.1-.4-4.8ZM10 15.2V8.8l5.6 3.2-5.6 3.2Z"/></svg>
-            </a>
-            <a class="social-link instagram" href="https://www.instagram.com/nagikumochillfi/" target="_blank" rel="noopener noreferrer" title="Instagram">
-              <span class="sr-only">Instagram</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
-            </a>
-            <a class="social-link tiktok" href="https://www.tiktok.com/@nagikumochillfi" target="_blank" rel="noopener noreferrer" title="TikTok">
-              <span class="sr-only">TikTok</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.2 3c.4 2.6 1.9 4.4 4.8 4.8v3.1a8.1 8.1 0 0 1-4.7-1.5v6.2a5.4 5.4 0 1 1-5.4-5.4c.4 0 .8 0 1.1.1v3.3a2.1 2.1 0 1 0 1.3 2V3h2.9Z"/></svg>
-            </a>
-            <a class="social-link linktree" href="https://linktr.ee/NagiKumoChillFi" target="_blank" rel="noopener noreferrer" title="Linktree">
-              <span class="sr-only">Linktree</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"/><path d="m6 8 6-5 6 5"/><path d="m6 14 6-5 6 5"/><path d="M9 21h6"/></svg>
-            </a>
-            <a class="social-link" href="newsletters.html" title="Newsletter">
-              <span class="sr-only">Newsletter</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg>
-            </a>
-          </div>
-        </div>
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="/">
+        <img class="brand-mark" src="assets/Easterlingms_logo.png" alt="Easterling Media &amp; Systems logo" />
+        <span class="brand-text">Easterling Media &amp; Systems</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="builds.html">Builds</a></li>
+          <li><a href="blogs.html">Writing</a></li>
+          <li><a href="newsletters.html">Newsletter</a></li>
+          <li><a href="nagikumo-chillfi.html">NagiKumo</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-        <aside class="system-status" aria-label="System status">
-          <div class="status-head">
-            <h3>System Status</h3>
-            <div class="status-dots" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-          <div class="status-row">
-            <div>
-              <strong class="status-value">4</strong>
-              <span class="status-label">Active builds</span>
-            </div>
-            <div class="mini-line" aria-hidden="true"></div>
-          </div>
-          <div class="status-row">
-            <div>
-              <strong class="status-value">4</strong>
-              <span class="status-label">Published posts</span>
-            </div>
-            <div class="mini-bars" aria-hidden="true">
-              <span style="height: 32%"></span>
-              <span style="height: 58%"></span>
-              <span style="height: 42%"></span>
-              <span style="height: 82%"></span>
-              <span style="height: 50%"></span>
-              <span style="height: 64%"></span>
-              <span style="height: 48%"></span>
-              <span style="height: 70%"></span>
-            </div>
-          </div>
-          <div class="status-row">
-            <div>
-              <strong class="status-value">Jun 2026</strong>
-              <span class="status-label">Latest newsletter issue</span>
-            </div>
-            <div class="mini-meter" aria-hidden="true"></div>
-          </div>
-          <div class="status-row">
-            <div>
-              <strong class="status-value" data-site-total-visits>Loading...</strong>
-              <span class="status-label">Known + tracked visits</span>
-            </div>
-            <div class="mini-line" aria-hidden="true"></div>
-          </div>
-          <div class="status-row">
-            <div>
-              <strong class="status-value" data-site-your-visits>Loading...</strong>
-              <span class="status-label">Your visits on this browser</span>
-            </div>
-            <div class="mini-bars" aria-hidden="true">
-              <span style="height: 46%"></span>
-              <span style="height: 74%"></span>
-              <span style="height: 38%"></span>
-              <span style="height: 90%"></span>
-              <span style="height: 62%"></span>
-              <span style="height: 78%"></span>
-              <span style="height: 54%"></span>
-              <span style="height: 86%"></span>
-            </div>
-          </div>
-          <div class="status-row">
-            <div>
-              <strong class="status-value" data-site-other-visits>Loading...</strong>
-              <span class="status-label">Other visits counted</span>
-            </div>
-            <div class="mini-meter" aria-hidden="true"></div>
-          </div>
-        </aside>
-      </div>
-  </section>
-
-  <section class="home-section">
-    <div class="section-head">
-      <h2 class="section-kicker">Featured Builds</h2>
-      <a class="btn" href="builds.html">View all builds</a>
-    </div>
-    <div class="feature-grid">
-      <article class="card build-card">
-        <div class="build-icon">M</div>
-        <h3><a href="mindmark.html">MindMark</a></h3>
-        <p class="muted">Private journaling and reflection built to remove friction from capturing what matters.</p>
-        <p><span class="badge beta">Closed Testing</span></p>
-        <p><a class="btn" href="mindmark.html">View MindMark</a></p>
-      </article>
-      <article class="card build-card">
-        <div class="build-icon">N</div>
-        <h3><a href="newsletter-infrastructure.html">Newsletter Infrastructure</a></h3>
-        <p class="muted">The publishing pipeline behind the monthly builder issue: sync, drafting, review, and publish.</p>
-        <p><span class="badge live">Active</span></p>
-        <p><a class="btn" href="newsletter-infrastructure.html">View Build</a></p>
-      </article>
-      <article class="card build-card">
-        <div class="build-icon">E</div>
-        <h3><a href="easterling-media-systems.html">Easterling Media &amp; Systems</a></h3>
-        <p class="muted">The public command center for builds, writing, newsletter growth, and product conversion paths.</p>
-        <p><span class="badge live">Active</span></p>
-        <p><a class="btn" href="easterling-media-systems.html">View Build</a></p>
-      </article>
-      <article class="card build-card">
-        <div class="build-icon">N</div>
-        <h3><a href="nagikumo-chillfi.html">NagiKumo ChillFi</a></h3>
-        <p class="muted">Story-driven LoFi music and visuals, with Season 1 built for an easier release-by-release journey.</p>
-        <p><span class="badge live">Active</span></p>
-        <p><a class="btn" href="nagikumo-chillfi.html">View NagiKumo</a></p>
-      </article>
-    </div>
-  </section>
-
-  <section class="home-section">
-    <div class="section-head">
-      <h2 class="section-kicker">Latest Writing</h2>
-      <a class="btn" href="blogs.html">View all posts</a>
-    </div>
-    <div class="writing-grid">
-      <article class="card build-card">
-        <div class="writing-thumb" aria-hidden="true"></div>
-        <h3><a href="posts/june-systems-update-making-the-content-loop-live.html">June Systems Update: Making the Content Loop Live</a></h3>
-        <p class="muted">A grounded June update on keeping publishing channels and the site connected without fragile automation.</p>
-        <p class="muted">Published: June 1, 2026</p>
-      </article>
-      <article class="card build-card">
-        <div class="writing-thumb" aria-hidden="true"></div>
-        <h3><a href="posts/may-systems-update-making-the-build-archive-honest.html">May Systems Update: Making the Build Archive Honest</a></h3>
-        <p class="muted">Clarifying what is active, experimental, and legacy so the public archive stays useful.</p>
-        <p class="muted">Published: May 4, 2026</p>
-      </article>
-      <article class="card build-card">
-        <div class="writing-thumb" aria-hidden="true"></div>
-        <h3><a href="posts/april-systems-update-turning-content-into-a-pipeline.html">April Systems Update: Turning Content into a Pipeline</a></h3>
-        <p class="muted">How the content system started becoming a repeatable publishing loop.</p>
-        <p class="muted">Published: April 20, 2026</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="home-section">
-    <div class="section-head">
-      <h2 class="section-kicker">Latest Content</h2>
-      <a class="btn" href="content.html">View all content</a>
-    </div>
-    <div class="feature-grid">
-      <article class="card build-card content-card">
-        <div class="content-thumb">YouTube</div>
-        <h3><a href="nagikumo-chillfi.html">NagiKumo ChillFi</a></h3>
-        <p class="muted">Video | LoFi visuals, creator systems, and channel experiments</p>
-        <p><a class="btn" href="nagikumo-chillfi.html">Visit Page</a></p>
-      </article>
-      <article class="card build-card content-card">
-        <div class="content-thumb">Issue</div>
-        <h3><a href="Newsletters/issue-001-strategic-launch-sequence.html">Newsletter: Strategic launch sequence</a></h3>
-        <p class="muted">Newsletter | Launch sequencing, scope discipline, and proof-first execution</p>
-        <p><a class="btn" href="Newsletters/issue-001-strategic-launch-sequence.html">Read Issue</a></p>
-      </article>
-      <article class="card build-card content-card">
-        <div class="content-thumb">Post</div>
-        <h3><a href="posts/june-systems-update-making-the-content-loop-live.html">Blog: Making the Content Loop Live</a></h3>
-        <p class="muted">Article | A practical update on keeping the site and distribution loop current</p>
-        <p><a class="btn" href="posts/june-systems-update-making-the-content-loop-live.html">Read Post</a></p>
-      </article>
-    </div>
-  </section>
-
-  <section class="home-section social-band">
-    <div>
-      <span class="section-kicker">Social Media</span>
-      <h2>Follow the build log across the channels where it ships.</h2>
-      <p class="muted">NagiKumo ChillFi is on YouTube, Instagram, TikTok, and Linktree; the monthly issue lives here on the site.</p>
-    </div>
-    <div class="social-nav" aria-label="Social media links">
-      <a class="social-link youtube" href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer" title="YouTube"><span class="sr-only">YouTube</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.9 12 4.9 12 4.9s-6 0-7.7.4a2.7 2.7 0 0 0-1.9 1.9C2 8.9 2 12 2 12s0 3.1.4 4.8a2.7 2.7 0 0 0 1.9 1.9c1.7.4 7.7.4 7.7.4s6 0 7.7-.4a2.7 2.7 0 0 0 1.9-1.9c.4-1.7.4-4.8.4-4.8s0-3.1-.4-4.8ZM10 15.2V8.8l5.6 3.2-5.6 3.2Z"/></svg></a>
-      <a class="social-link instagram" href="https://www.instagram.com/nagikumochillfi/" target="_blank" rel="noopener noreferrer" title="Instagram"><span class="sr-only">Instagram</span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
-      <a class="social-link tiktok" href="https://www.tiktok.com/@nagikumochillfi" target="_blank" rel="noopener noreferrer" title="TikTok"><span class="sr-only">TikTok</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.2 3c.4 2.6 1.9 4.4 4.8 4.8v3.1a8.1 8.1 0 0 1-4.7-1.5v6.2a5.4 5.4 0 1 1-5.4-5.4c.4 0 .8 0 1.1.1v3.3a2.1 2.1 0 1 0 1.3 2V3h2.9Z"/></svg></a>
-      <a class="social-link linktree" href="https://linktr.ee/NagiKumoChillFi" target="_blank" rel="noopener noreferrer" title="Linktree"><span class="sr-only">Linktree</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"/><path d="m6 8 6-5 6 5"/><path d="m6 14 6-5 6 5"/><path d="M9 21h6"/></svg></a>
-      <a class="social-link" href="newsletters.html" title="Newsletter"><span class="sr-only">Newsletter</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg></a>
-    </div>
-  </section>
-
-  <section class="home-section">
-    <div class="newsletter-panel">
-      <div>
-        <h2>Monthly issue for builders</h2>
-        <p class="muted">One practical issue every month with frameworks, experiments, and immediate next actions.</p>
-        <a class="btn primary" href="newsletters.html">Read the newsletter</a>
-        <p class="muted" data-newsletter-archive-status>Loading the latest newsletter issue.</p>
-      </div>
-      <div data-newsletter-home-issue>
-        <div class="newsletter-spotlight card">
-          <p class="muted">Latest issue</p>
-          <h3><a href="newsletters.html">Issue 001: Strategic launch sequence</a></h3>
-          <p class="muted">Published: February 14, 2026</p>
-          <p>Launch sequencing, scope discipline, and proof-first execution.</p>
-          <div class="cta-row">
-            <a class="btn" href="newsletters.html">Read on-site</a>
-          </div>
+  <main id="main-content">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero__copy" data-reveal>
+        <p class="home-rule-label">Editorial Workshop / Easterling Media &amp; Systems</p>
+        <h1 id="home-title">Build the work. Write down what makes it hold.</h1>
+        <p class="home-intro">A working desk for shipped products, practical systems notes, an owned newsletter, and the evolving NagiKumo ChillFi world.</p>
+        <div class="home-actions" aria-label="Explore the workshop">
+          <a class="home-action home-action--primary" href="builds.html">Browse the builds</a>
+          <a class="home-action" href="blogs.html">Read the field notes</a>
         </div>
       </div>
-    </div>
-  </section>
-</main>
 
-<footer>
-  <div class="container">
-    <div class="footer-links">
-      <a href="builds.html">Builds</a>
-      <a href="blogs.html">Writing</a>
-      <a href="newsletters.html">Newsletter</a>
-      <a href="nagikumo-chillfi.html">NagiKumo ChillFi</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer">NagiKumo ChillFi</a>
-      <a href="https://www.instagram.com/nagikumochillfi/" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="https://www.tiktok.com/@nagikumochillfi" target="_blank" rel="noopener noreferrer">TikTok</a>
-      <a href="https://linktr.ee/NagiKumoChillFi" target="_blank" rel="noopener noreferrer">Linktree</a>
-      <a href="newsletters.html">Newsletter</a>
-      <a href="mailto:tonyeasterlingappsdev@gmail.com">Email</a>
+      <figure class="home-hero__media" data-workshop-image data-reveal>
+        <img src="assets/nagikumo/train-ride-sunset.jpg" alt="Nagi and Kumo riding a train through a warm sunset" />
+        <figcaption class="home-hero__caption">From the current NagiKumo Season 1 workshop: a quiet train ride shaped into music, image, and release.</figcaption>
+      </figure>
+    </section>
+
+    <section class="home-ledger home-shell" aria-labelledby="ledger-title" data-reveal>
+      <header class="home-ledger__head">
+        <p class="home-rule-label">Workshop ledger</p>
+        <h2 id="ledger-title">Four desks, one body of work.</h2>
+        <p>Each desk holds a real part of the practice: making, documenting, publishing, and building a story-led channel.</p>
+      </header>
+
+      <a class="home-ledger__item" href="builds.html">
+        <span class="home-ledger__number" aria-hidden="true">01</span>
+        <span class="home-ledger__copy"><strong>Build desk</strong><span>Products and public systems, with the current state kept visible.</span></span>
+        <span class="home-ledger__mark" aria-hidden="true">View builds</span>
+      </a>
+      <a class="home-ledger__item" href="blogs.html">
+        <span class="home-ledger__number" aria-hidden="true">02</span>
+        <span class="home-ledger__copy"><strong>Writing desk</strong><span>Field notes from the decisions, constraints, and lessons inside the work.</span></span>
+        <span class="home-ledger__mark" aria-hidden="true">Read notes</span>
+      </a>
+      <a class="home-ledger__item" href="newsletters.html">
+        <span class="home-ledger__number" aria-hidden="true">03</span>
+        <span class="home-ledger__copy"><strong>Publishing desk</strong><span>An on-site newsletter archive with a deliberate draft, review, and release path.</span></span>
+        <span class="home-ledger__mark" aria-hidden="true">Open archive</span>
+      </a>
+      <a class="home-ledger__item" href="nagikumo-chillfi.html">
+        <span class="home-ledger__number" aria-hidden="true">04</span>
+        <span class="home-ledger__copy"><strong>NagiKumo desk</strong><span>Japanese lo-fi stories built across music, illustration, motion, and release systems.</span></span>
+        <span class="home-ledger__mark" aria-hidden="true">Enter Season 1</span>
+      </a>
+    </section>
+
+    <section class="home-feature home-shell" aria-labelledby="nagikumo-title">
+      <figure class="home-feature__media" data-reveal>
+        <img src="assets/nagikumo/rainy-desk-night.png" alt="Nagi studying beside Kumo at a rain-lit desk at night" loading="lazy" />
+        <figcaption>Rainy Desk Night carries the Season 1 journey from place to place without losing its quiet center.</figcaption>
+      </figure>
+      <div class="home-feature__copy" data-reveal>
+        <p class="home-rule-label">Current workshop feature</p>
+        <h2 id="nagikumo-title">NagiKumo ChillFi is becoming a connected season.</h2>
+        <p>The release path now moves from Rainy Cafe through Rainy Desk Night, with Cherry Blossom Picnic scheduled next. Every stop is shaped as part of the same calm world for study, sleep, focus, and the moments between destinations.</p>
+        <a class="home-action home-action--primary" href="nagikumo-chillfi.html">Explore NagiKumo Season 1</a>
+      </div>
+    </section>
+
+    <section class="home-writing home-shell" aria-labelledby="writing-title">
+      <article class="home-writing__lead" data-reveal>
+        <p class="home-rule-label">Latest writing / August 10, 2026</p>
+        <h2 id="writing-title"><a href="posts/august-10-systems-note-build-for-the-next-episode.html">Systems Note: Build for the Next Episode</a></h2>
+        <p>The newest note looks at the practical work behind a growing release page: a responsive episode carousel that leaves room for the season to expand, and muted previews that let each visitor decide when sound begins.</p>
+        <a class="home-action" href="posts/august-10-systems-note-build-for-the-next-episode.html">Read the systems note</a>
+      </article>
+      <aside class="home-writing__aside" aria-labelledby="writing-aside-title" data-reveal>
+        <p class="home-rule-label">Margin note</p>
+        <h3 id="writing-aside-title">Prepare the structure before the archive gets long.</h3>
+        <p>The carousel is not decoration. It keeps a growing Season 1 collection browseable across screen sizes, while quiet media defaults protect the visitor’s attention.</p>
+      </aside>
+    </section>
+
+    <section class="home-newsletter home-shell" aria-labelledby="newsletter-title">
+      <div class="home-newsletter__copy" data-reveal>
+        <p class="home-rule-label">Owned publishing desk</p>
+        <h2 id="newsletter-title">The newsletter lives where the work lives.</h2>
+        <p>Issues are published and archived on this site, keeping the record readable and the review path under direct control.</p>
+        <a class="home-action home-action--primary" href="newsletters.html">Browse every issue</a>
+        <p data-newsletter-archive-status>Loading the on-site newsletter archive.</p>
+      </div>
+
+      <article class="home-newsletter__issue" data-newsletter-home-issue data-reveal>
+        <p class="home-rule-label">Latest on-site issue / August 3, 2026</p>
+        <h3><a href="newsletters.html?issue=systems-update-turning-content-into-a-pipeline#newsletter-reader">Systems Update — Turning Content into a Pipeline</a></h3>
+        <p>A practical issue about keeping the publishing pipeline repeatable, the archive reviewable, and the path into MindMark closed testing clear.</p>
+        <a class="home-action" href="newsletters.html?issue=systems-update-turning-content-into-a-pipeline#newsletter-reader">Read the August 3 issue</a>
+      </article>
+    </section>
+
+    <section class="home-visitors home-shell" aria-labelledby="visitors-title" data-reveal>
+      <header>
+        <p class="home-rule-label">Visitor ledger</p>
+        <h2 id="visitors-title">Tracked visitor counts</h2>
+        <p>These are simple visit counts recorded by the site, not an audience analytics dashboard.</p>
+      </header>
+      <div class="home-visitors__item">
+        <span>Total tracked visits</span>
+        <strong data-site-total-visits>Loading…</strong>
+      </div>
+      <div class="home-visitors__item">
+        <span>Your visits on this browser</span>
+        <strong data-site-your-visits>Loading…</strong>
+      </div>
+      <div class="home-visitors__item">
+        <span>Other tracked visits</span>
+        <strong data-site-other-visits>Loading…</strong>
+      </div>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="home-shell">
+      <p class="home-rule-label">Keep the workshop within reach</p>
+      <nav class="home-socials" aria-label="Footer and channel links">
+        <a href="builds.html">Builds</a>
+        <a href="blogs.html">Writing</a>
+        <a href="newsletters.html">Newsletter</a>
+        <a href="nagikumo-chillfi.html">NagiKumo ChillFi</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://www.youtube.com/@NagiKumoChillFi" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://www.instagram.com/nagikumochillfi/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.tiktok.com/@nagikumochillfi" target="_blank" rel="noopener noreferrer">TikTok</a>
+        <a href="https://linktr.ee/NagiKumoChillFi" target="_blank" rel="noopener noreferrer">Linktree</a>
+        <a href="mailto:tonyeasterlingappsdev@gmail.com">Email</a>
+      </nav>
+      <p>Building systems that compound for products, content, and growth.</p>
+      <p>&copy; 2026 Easterling Media &amp; Systems</p>
     </div>
-    <p class="muted">Building systems that compound for products, content, and growth.</p>
-    <p class="muted">&copy; 2026 Easterling Media &amp; Systems</p>
-  </div>
-</footer>
+  </footer>
 </body>
 </html>
