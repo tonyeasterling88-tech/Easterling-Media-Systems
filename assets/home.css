@@ -273,6 +273,7 @@ body.home-editorial .home-hero__copy {
   z-index: 2;
   min-width: 0;
   grid-column: 1 / span 7;
+  grid-row: 1;
   align-self: center;
   padding-bottom: clamp(2rem, 5vw, 5rem);
 }
@@ -302,6 +303,7 @@ body.home-editorial .home-hero__media {
   z-index: 1;
   min-width: 0;
   grid-column: 7 / -1;
+  grid-row: 1;
   align-self: end;
   margin: 0 0 clamp(2rem, 5vw, 4rem);
   padding: clamp(0.55rem, 1vw, 0.85rem);
@@ -884,6 +886,7 @@ html.home-motion-ready body.home-editorial .home-hero__copy h1 {
   body.home-editorial .home-hero__copy,
   body.home-editorial .home-hero__media {
     grid-column: 1;
+    grid-row: auto;
   }
 
   body.home-editorial .home-hero__copy {
