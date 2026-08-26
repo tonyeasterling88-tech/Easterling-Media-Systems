@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-23T18:23:24.171Z",
+  "updatedAt": "2026-08-26T03:51:04.677Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "aeCUGEQJzHw",
+      "title": "NagiKumo ChillFi: The Perfect Rainy Night Study Session",
+      "published": "2026-08-26T02:13:03Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=aeCUGEQJzHw"
+    },
     {
       "videoId": "4C3FMtCWTYQ",
       "title": "Can You Study for 5 Hours? The Ultimate Lofi Focus Mix",
@@ -83,13 +90,6 @@
       "published": "2026-05-18T02:01:48Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=JtbK6qXd0ng"
-    },
-    {
-      "videoId": "GDwsK5wLEjg",
-      "title": "Rainy Cafe Night Lofi | Japanese Rain Ambience for Study, Sleep &amp; Focus",
-      "published": "2026-04-24T05:04:00Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=GDwsK5wLEjg"
     }
   ]
 }
