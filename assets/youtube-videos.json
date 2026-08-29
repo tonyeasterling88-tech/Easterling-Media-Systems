@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-29T05:28:18.052Z",
+  "updatedAt": "2026-08-29T22:58:16.293Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "rroewxEKLNc",
+      "title": "Escape to a Cozy Library | 1 Hour Focus Lofi Beats",
+      "published": "2026-08-29T22:15:28Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=rroewxEKLNc"
+    },
     {
       "videoId": "U5FoeTWWOY4",
       "title": "Rainy Lofi Radio 🌧️ Cozy Beats to Study, Relax &amp; Unwind (LIVE)",
@@ -83,13 +90,6 @@
       "published": "2026-05-24T11:13:48Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=drmZIExW2AA"
-    },
-    {
-      "videoId": "JtbK6qXd0ng",
-      "title": "The Most Relaxing Rainy Cafe You&#39;ll Find Today #cozy #lofi #aesthetic",
-      "published": "2026-05-18T02:01:48Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=JtbK6qXd0ng"
     }
   ]
 }
