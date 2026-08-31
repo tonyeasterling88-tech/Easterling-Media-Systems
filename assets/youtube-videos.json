@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T20:29:15.457Z",
+  "updatedAt": "2026-08-31T03:22:33.918Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "ek7EYvSudmk",
+      "title": "The Cozy Night Lofi Experience You Need Right Now",
+      "published": "2026-08-31T00:37:16Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=ek7EYvSudmk"
+    },
     {
       "videoId": "dbJpZMQLhcY",
       "title": "Focus Mode Activated #studymotivation #lofi",
@@ -51,7 +58,7 @@
     },
     {
       "videoId": "VrylQev5vNE",
-      "title": "Golden Hour on the Rails | 1 Hour of Chill Lo-Fi Focus",
+      "title": "Lost in the Sunset | 1 Hour of Lo-Fi Beats to Decompress",
       "published": "2026-07-21T15:01:49Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=VrylQev5vNE"
@@ -83,13 +90,6 @@
       "published": "2026-06-23T16:42:44Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=neIiem4NH_c"
-    },
-    {
-      "videoId": "KV1g6j22qIc",
-      "title": "Kumo by the Window - Cozy Anime #Lofi #shorts",
-      "published": "2026-05-26T07:00:04Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=KV1g6j22qIc"
     }
   ]
 }
