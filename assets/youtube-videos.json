@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-04T18:02:29.714Z",
+  "updatedAt": "2026-09-07T02:42:20.510Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,20 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "xy4Bzncz4Vs",
+      "title": "I bet you will love studying for 5 hours in the rain like her",
+      "published": "2026-09-07T00:03:09Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=xy4Bzncz4Vs"
+    },
+    {
+      "videoId": "kx1xtZY7Jdc",
+      "title": "Don&#39;t miss the next drop 🎧🌧️ #lofi #anime #music",
+      "published": "2026-09-06T23:34:56Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=kx1xtZY7Jdc"
+    },
     {
       "videoId": "ek7EYvSudmk",
       "title": "The Most Relaxing Night Lofi Experience You Need Right NOW",
@@ -76,20 +90,6 @@
       "published": "2026-07-12T03:51:24Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=k3DzZ_SiXeg"
-    },
-    {
-      "videoId": "7d9_8z2UIx0",
-      "title": "Deep Focus Music: 1 Hour of Rainy Japanese Lofi Café Sounds",
-      "published": "2026-07-06T09:00:12Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=7d9_8z2UIx0"
-    },
-    {
-      "videoId": "neIiem4NH_c",
-      "title": "Where peace feels like home 🕯️✨ #studygram #cozyvibes #lofi",
-      "published": "2026-06-23T16:42:44Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=neIiem4NH_c"
     }
   ]
 }
