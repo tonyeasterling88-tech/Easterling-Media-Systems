@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-07T23:15:23.523Z",
+  "updatedAt": "2026-09-08T23:09:15.209Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "YpsYONhIJX0",
+      "title": "This anime girl gets the cozy library aesthetic better than anyone 🎧💗 #cozy #anime #aesthetic",
+      "published": "2026-09-08T19:05:35Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=YpsYONhIJX0"
+    },
     {
       "videoId": "xy4Bzncz4Vs",
       "title": "I bet you will love studying in the rain like her",
@@ -83,13 +90,6 @@
       "published": "2026-07-12T03:51:35Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=eDdL1ebTMuE"
-    },
-    {
-      "videoId": "k3DzZ_SiXeg",
-      "title": "Nagi Journals on a Rainy Morning | 1 Hour Cozy Lo-Fi for Focus",
-      "published": "2026-07-12T03:51:24Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=k3DzZ_SiXeg"
     }
   ]
 }
