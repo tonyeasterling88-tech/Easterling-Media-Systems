@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-08T23:09:15.209Z",
+  "updatedAt": "2026-09-09T02:54:22.162Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "VMv_Hza0bxo",
+      "title": "Why is she reading in the cherry blossoms? 🌸📖 #anime #spring #shorts",
+      "published": "2026-09-09T01:33:42Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=VMv_Hza0bxo"
+    },
     {
       "videoId": "YpsYONhIJX0",
       "title": "This anime girl gets the cozy library aesthetic better than anyone 🎧💗 #cozy #anime #aesthetic",
@@ -83,13 +90,6 @@
       "published": "2026-07-21T15:01:49Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=VrylQev5vNE"
-    },
-    {
-      "videoId": "eDdL1ebTMuE",
-      "title": "When the rain hits the tatami just right #lofi #relaxing #shorts",
-      "published": "2026-07-12T03:51:35Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=eDdL1ebTMuE"
     }
   ]
 }
