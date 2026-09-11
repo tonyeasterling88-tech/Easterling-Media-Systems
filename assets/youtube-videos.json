@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-11T07:44:48.643Z",
+  "updatedAt": "2026-09-11T18:08:27.287Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "ezhz1xNIo94",
+      "title": "Just a girl and her cat in the rain 🌧️🐱 #anime #cozy #shorts",
+      "published": "2026-09-10T23:14:24Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=ezhz1xNIo94"
+    },
     {
       "videoId": "VMv_Hza0bxo",
       "title": "Why is she reading in the cherry blossoms? 🌸📖 #anime #spring #shorts",
@@ -37,7 +44,7 @@
     },
     {
       "videoId": "xy4Bzncz4Vs",
-      "title": "I bet you will love studying in the rain like her",
+      "title": "Need to get work done? This rainy porch loop is all you need",
       "published": "2026-09-07T00:03:09Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=xy4Bzncz4Vs"
@@ -83,13 +90,6 @@
       "published": "2026-08-22T02:20:21Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=4C3FMtCWTYQ"
-    },
-    {
-      "videoId": "VVWWRfpta3Y",
-      "title": "Escape into Spring | 1 Hour of PEACEFUL LoFi Study Beats",
-      "published": "2026-08-02T22:00:15Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=VVWWRfpta3Y"
     }
   ]
 }
