@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-12T20:08:06.483Z",
+  "updatedAt": "2026-09-13T17:54:03.912Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "fkVGN5rW_tE",
+      "title": "Why you need this vibe for your rainy day 🐈‍⬛ #lofi #study",
+      "published": "2026-09-12T21:10:36Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=fkVGN5rW_tE"
+    },
     {
       "videoId": "ezhz1xNIo94",
       "title": "Just a girl and her cat in the rain 🌧️🐱 #anime #cozy #shorts",
@@ -83,13 +90,6 @@
       "published": "2026-08-28T19:35:14Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=U5FoeTWWOY4"
-    },
-    {
-      "videoId": "4C3FMtCWTYQ",
-      "title": "Find Your Flow State | 5 Hours of Cozy Lofi Beats",
-      "published": "2026-08-22T02:20:21Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=4C3FMtCWTYQ"
     }
   ]
 }
