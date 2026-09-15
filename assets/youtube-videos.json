@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-14T03:11:26.482Z",
+  "updatedAt": "2026-09-15T03:13:58.519Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "zcNwtI7CpFU",
+      "title": "Snow Cabin Cozy Lofi Study Beats to decompress to",
+      "published": "2026-09-14T22:00:06Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=zcNwtI7CpFU"
+    },
     {
       "videoId": "fkVGN5rW_tE",
       "title": "Why you need this vibe for your rainy day 🐈‍⬛ #lofi #study",
@@ -83,13 +90,6 @@
       "published": "2026-08-29T22:15:28Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=rroewxEKLNc"
-    },
-    {
-      "videoId": "U5FoeTWWOY4",
-      "title": "Peaceful Rain Sounds &amp; Lofi Beats 🌧️ The Ultimate Study Session",
-      "published": "2026-08-28T19:35:14Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=U5FoeTWWOY4"
     }
   ]
 }
