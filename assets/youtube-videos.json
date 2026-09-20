@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-15T03:13:58.519Z",
+  "updatedAt": "2026-09-20T03:12:33.421Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "7d7OnfPQMIU",
+      "title": "Escape into the Rain: 24/7 Lofi Beats for Deep Relaxation",
+      "published": "2026-09-20T00:36:21Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=7d7OnfPQMIU"
+    },
     {
       "videoId": "zcNwtI7CpFU",
       "title": "Snow Cabin Cozy Lofi Study Beats to decompress to",
@@ -83,13 +90,6 @@
       "published": "2026-08-30T05:55:43Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=dbJpZMQLhcY"
-    },
-    {
-      "videoId": "rroewxEKLNc",
-      "title": "Lost in a Book | Soft Lofi Music for Concentration and Calm",
-      "published": "2026-08-29T22:15:28Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=rroewxEKLNc"
     }
   ]
 }
