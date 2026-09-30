@@ -1,126 +1,123 @@
 (function () {
   const dataUrl = 'assets/newsletter-issues.json';
-  const latestIssueContainers = Array.from(document.querySelectorAll('[data-newsletter-latest-issue]'));
-  const archiveContainers = Array.from(document.querySelectorAll('[data-newsletter-archive]'));
-  const homeContainers = Array.from(document.querySelectorAll('[data-newsletter-home-issue]'));
-  const statusTargets = Array.from(document.querySelectorAll('[data-newsletter-archive-status]'));
-
-  if (!latestIssueContainers.length && !archiveContainers.length && !homeContainers.length) return;
 
   function escapeHtml(value) {
-    return String(value || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
+    return String(value ?? '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
   function formatDate(value) {
-    if (!value) return 'Date unavailable';
     const parsed = new Date(value);
-    if (Number.isNaN(parsed.getTime())) return value;
-    return parsed.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    return Number.isNaN(parsed.getTime())
+      ? 'Date unavailable'
+      : parsed.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
   }
 
   function issueUrl(issue) {
     return `newsletters.html?issue=${encodeURIComponent(issue.slug)}#newsletter-reader`;
   }
 
-  function setStatus(text) {
-    statusTargets.forEach((target) => { target.textContent = text; });
+  function selectIssue(issues, slug) {
+    return issues.find((issue) => issue.slug === slug) || issues[0];
   }
 
   function renderHomeIssue(issue) {
-    return `
-      <div class="newsletter-spotlight card">
-        <p class="muted">Latest issue</p>
-        <h3><a href="${issueUrl(issue)}">${escapeHtml(issue.title)}</a></h3>
-        <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))}</p>
-        <p>${escapeHtml(issue.excerpt)}</p>
-        <a class="btn" href="${issueUrl(issue)}">Read on-site</a>
-      </div>`;
+    return `<div class="newsletter-spotlight card">
+      <p class="muted">Latest issue</p>
+      <h3><a href="${issueUrl(issue)}">${escapeHtml(issue.title)}</a></h3>
+      <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))}</p>
+      <p>${escapeHtml(issue.excerpt)}</p>
+      <a class="btn" href="${issueUrl(issue)}">Read on-site</a>
+    </div>`;
   }
 
   function renderIssueCta(issue) {
-    const cta = issue?.cta;
+    const cta = issue.cta;
     if (!cta) return '';
-
     const socials = Array.isArray(cta.socials)
-      ? cta.socials
-        .filter((social) => social?.label && social?.url)
-        .map((social) => `<a href="${escapeHtml(social.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(social.label)}</a>`)
-        .join('')
+      ? cta.socials.filter((social) => social?.label && social?.url)
+        .map((social) => `<a href="${escapeHtml(social.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(social.label)}</a>`).join('')
       : '';
-
-    return `
-      <aside class="newsletter-cta" aria-labelledby="newsletter-cta-heading">
-        <span class="section-kicker">Keep exploring</span>
-        <h3 id="newsletter-cta-heading">${escapeHtml(cta.heading)}</h3>
-        <p>${escapeHtml(cta.body)}</p>
-        <div class="newsletter-cta-actions">
-          <a class="btn primary" href="${escapeHtml(cta.mindmarkUrl)}">${escapeHtml(cta.mindmarkLabel)}</a>
-          <a class="btn" href="${escapeHtml(cta.youtubeUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(cta.youtubeLabel)}</a>
-        </div>
-        ${socials ? `<div class="newsletter-cta-social"><span>Follow</span>${socials}</div>` : ''}
-      </aside>`;
+    return `<aside class="newsletter-cta">
+      <span class="section-kicker">Keep exploring</span>
+      <h3>${escapeHtml(cta.heading)}</h3>
+      <p>${escapeHtml(cta.body)}</p>
+      <div class="newsletter-cta-actions">
+        ${cta.mindmarkUrl ? `<a class="btn primary" href="${escapeHtml(cta.mindmarkUrl)}">${escapeHtml(cta.mindmarkLabel)}</a>` : ''}
+        ${cta.youtubeUrl ? `<a class="btn" href="${escapeHtml(cta.youtubeUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(cta.youtubeLabel)}</a>` : ''}
+      </div>
+      ${socials ? `<div class="newsletter-cta-social"><span>Follow</span>${socials}</div>` : ''}
+    </aside>`;
   }
 
   function renderLatestIssue(issue) {
     const authors = Array.isArray(issue.authors) && issue.authors.length
-      ? issue.authors.join(', ')
-      : 'Easterling Media & Systems';
-
-    return `
-      <article class="newsletter-reader card">
-        <div class="newsletter-reader-head">
-          <p class="muted">Newsletter issue</p>
-          <h2>${escapeHtml(issue.title)}</h2>
-          <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))} &middot; ${escapeHtml(authors)}</p>
-          <a class="btn" href="#newsletter-archive">Browse archive</a>
-        </div>
-        <div class="newsletter-reader-body">
-          ${issue.html || `<p>${escapeHtml(issue.excerpt)}</p>`}
-          ${renderIssueCta(issue)}
-        </div>
-      </article>`;
+      ? issue.authors.join(', ') : 'Easterling Media & Systems';
+    const art = issue.thumbnailUrl
+      ? `<figure class="ems-hero"><img src="${escapeHtml(issue.thumbnailUrl)}" alt="${escapeHtml(issue.thumbnailAlt || '')}" /><figcaption>${escapeHtml(issue.thumbnailCaption || '')}</figcaption></figure>`
+      : '';
+    return `<article class="ems-issue">
+      <header class="ems-masthead">
+        <span class="brand">Easterling Media &amp; Systems</span>
+        <h2>${escapeHtml(issue.title)}</h2>
+        <p class="issue-meta">${escapeHtml(formatDate(issue.publishedAt))} · ${escapeHtml(authors)} · <a href="#newsletter-archive">Browse the archive</a></p>
+      </header>
+      <hr class="ems-rule-double" />
+      ${art}
+      <div class="ems-body">
+        ${issue.html || `<section class="ems-section"><p>${escapeHtml(issue.excerpt)}</p></section>`}
+        ${renderIssueCta(issue)}
+      </div>
+    </article>`;
   }
 
-  function renderArchiveCard(issue, activeSlug) {
-    return `
-      <article class="card${issue.slug === activeSlug ? ' is-active-issue' : ''}">
-        <h3><a href="${issueUrl(issue)}">${escapeHtml(issue.title)}</a></h3>
-        <p class="muted">Published: ${escapeHtml(formatDate(issue.publishedAt))}</p>
-        <p>${escapeHtml(issue.excerpt)}</p>
-      </article>`;
+  function renderArchiveRow(issue, activeSlug) {
+    return `<a class="ems-archive-item${issue.slug === activeSlug ? ' is-active-issue' : ''}" href="${issueUrl(issue)}"${issue.slug === activeSlug ? ' aria-current="page"' : ''}>
+      <span class="date">${escapeHtml(formatDate(issue.publishedAt))}</span>
+      <span class="title">${escapeHtml(issue.title)}</span>
+      <span class="desc">${escapeHtml(issue.excerpt)}</span>
+    </a>`;
+  }
+
+  function renderError(message) {
+    return `<p class="ems-loading" role="status">${escapeHtml(message)}</p>`;
+  }
+
+  globalThis.EMSNewsletterRenderer = { selectIssue, renderLatestIssue, renderArchiveRow, renderError };
+  if (typeof document === 'undefined') return;
+
+  const latestContainers = document.querySelectorAll('[data-newsletter-latest-issue]');
+  const archiveContainers = document.querySelectorAll('[data-newsletter-archive]');
+  const homeContainers = document.querySelectorAll('[data-newsletter-home-issue]');
+  const statusTargets = document.querySelectorAll('[data-newsletter-archive-status]');
+  if (!latestContainers.length && !archiveContainers.length && !homeContainers.length) return;
+
+  function setStatus(message) {
+    statusTargets.forEach((target) => { target.textContent = message; });
   }
 
   async function loadIssues() {
     try {
-      const response = await fetch(`${dataUrl}?v=${Date.now()}`, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`Unable to load newsletter archive (${response.status})`);
-
+      const response = await fetch(dataUrl, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Archive request failed: ${response.status}`);
       const payload = await response.json();
       const issues = Array.isArray(payload?.issues)
-        ? [...payload.issues].sort((left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt))
+        ? [...payload.issues].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt))
         : [];
-      if (!issues.length) {
-        setStatus('The first issue is being prepared.');
-        return;
-      }
-
-      const selectedSlug = new URLSearchParams(window.location.search).get('issue');
-      const selectedIssue = issues.find((issue) => issue.slug === selectedSlug) || issues[0];
-
-      homeContainers.forEach((container) => { container.innerHTML = renderHomeIssue(issues[0]); });
-      latestIssueContainers.forEach((container) => { container.innerHTML = renderLatestIssue(selectedIssue); });
+      if (!issues.length) throw new Error('Archive is empty');
+      const selected = selectIssue(issues, new URLSearchParams(window.location.search).get('issue'));
+      latestContainers.forEach((container) => { container.innerHTML = renderLatestIssue(selected); });
       archiveContainers.forEach((container) => {
-        container.innerHTML = issues.map((issue) => renderArchiveCard(issue, selectedIssue.slug)).join('');
+        container.innerHTML = `<div class="ems-archive-list">${issues.map((issue) => renderArchiveRow(issue, selected.slug)).join('')}</div>`;
       });
-
-      setStatus(`${issues.length} issue${issues.length === 1 ? '' : 's'} published on this site.`);
+      homeContainers.forEach((container) => { container.innerHTML = renderHomeIssue(issues[0]); });
+      setStatus(`${issues.length} issues in the on-site archive.`);
     } catch (error) {
       console.error('Newsletter archive failed to load.', error);
+      latestContainers.forEach((container) => { container.innerHTML = renderError('The issue is temporarily unavailable.'); });
+      archiveContainers.forEach((container) => { container.innerHTML = renderError('The archive is temporarily unavailable.'); });
+      homeContainers.forEach((container) => { container.innerHTML = renderError('The latest issue is temporarily unavailable.'); });
       setStatus('The newsletter archive is temporarily unavailable.');
     }
   }

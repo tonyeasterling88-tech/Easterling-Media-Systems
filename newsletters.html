@@ -4,87 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Newsletter | Easterling Media &amp; Systems</title>
-  <meta name="description" content="Monthly systems and shipping notes for builders, operators, and technical creators from Easterling Media & Systems." />
+  <meta name="description" content="Systems notes from the build, app, social, and NagiKumo desks at Easterling Media &amp; Systems." />
   <link rel="canonical" href="https://www.easterlingmediasystems.com/newsletters.html" />
   <meta property="og:title" content="Newsletter | Easterling Media &amp; Systems" />
-  <meta property="og:description" content="Monthly systems and shipping notes for builders, operators, and technical creators." />
+  <meta property="og:description" content="Systems notes from the workshop to the world." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.easterlingmediasystems.com/newsletters.html" />
   <meta name="twitter:card" content="summary" />
   <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/newsletter.css?v=20260930" />
   <script defer src="assets/site.js"></script>
-  <script defer src="assets/newsletters.js?v=20260720"></script>
+  <script defer src="assets/newsletters.js?v=20260930"></script>
 </head>
-<body>
+<body class="newsletter-page">
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="/">
       <img class="brand-mark" src="assets/Easterlingms_logo.png" alt="Easterling Media &amp; Systems logo" />
       <span class="brand-text">Easterling Media &amp; Systems</span>
     </a>
-    <nav><ul><li><a href="builds.html">Builds</a></li><li><a href="blogs.html">Blog</a></li><li><a href="newsletters.html">Newsletter</a></li><li><a href="content.html">Content</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+    <nav><ul><li><a href="builds.html">Builds</a></li><li><a href="blogs.html">Blog</a></li><li><a href="newsletters.html" aria-current="page">Newsletter</a></li><li><a href="content.html">Content</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
   </div>
 </header>
-<main>
-  <section class="newsletter-hero">
-    <div class="container newsletter-hero-inner">
-      <div>
-        <span class="section-kicker">Written and published here</span>
-        <h1>Systems worth stealing.</h1>
-        <p>One grounded monthly note on building products, tightening workflows, and shipping work that compounds.</p>
-      </div>
-      <div class="newsletter-edition-note">
-        <span class="section-kicker">Independent edition</span>
-        <p>Every issue is written, published, and archived on this domain. No external newsletter platform required.</p>
-        <a class="btn primary" href="#newsletter-reader">Read the latest issue</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="container">
-    <section class="newsletter-promise">
-      <div><span class="section-kicker">What</span><h2>Execution systems, product lessons, and honest experiments.</h2></div>
-      <div><span class="section-kicker">For whom</span><p>Builders, operators, and technical creators who care about durable progress.</p></div>
-      <div><span class="section-kicker">Cadence</span><p>One useful issue each month. No fluff, no spam.</p></div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <h2>Latest issue</h2>
-        <p class="muted" data-newsletter-archive-status>Loading the first-party archive.</p>
-      </div>
-      <div id="newsletter-reader" data-newsletter-latest-issue>
-        <article class="newsletter-reader card">
-          <div class="newsletter-reader-head"><p class="muted">Newsletter issue</p><h2>Loading the latest issue…</h2></div>
-          <div class="newsletter-reader-body"><p>The archive is loading from this site.</p></div>
-        </article>
-      </div>
-    </section>
-
-    <section id="newsletter-archive">
-      <h2>On-site archive</h2>
-      <div class="grid" data-newsletter-archive>
-        <article class="card"><h3>Loading issues…</h3></article>
-      </div>
-    </section>
-
-    <section id="newsletter-link-kit">
-      <div class="section-head">
-        <h2>Share the newsletter</h2>
-        <p class="muted">One owned link for the archive and every new issue.</p>
-      </div>
-      <div class="newsletter-link-row">
-        <div>
-          <span class="section-kicker">Canonical link</span>
-          <p><a href="https://www.easterlingmediasystems.com/newsletters.html">easterlingmediasystems.com/newsletters</a></p>
-        </div>
-        <div>
-          <span class="section-kicker">Suggested description</span>
-          <p>Monthly systems and shipping notes for builders.</p>
-        </div>
-      </div>
-    </section>
+<main class="ems-newsletter">
+  <div class="ems-intro">
+    <p class="ems-kicker">Easterling Media &amp; Systems / The newsletter</p>
+    <h1>Notes from the working desk.</h1>
+    <p>Products, practical systems, and the creative work behind NagiKumo ChillFi. Every issue stays here in the on-site archive.</p>
+    <a href="#newsletter-reader">Read the current issue ↓</a>
   </div>
+  <div id="newsletter-reader" data-newsletter-latest-issue aria-live="polite">
+    <p class="ems-loading" role="status">Loading the latest issue…</p>
+  </div>
+  <section class="ems-archive" id="newsletter-archive" aria-labelledby="archive-title">
+    <div class="ems-archive-head">
+      <p class="ems-kicker">The archive</p>
+      <h2 id="archive-title">Every issue, in one place.</h2>
+      <p data-newsletter-archive-status>Loading the on-site archive.</p>
+    </div>
+    <div data-newsletter-archive><p class="ems-loading" role="status">Loading issues…</p></div>
+  </section>
 </main>
 <footer><div class="container"><div class="footer-links"><a href="builds.html">Builds</a><a href="blogs.html">Blog</a><a href="newsletters.html">Newsletter</a><a href="content.html">Content</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></div></footer>
 </body>

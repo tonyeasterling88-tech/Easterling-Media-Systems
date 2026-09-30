@@ -232,9 +232,9 @@ test('homepage uses the current writing and newsletter fallbacks', () => {
   assert.equal(countAttribute(indexHtml, 'data-newsletter-archive-status'), 1);
 
   const newsletterFallback = extractMarkerSection(indexHtml, 'data-newsletter-home-issue');
-  assert.match(newsletterFallback, /newsletters\.html\?issue=systems-update-turning-content-into-a-pipeline/i);
-  assert.match(newsletterFallback, /Systems\s+Update\b[\s\S]{0,100}\bTurning\s+Content\s+into\s+a\s+Pipeline/i);
-  assert.match(newsletterFallback, /(?:2026-08-03|August\s+3,?\s+2026)/i);
+  assert.match(newsletterFallback, /newsletters\.html\?issue=systems-update-from-the-workshop-to-the-world/i);
+  assert.match(newsletterFallback, /Systems\s+Update\b[\s\S]{0,100}\bFrom\s+the\s+Workshop\s+to\s+the\s+World/i);
+  assert.match(newsletterFallback, /(?:2026-09-29|September\s+29,?\s+2026)/i);
 });
 
 test('homepage uses descriptive local NagiKumo art and no generic CGI art in main', async () => {

@@ -1,0 +1,349 @@
+/* =====================================================================
+   Easterling Media & Systems — Newsletter styles (on-site)
+   Editorial, calm, professional. Pairs with newsletter-render.js and
+   newsletter-data.js. Drop this stylesheet + the two scripts onto any
+   page that should host the newsletter archive or an issue.
+   Palette: warm paper, ink, sunset amber, rainy-night indigo.
+   ===================================================================== */
+
+.ems-newsletter {
+  --paper: #faf7f2;
+  --paper-deep: #f1ebe0;
+  --ink: #1c1a17;
+  --muted: #6f6558;
+  --faint: #a89c8b;
+  --accent: #b4691e;
+  --accent-deep: #8f5215;
+  --night: #232b3e;
+  --night-ink: #e9e4d8;
+  --rule: #e3d9c8;
+  --card: #ffffff;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.65;
+}
+
+/* ---------- Masthead ---------- */
+.ems-masthead {
+  text-align: center;
+  padding: 3.5rem 1.5rem 2.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.ems-masthead .brand {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.1rem;
+}
+.ems-masthead h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  line-height: 1.2;
+  margin: 0 0 0.9rem;
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ems-masthead .issue-meta {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.ems-masthead .issue-meta a {
+  color: var(--accent-deep);
+}
+.ems-rule-double {
+  border: 0;
+  border-top: 3px double var(--rule);
+  margin: 0;
+}
+
+/* ---------- Hero ---------- */
+.ems-hero {
+  margin: 0;
+  padding: 0;
+}
+.ems-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+}
+.ems-hero figcaption {
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0.7rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  font-style: italic;
+}
+
+/* ---------- Sections ---------- */
+.ems-body {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+.ems-section {
+  padding: 2.4rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.ems-section:last-child {
+  border-bottom: 0;
+}
+.ems-kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin-bottom: 0.7rem;
+}
+.ems-section h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 1.55rem;
+  line-height: 1.3;
+  margin: 0 0 1rem;
+}
+.ems-section p {
+  margin: 0 0 1rem;
+  font-size: 1.02rem;
+}
+.ems-section ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+.ems-section li {
+  margin-bottom: 0.7rem;
+}
+.ems-section a {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ems-section a:hover {
+  color: var(--accent);
+}
+
+/* Editor's letter */
+.ems-note {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.12rem;
+  line-height: 1.75;
+}
+.ems-note .signoff {
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ---------- App feature card ---------- */
+.ems-app-card {
+  background: var(--night);
+  color: var(--night-ink);
+  border-radius: 14px;
+  padding: 2.2rem 2rem;
+  margin-top: 0.5rem;
+}
+.ems-app-card .ems-kicker {
+  color: #d8a75c;
+}
+.ems-app-card h2 {
+  color: #fff;
+}
+.ems-app-card p {
+  color: var(--night-ink);
+}
+.ems-app-card .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+}
+.ems-btn {
+  display: inline-block;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+  border: 1px solid rgba(233, 228, 216, 0.35);
+  color: #fff !important;
+}
+.ems-btn.solid {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.ems-btn.solid:hover {
+  background: var(--accent-deep);
+}
+.ems-btn.ghost:hover {
+  border-color: #fff;
+}
+.ems-stores {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.1rem;
+  flex-wrap: wrap;
+}
+.ems-store-badge {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid rgba(233, 228, 216, 0.25);
+  border-radius: 8px;
+  color: var(--night-ink) !important;
+  text-decoration: none !important;
+}
+
+/* ---------- Socials ---------- */
+.ems-socials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+.ems-social-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1.2rem 1.1rem;
+}
+.ems-social-card .platform {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 0.4rem;
+}
+.ems-social-card .handle {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+.ems-social-card .blurb {
+  font-size: 0.86rem;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+.ems-social-card .go {
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+/* ---------- Feature image ---------- */
+.ems-feature figure {
+  margin: 1.2rem 0 0;
+}
+.ems-feature img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.ems-feature figcaption {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 0.6rem;
+}
+
+/* ---------- Archive list ---------- */
+.ems-archive {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+.ems-archive-item {
+  display: block;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none !important;
+  color: inherit !important;
+}
+.ems-archive-item .date {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 0.4rem;
+}
+.ems-archive-item .title {
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+  line-height: 1.35;
+  margin-bottom: 0.4rem;
+}
+.ems-archive-item .desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.ems-archive-item:hover .title {
+  color: var(--accent-deep);
+}
+
+.newsletter-page .ems-newsletter {
+  --paper: #faf7f2;
+  --ink: #1c1a17;
+  --accent: #b4691e;
+  min-height: 70vh;
+  padding-bottom: 4rem;
+}
+.newsletter-page .ems-newsletter a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+.ems-intro {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 6rem) 1.5rem 3rem;
+  text-align: center;
+}
+.ems-intro h1,
+.ems-archive-head h2 {
+  font: 400 clamp(2rem, 5vw, 3.5rem)/1.15 Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  margin: .5rem 0 1rem;
+}
+.ems-intro > p:not(.ems-kicker) {
+  max-width: 600px;
+  margin: 0 auto 1.3rem;
+  color: var(--muted);
+}
+.ems-intro > a { color: var(--accent-deep); text-underline-offset: 4px; }
+.ems-loading { padding: 2rem 1.5rem; text-align: center; color: var(--muted); }
+.ems-issue {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 20px 65px rgba(28, 26, 23, .06);
+}
+.ems-masthead .brand { display: block; }
+.ems-hero img { aspect-ratio: 16 / 7; }
+.ems-section h2 { max-width: none; }
+.ems-app-card h2 { font-size: 1.65rem; }
+.ems-app-card .ems-btn { text-decoration: none; }
+.ems-social-card a { color: var(--accent-deep); }
+.ems-archive { max-width: 900px; padding-top: 4rem; }
+.ems-archive-head { max-width: 640px; margin: 0 auto 1rem; }
+.ems-archive-head h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.ems-archive-head > p:last-child { color: var(--muted); }
+.ems-archive-list { max-width: 640px; margin: 0 auto; }
+.ems-archive-item { padding: 1.4rem .3rem; }
+.ems-archive-item.is-active-issue { border-left: 3px solid var(--accent); padding-left: 1rem; }
+.ems-archive-item .title, .ems-archive-item .desc { display: block; }
+.ems-archive-item .title { color: var(--ink); }
+.ems-archive-item:focus-visible .title { color: var(--accent-deep); }
+@media (max-width: 600px) {
+  .ems-intro { padding-top: 3rem; }
+  .ems-masthead { padding: 2.7rem 1.2rem 2rem; }
+  .ems-hero img { aspect-ratio: 4 / 3; }
+  .ems-body { padding: 0 1.2rem 2rem; }
+  .ems-section { padding: 2rem 0; }
+  .ems-app-card { padding: 1.5rem; }
+  .ems-archive { padding: 3rem 1.2rem; }
+}
