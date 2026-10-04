@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-22T10:54:17.442Z",
+  "updatedAt": "2026-10-04T23:48:05.597Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "RNjNNPjQnYU",
+      "title": "I tried this 24/7 Rainy Autumn Stream to focus (It Worked)",
+      "published": "2026-10-04T23:38:11Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=RNjNNPjQnYU"
+    },
     {
       "videoId": "7d7OnfPQMIU",
       "title": "Escape into the Rain: The Only Lofi Beats You Need to Sleep",
@@ -83,13 +90,6 @@
       "published": "2026-08-31T00:37:16Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=ek7EYvSudmk"
-    },
-    {
-      "videoId": "dbJpZMQLhcY",
-      "title": "That study session hit different 🌙 #lofi #studymotivation #studywithme",
-      "published": "2026-08-30T05:55:43Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=dbJpZMQLhcY"
     }
   ]
 }
