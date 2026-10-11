@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T21:05:54.231Z",
+  "updatedAt": "2026-10-11T03:46:40.570Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "hTBKD-3pweg",
+      "title": "Pumpkin cape, witch hat, and zero regrets 😼 #halloween #cat #cutecat",
+      "published": "2026-10-10T23:38:57Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=hTBKD-3pweg"
+    },
     {
       "videoId": "RNjNNPjQnYU",
       "title": "I tried this 24/7 Rainy Autumn Stream to focus (It Worked)",
@@ -23,7 +30,7 @@
     },
     {
       "videoId": "zcNwtI7CpFU",
-      "title": "Snow Cabin Cozy Lofi Study Beats to decompress to",
+      "title": "Crackling Fireplace and Soft Lofi Beats in a Snow Cabin",
       "published": "2026-09-14T22:00:06Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=zcNwtI7CpFU"
@@ -83,13 +90,6 @@
       "published": "2026-09-06T23:34:56Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=kx1xtZY7Jdc"
-    },
-    {
-      "videoId": "ek7EYvSudmk",
-      "title": "avoid burnout with this quiet city night session",
-      "published": "2026-08-31T00:37:16Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=ek7EYvSudmk"
     }
   ]
 }
