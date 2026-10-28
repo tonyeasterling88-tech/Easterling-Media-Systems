@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T03:46:40.570Z",
+  "updatedAt": "2026-10-28T20:03:00.475Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "frTgIyeMXGA",
+      "title": "This is the rain sound that fixes your sleep #rainsounds #shorts",
+      "published": "2026-10-28T17:27:41Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=frTgIyeMXGA"
+    },
     {
       "videoId": "hTBKD-3pweg",
       "title": "Pumpkin cape, witch hat, and zero regrets 😼 #halloween #cat #cutecat",
@@ -83,13 +90,6 @@
       "published": "2026-09-07T00:03:09Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=xy4Bzncz4Vs"
-    },
-    {
-      "videoId": "kx1xtZY7Jdc",
-      "title": "Don&#39;t miss the next lofi drop 🎧🐱 #lofi #anime #beats",
-      "published": "2026-09-06T23:34:56Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=kx1xtZY7Jdc"
     }
   ]
 }
