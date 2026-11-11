@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T19:49:36.921Z",
+  "updatedAt": "2026-11-11T04:31:53.757Z",
   "channel": {
     "id": "UCNhXHBT6Efo1xEjIGKgPNKw",
     "url": "https://www.youtube.com/@NagiKumoChillFi",
@@ -7,6 +7,13 @@
     "source": "youtube-data-api"
   },
   "videos": [
+    {
+      "videoId": "uX_RcskS7yI",
+      "title": "Rainy Airport Lofi — This is why YOU stayed",
+      "published": "2026-11-11T01:00:08Z",
+      "author": "NagiKumo ChillFi",
+      "link": "https://www.youtube.com/watch?v=uX_RcskS7yI"
+    },
     {
       "videoId": "frTgIyeMXGA",
       "title": "This is the rain sound that fixes your sleep #rainsounds #shorts",
@@ -83,13 +90,6 @@
       "published": "2026-09-08T19:05:35Z",
       "author": "NagiKumo ChillFi",
       "link": "https://www.youtube.com/watch?v=YpsYONhIJX0"
-    },
-    {
-      "videoId": "xy4Bzncz4Vs",
-      "title": "I Tried This Rainy Porch Loop for Focus (It Actually Worked)",
-      "published": "2026-09-07T00:03:09Z",
-      "author": "NagiKumo ChillFi",
-      "link": "https://www.youtube.com/watch?v=xy4Bzncz4Vs"
     }
   ]
 }
