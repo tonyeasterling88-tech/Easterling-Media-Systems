@@ -57,6 +57,7 @@
     }
 
     body {
+      overflow-x: clip;
       background:
         radial-gradient(circle at 16% 18%, rgba(245, 154, 180, 0.11), transparent 26rem),
         radial-gradient(circle at 82% 8%, rgba(243, 180, 111, 0.12), transparent 26rem),
@@ -256,6 +257,7 @@
     }
 
     .season-map {
+      scroll-margin-top: 6rem;
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
       padding: 4.5rem 1rem;
@@ -339,7 +341,6 @@
     .episode {
       position: relative;
       flex: 0 0 calc((100% - 3rem) / 4);
-      min-height: 330px;
       overflow: hidden;
       border-radius: 8px;
       border: 1px solid var(--nagi-line);
@@ -347,23 +348,32 @@
       scroll-snap-align: start;
     }
 
+    .episode-watch {
+      position: relative;
+      display: block;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .episode-watch:focus-visible {
+      outline: 3px solid var(--nagi-cyan);
+      outline-offset: -3px;
+    }
+
     .episode img,
-    .episode video,
-    .episode-placeholder {
+    .episode video {
       width: 100%;
       height: 100%;
-      min-height: 330px;
       display: block;
       object-fit: cover;
-      filter: saturate(0.98);
-      transition: transform 420ms ease, filter 420ms ease;
+      transition: transform 420ms ease;
     }
 
     .episode video {
       position: absolute;
       inset: 0;
-      z-index: 0;
       opacity: 0;
+      pointer-events: none;
       transition: opacity 220ms ease, transform 420ms ease;
     }
 
@@ -371,77 +381,13 @@
       opacity: 1;
     }
 
-    .episode-tatami img,
-    .episode-tatami video {
-      object-position: 85% center;
-    }
-
-    .episode:hover img,
-    .episode:hover video {
+    .episode-watch:hover img,
+    .episode-watch:hover video {
       transform: scale(1.035);
-      filter: saturate(1.08);
-    }
-
-    .episode.unrevealed img,
-    .episode.unrevealed video,
-    .episode.unrevealed .episode-placeholder {
-      filter: blur(18px) saturate(0.75) brightness(0.68);
-      transform: scale(1.08);
-    }
-
-    .episode.unrevealed:hover img,
-    .episode.unrevealed:hover video,
-    .episode.unrevealed:hover .episode-placeholder {
-      filter: blur(18px) saturate(0.82) brightness(0.72);
-      transform: scale(1.1);
-    }
-
-    .episode-placeholder {
-      background:
-        radial-gradient(circle at 30% 28%, rgba(103, 232, 249, 0.26), transparent 30%),
-        radial-gradient(circle at 70% 62%, rgba(244, 114, 182, 0.2), transparent 34%),
-        linear-gradient(145deg, #143257, #11162f 58%, #07111d);
-    }
-
-    .episode::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: linear-gradient(180deg, transparent 28%, rgba(2, 6, 23, 0.9) 100%);
-      pointer-events: none;
-    }
-
-    .episode.unrevealed::after {
-      background:
-        radial-gradient(circle at 50% 38%, rgba(2, 6, 23, 0.22), rgba(2, 6, 23, 0.76) 58%),
-        linear-gradient(180deg, rgba(2, 6, 23, 0.26), rgba(2, 6, 23, 0.94) 100%);
-      backdrop-filter: blur(3px);
-    }
-
-    .episode.unrevealed::before {
-      content: "Thumbnail reveal soon";
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      z-index: 2;
-      padding: 0.44rem 0.62rem;
-      border: 1px solid rgba(255, 247, 237, 0.2);
-      border-radius: 999px;
-      background: rgba(2, 6, 23, 0.72);
-      color: #fff7ed;
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
     }
 
     .episode-copy {
-      position: absolute;
-      left: 1rem;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 2;
+      padding: 1rem;
     }
 
     .episode-copy span {
@@ -766,105 +712,125 @@
           <h2>Episodes are places Nagi and Kumo can return to.</h2>
         </div>
         <div>
-          <p class="muted">The first season moves through cozy rain, morning stillness, gentle travel, study spaces, spring air, city rooftops, temple rain, snow, and airport nights.</p>
+          <p class="muted">All 10 episodes are ready to watch. Follow the season from Rainy Cafe to Airport Midnight, or choose a thumbnail to open that episode on YouTube.</p>
           <div class="cta-row">
-            <a class="btn" href="https://www.youtube.com/playlist?list=PLb7GkuOlByVY" target="_blank" rel="noopener noreferrer">Watch Reflective Journey</a>
+            <a class="btn" href="https://www.youtube.com/playlist?list=PLIdSmVfZcc0c" target="_blank" rel="noopener noreferrer">Watch All 10 Episodes</a>
           </div>
         </div>
       </div>
       <div class="episode-carousel" data-episode-carousel role="region" aria-label="Season 1 episodes">
         <button class="carousel-control prev" type="button" data-carousel-prev aria-label="Previous episode" aria-disabled="true">&#8592;</button>
         <div class="episode-strip" data-carousel-track>
-        <article class="episode" data-episode-number="1" tabindex="0" data-youtube-video-id="7d9_8z2UIx0" data-youtube-episode="stay here|rainy café|rainy cafe">
-          <img data-episode-thumbnail src="assets/nagikumo/rainy-cafe.jpg" alt="Nagi and Kumo inside a rainy cafe at night" loading="lazy" />
-          <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/rainy-cafe.jpg" aria-hidden="true">
-            <source src="assets/nagikumo/previews/episode-01-rainy-cafe.mp4" type="video/mp4" />
-          </video>
+        <article class="episode" data-episode-number="1" data-youtube-video-id="7d9_8z2UIx0">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=7d9_8z2UIx0" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 01: Rainy Cafe on YouTube (opens in a new tab)" title="1 Hour of Deep Focus You Won&#x27;t Want to Leave!">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-01.jpg" alt="1 Hour of Deep Focus You Won&#x27;t Want to Leave! thumbnail" width="1280" height="720" loading="lazy" />
+            <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/thumbnails/episode-01.jpg" aria-hidden="true">
+              <source src="assets/nagikumo/previews/episode-01-rainy-cafe.mp4" type="video/mp4" />
+            </video>
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 01 | Published</span>
+            <span data-episode-status>Episode 01 | Published | 59:25</span>
             <h3 data-episode-title>Rainy Cafe</h3>
             <p>Cozy rainy cafe night; quiet companionship and reflective calm.</p>
           </div>
         </article>
-        <article class="episode episode-tatami" data-episode-number="2" tabindex="0" data-youtube-video-id="k3DzZ_SiXeg" data-youtube-episode="tatami morning">
-          <img data-episode-thumbnail src="assets/nagikumo/tatami-morning.jpg" alt="Nagi writing beside Kumo in a warm tatami room" loading="lazy" />
-          <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/tatami-morning.jpg" aria-hidden="true">
-            <source src="assets/nagikumo/previews/episode-02-tatami-morning.mp4" type="video/mp4" />
-          </video>
+        <article class="episode" data-episode-number="2" data-youtube-video-id="k3DzZ_SiXeg">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=k3DzZ_SiXeg" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 02: Tatami Morning on YouTube (opens in a new tab)" title="Still Can&#x27;t Focus? Try 1 Hour of Japanese Lo-Fi in the Rain">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-02.jpg" alt="Still Can&#x27;t Focus? Try 1 Hour of Japanese Lo-Fi in the Rain thumbnail" width="1280" height="720" loading="lazy" />
+            <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/thumbnails/episode-02.jpg" aria-hidden="true">
+              <source src="assets/nagikumo/previews/episode-02-tatami-morning.mp4" type="video/mp4" />
+            </video>
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 02 | Published</span>
+            <span data-episode-status>Episode 02 | Published | 57:41</span>
             <h3 data-episode-title>Tatami Morning</h3>
             <p>Soft morning interior, rain texture, grounded calm.</p>
           </div>
         </article>
-        <article class="episode" data-episode-number="3" tabindex="0" data-youtube-video-id="VrylQev5vNE" data-youtube-episode="sunset train">
-          <img data-episode-thumbnail src="assets/nagikumo/train-ride-sunset.jpg" alt="Nagi and Kumo riding a train at sunset" loading="lazy" />
-          <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/train-ride-sunset.jpg" aria-hidden="true">
-            <source src="assets/nagikumo/previews/episode-03-sunset-train.mp4" type="video/mp4" />
-          </video>
+        <article class="episode" data-episode-number="3" data-youtube-video-id="VrylQev5vNE">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=VrylQev5vNE" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 03: Train Ride Sunset on YouTube (opens in a new tab)" title="Golden Hour Train Beats to Help You Unwind">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-03.jpg" alt="Golden Hour Train Beats to Help You Unwind thumbnail" width="1280" height="720" loading="lazy" />
+            <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/thumbnails/episode-03.jpg" aria-hidden="true">
+              <source src="assets/nagikumo/previews/episode-03-sunset-train.mp4" type="video/mp4" />
+            </video>
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 03 | Published</span>
+            <span data-episode-status>Episode 03 | Published | 49:10</span>
             <h3 data-episode-title>Train Ride Sunset</h3>
             <p>Warm train-window lo-fi with quiet observation.</p>
           </div>
         </article>
-        <article class="episode" data-episode-number="4" tabindex="0" data-youtube-video-id="WbhsPqwAUwQ" data-youtube-episode="rainy desk">
-          <img data-episode-thumbnail src="assets/nagikumo/rainy-desk-night.png" alt="Nagi studying at a rainy desk at night" loading="lazy" />
-          <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/rainy-desk-night.png" aria-hidden="true">
-            <source src="assets/nagikumo/previews/episode-04-rainy-desk.mp4" type="video/mp4" />
-          </video>
+        <article class="episode" data-episode-number="4" data-youtube-video-id="WbhsPqwAUwQ">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=WbhsPqwAUwQ" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 04: Rainy Desk Night on YouTube (opens in a new tab)" title="Late Night Study Session: 1 Hour of Cozy Rainy Desk Lofi">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-04.jpg" alt="Late Night Study Session: 1 Hour of Cozy Rainy Desk Lofi thumbnail" width="1280" height="720" loading="lazy" />
+            <video data-episode-preview muted loop playsinline preload="metadata" poster="assets/nagikumo/thumbnails/episode-04.jpg" aria-hidden="true">
+              <source src="assets/nagikumo/previews/episode-04-rainy-desk.mp4" type="video/mp4" />
+            </video>
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 04 | Published</span>
+            <span data-episode-status>Episode 04 | Published | 1:04:18</span>
             <h3 data-episode-title>Rainy Desk Night</h3>
             <p>Focused late-night desk calm with rain on the window.</p>
           </div>
         </article>
-        <article class="episode unrevealed" data-episode-number="5" data-youtube-episode="cherry blossom">
-          <img data-episode-thumbnail src="assets/nagikumo/cherry-blossom-picnic.jpg" alt="Nagi and Kumo at a cherry blossom picnic" loading="lazy" />
+        <article class="episode" data-episode-number="5" data-youtube-video-id="VVWWRfpta3Y">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=VVWWRfpta3Y" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 05: Cherry Blossom Picnic on YouTube (opens in a new tab)" title="The Calmest Hour You Will Spend Studying This Week">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-05.jpg" alt="The Calmest Hour You Will Spend Studying This Week thumbnail" width="1280" height="720" loading="lazy" />
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 05 | Scheduled</span>
+            <span data-episode-status>Episode 05 | Published | 1:00:17</span>
             <h3 data-episode-title>Cherry Blossom Picnic</h3>
             <p>Spring picnic warmth, soft petals, and gentle focus.</p>
           </div>
         </article>
-        <article class="episode unrevealed" data-episode-number="6">
-          <div class="episode-placeholder" aria-hidden="true"></div>
+        <article class="episode" data-episode-number="6" data-youtube-video-id="rroewxEKLNc">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=rroewxEKLNc" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 06: Library Study Time on YouTube (opens in a new tab)" title="Can You Read for an Hour Without Getting Distracted?">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-06.jpg" alt="Can You Read for an Hour Without Getting Distracted? thumbnail" width="1280" height="720" loading="lazy" />
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 06 | Edit Phase</span>
+            <span data-episode-status>Episode 06 | Published | 52:27</span>
             <h3 data-episode-title>Library Study Time</h3>
-            <p>A quiet library chapter shaped around focus and patient motion.</p>
+            <p>A quiet library chapter for reading, focus, and a little stillness.</p>
           </div>
         </article>
-        <article class="episode unrevealed" data-episode-number="7">
-          <div class="episode-placeholder" aria-hidden="true"></div>
+        <article class="episode" data-episode-number="7" data-youtube-video-id="ek7EYvSudmk">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=ek7EYvSudmk" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 07: Rooftop Night Chill on YouTube (opens in a new tab)" title="Nothing to Do Tonight? Sit on This Balcony With Us">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-07.jpg" alt="Nothing to Do Tonight? Sit on This Balcony With Us thumbnail" width="1280" height="720" loading="lazy" />
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 07 | Edit Phase</span>
-            <h3 data-episode-title>City Rooftop Sunset</h3>
-            <p>Nagi and Kumo pause above the city as evening settles in.</p>
+            <span data-episode-status>Episode 07 | Published | 53:28</span>
+            <h3 data-episode-title>Rooftop Night Chill</h3>
+            <p>Nagi and Kumo pause on a balcony above the city at night.</p>
           </div>
         </article>
-        <article class="episode unrevealed" data-episode-number="8">
-          <div class="episode-placeholder" aria-hidden="true"></div>
+        <article class="episode" data-episode-number="8" data-youtube-video-id="xy4Bzncz4Vs">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=xy4Bzncz4Vs" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 08: Temple Porch Rain on YouTube (opens in a new tab)" title="I Tried This Rainy Porch Loop for Focus (It Actually Worked)">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-08.jpg" alt="I Tried This Rainy Porch Loop for Focus (It Actually Worked) thumbnail" width="1280" height="720" loading="lazy" />
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 08 | Edit Phase</span>
+            <span data-episode-status>Episode 08 | Published | 45:16</span>
             <h3 data-episode-title>Temple Porch Rain</h3>
             <p>Temple rain, wooden shelter, and a slower reflective rhythm.</p>
           </div>
         </article>
-        <article class="episode unrevealed" data-episode-number="9">
-          <div class="episode-placeholder" aria-hidden="true"></div>
+        <article class="episode" data-episode-number="9" data-youtube-video-id="zcNwtI7CpFU">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=zcNwtI7CpFU" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 09: Snowy Cabin on YouTube (opens in a new tab)" title="Crackling Fireplace and Soft Lofi Beats in a Snow Cabin">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-09.jpg" alt="Crackling Fireplace and Soft Lofi Beats in a Snow Cabin thumbnail" width="1280" height="720" loading="lazy" />
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 09 | Edit Phase</span>
-            <h3 data-episode-title>Snowy Cabin Morning</h3>
-            <p>Soft snow and warm cabin light frame a calm winter morning.</p>
+            <span data-episode-status>Episode 09 | Published | 57:00</span>
+            <h3 data-episode-title>Snowy Cabin</h3>
+            <p>Soft snow, warm cabin light, and a crackling fireplace.</p>
           </div>
         </article>
-        <article class="episode unrevealed" data-episode-number="10">
-          <div class="episode-placeholder" aria-hidden="true"></div>
+        <article class="episode" data-episode-number="10" data-youtube-video-id="uX_RcskS7yI">
+          <a class="episode-watch" href="https://www.youtube.com/watch?v=uX_RcskS7yI" target="_blank" rel="noopener noreferrer" aria-label="Watch Episode 10: Airport Midnight on YouTube (opens in a new tab)" title="Rainy Airport Lofi — This is why YOU stayed">
+            <img data-episode-thumbnail src="assets/nagikumo/thumbnails/episode-10.jpg" alt="Rainy Airport Lofi — This is why YOU stayed thumbnail" width="1280" height="720" loading="lazy" />
+          </a>
           <div class="episode-copy">
-            <span data-episode-status>Episode 10 | Edit Phase</span>
+            <span data-episode-status>Episode 10 | Published | 51:07</span>
             <h3 data-episode-title>Airport Midnight</h3>
-            <p>The season closes in a quiet terminal between journeys.</p>
+            <p>The season closes in a quiet, rainy terminal between journeys.</p>
           </div>
         </article>
         </div>
@@ -875,9 +841,9 @@
 
   <section class="nagi-shell nagi-section production-pulse">
     <div>
-      <span class="nagi-kicker">What She Is Up To</span>
-      <h2>Season 1 is becoming a story told one finished journey at a time.</h2>
-      <p class="muted">Four episodes now follow Nagi and Kumo from the cafe to a tatami morning, a sunset train, and a rainy desk at night. Cherry Blossom Picnic is scheduled next, while the remaining journeys are moving through editing toward finished one-hour atmospheres.</p>
+      <span class="nagi-kicker">The Complete First Season</span>
+      <h2>Ten quiet journeys, from the cafe to the airport.</h2>
+      <p class="muted">Season 1 is complete, with more than nine hours of Japanese lo-fi across all 10 episodes. Settle into a familiar place, follow Nagi and Kumo in order, or return to the atmosphere that fits your day.</p>
       <div class="sound-band">
         <span class="nagi-kicker">Sound Identity</span>
         <ul>
@@ -888,30 +854,30 @@
         </ul>
       </div>
     </div>
-    <div class="pulse-list" aria-label="Season 1 production status">
+    <div class="pulse-list" aria-label="Season 1 episode guide">
       <div class="pulse-item">
         <strong>01-04</strong>
         <div>
-          <h3>The journey so far</h3>
+          <h3>Rain, mornings, and travel</h3>
           <p>Rainy Cafe, Tatami Morning, Train Ride Sunset, and Rainy Desk Night are published.</p>
         </div>
         <span>Published</span>
       </div>
       <div class="pulse-item">
-        <strong>05</strong>
+        <strong>05-08</strong>
         <div>
-          <h3>Cherry Blossom Picnic</h3>
-          <p>The next chapter is finished and scheduled for release.</p>
+          <h3>Spring, books, and city lights</h3>
+          <p>Cherry Blossom Picnic, Library Study Time, Rooftop Night Chill, and Temple Porch Rain continue the journey.</p>
         </div>
-        <span>Scheduled</span>
+        <span>Published</span>
       </div>
       <div class="pulse-item">
-        <strong>06-10</strong>
+        <strong>09-10</strong>
         <div>
-          <h3>The road ahead</h3>
-          <p>Library Study Time, Rooftop Night Chill, Temple Porch Rain, Snowy Cabin, and Airport Night Chill are in editing.</p>
+          <h3>Snow and the next departure</h3>
+          <p>Snowy Cabin and Airport Midnight bring the first season to a quiet close.</p>
         </div>
-        <span>Edit Phase</span>
+        <span>Published</span>
       </div>
     </div>
   </section>
@@ -919,8 +885,8 @@
   <section class="nagi-shell nagi-section adventure-journal">
     <div>
       <span class="nagi-kicker">Nagi and Kumo Adventures</span>
-      <h2>A tiny story log for shorts, scenes, and future posts.</h2>
-      <p class="muted">The page can become a lightweight blog from inside the NagiKumo world: not production notes only, but small entries from the places they pass through.</p>
+      <h2>Small moments from a season of quiet places.</h2>
+      <p class="muted">Rain on cafe windows, a slow morning, and a city walk after dark: the small details connect the places Nagi and Kumo pass through.</p>
       <div class="journal-entries">
         <article class="journal-entry">
           <time datetime="2026-06">June</time>
@@ -930,10 +896,10 @@
           </div>
         </article>
         <article class="journal-entry">
-          <time datetime="2026-06">Next</time>
+          <span class="nagi-kicker">Episode 02</span>
           <div>
-            <h3>Tatami Morning waits for approval.</h3>
-            <p class="muted">The morning episode is staged as the softer counterpart to Rainy Cafe: low rain, teacup steam, warm floor, and a day that does not need to rush.</p>
+            <h3>Tatami Morning slows the day down.</h3>
+            <p class="muted">The morning episode is a softer counterpart to Rainy Cafe: low rain, teacup steam, warm floor, and a day that does not need to rush.</p>
           </div>
         </article>
         <article class="journal-entry">

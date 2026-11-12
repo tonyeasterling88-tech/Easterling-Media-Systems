@@ -25,30 +25,41 @@ test('nextScrollPosition moves one card and clamps at both edges', () => {
   assert.equal(nextScrollPosition(20, -1, 280, 840), 0);
 });
 
-test('Season 1 renders ten ordered cards with four playable previews', async () => {
+test('Season 1 renders all ten published episodes with four retained previews', async () => {
   const html = await readFile('nagikumo-chillfi.html', 'utf8');
   const cards = [...html.matchAll(/<article class="episode[^"]*"[^>]*data-episode-number="(\d+)"/g)]
     .map((match) => Number(match[1]));
 
   assert.deepEqual(cards, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   assert.equal((html.match(/data-episode-preview/g) || []).length, 4);
-  assert.equal((html.match(/class="episode[^"]*"[^>]*tabindex="0"/g) || []).length, 4);
-  assert.equal((html.match(/class="episode unrevealed"/g) || []).length, 6);
+  assert.equal((html.match(/data-episode-status>Episode \d{2} \| Published/g) || []).length, 10);
+  assert.doesNotMatch(html, /unrevealed|Scheduled|Edit Phase|waits for approval/);
+  assert.doesNotMatch(html, /data-youtube-episode=/);
+  assert.match(html, /playlist\?list=PLIdSmVfZcc0c/);
 });
 
-test('unpublished episode cards contain no playable local video', async () => {
+test('each thumbnail links directly to its matching Season 1 video', async () => {
   const html = await readFile('nagikumo-chillfi.html', 'utf8');
-  const unpublishedCards = [...html.matchAll(
-    /<article class="episode unrevealed"[\s\S]*?<\/article>/g
-  )];
+  const videoIds = [
+    '7d9_8z2UIx0', 'k3DzZ_SiXeg', 'VrylQev5vNE', 'WbhsPqwAUwQ',
+    'VVWWRfpta3Y', 'rroewxEKLNc', 'ek7EYvSudmk', 'xy4Bzncz4Vs',
+    'zcNwtI7CpFU', 'uX_RcskS7yI',
+  ];
+  const cards = [...html.matchAll(/<article class="episode"[\s\S]*?<\/article>/g)];
 
-  assert.equal(unpublishedCards.length, 6);
-  for (const [index, match] of unpublishedCards.entries()) {
-    assert.doesNotMatch(
-      match[0],
-      /<video|\.mp4/,
-      `unpublished episode ${index + 5} must not expose a playable preview`
-    );
+  assert.equal(cards.length, videoIds.length);
+  for (const [index, [card]] of cards.entries()) {
+    const videoId = videoIds[index];
+    const link = card.match(/<a class="episode-watch"([^>]*)>([\s\S]*?)<\/a>/);
+    assert.ok(link, `episode ${index + 1} must have a thumbnail link`);
+    assert.ok(link[1].includes(`href="https://www.youtube.com/watch?v=${videoId}"`));
+    assert.ok(card.includes(`data-youtube-video-id="${videoId}"`));
+    assert.match(link[1], /target="_blank" rel="noopener noreferrer"/);
+    assert.match(link[1], /aria-label="Watch Episode \d{2}: [^"]+ on YouTube/);
+    const thumbnail = link[2].match(/<img data-episode-thumbnail src="([^"]+)" alt="([^"]+)"/);
+    assert.ok(thumbnail, `episode ${index + 1} thumbnail must be inside its link`);
+    const image = await readFile(thumbnail[1]);
+    assert.equal(image.subarray(0, 2).toString('hex'), 'ffd8');
   }
 });
 
